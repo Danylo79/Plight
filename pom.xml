@@ -6,7 +6,7 @@
 
     <groupId>dev.dankom.plight</groupId>
     <artifactId>Plight</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>pom</packaging>
     <name>Plight</name>
     <url>https://github.com/Danylo79/Plight</url>
