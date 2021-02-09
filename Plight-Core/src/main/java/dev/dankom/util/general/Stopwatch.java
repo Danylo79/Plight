@@ -47,4 +47,8 @@ public class Stopwatch {
     public boolean isStarted() {
         return isStarted;
     }
+
+    public long getTimePassed() {
+        return endTime - startTime;
+    }
 }
