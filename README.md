@@ -6,4 +6,21 @@
 Plight is a library of useful util and helper classes.
 
 # Maven
-Go to the directory of the module for example the core is located at ./Plight-Core and read the README.
+
+Repository
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+Dependency
+```xml
+<dependency>
+    <groupId>com.github.Danylo79</groupId>
+    <artifactId>Plight-Core</artifactId>
+    <version>{VERSION}</version>
+</dependency>
+```
