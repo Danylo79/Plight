@@ -5,5 +5,5 @@
 # Plight (Java)
 Plight is a library of useful util and helper classes.
 
-#Maven
+# Maven
 Go to the directory of the module for example the core is located at ./Plight-Core and read the README.
