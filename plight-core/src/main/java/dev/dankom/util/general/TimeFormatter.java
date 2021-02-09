@@ -1,6 +1,5 @@
 package dev.dankom.util.general;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TimeFormatter {

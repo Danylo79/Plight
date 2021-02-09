@@ -5,17 +5,121 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Plight-Maven/Plight-Maven.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Plight-Maven/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-core/src/test/java/dev/dankom/util/general/MathUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-core/src/test/java/dev/dankom/util/general/StringFormatterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-maven-plugin/src/main/java/dev/dankom/pm/InfoMojo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-maven-plugin/src/main/java/dev/dankom/pm/util/PropertiesReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/annotation/TriggerTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/annotation/TriggerTarget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/annotation/UnderConstruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/annotation/UnderConstruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/annotation/json/JsonExpose.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/annotation/json/JsonExpose.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/annotation/json/JsonSerializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/annotation/json/JsonSerializable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/cipher/Caesar.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/cipher/Caesar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/cipher/RSA.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/cipher/RSA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/cipher/Vigenere.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/cipher/Vigenere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/cipher/aes/AES.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/cipher/aes/AES.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/cipher/aes/AESEncryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/cipher/aes/AESEncryption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/conversions/RomanNumeral.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/conversions/RomanNumeral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/core/Core.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/core/Core.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/exception/CallbackFailException.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/exception/CallbackFailException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/exception/InvalidTriggerMethodException.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/exception/InvalidTriggerMethodException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/bat/BatFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/bat/BatFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/custom/CustomFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/custom/CustomFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/gitignore/GitIgnore.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/gitignore/GitIgnore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/jar/JarFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/jar/JarFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/jar/runner/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/jar/runner/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/json/JsonFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/json/JsonFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/json/JsonObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/json/JsonObjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/json/JsonObjectReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/json/JsonObjectReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/md/MdFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/md/MdFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/sh/ShFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/sh/ShFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/txt/TxtFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/txt/TxtFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/type/Directory.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/type/Directory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/type/file/AdvancedFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/type/file/AdvancedFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/type/file/SimpleFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/type/file/SimpleFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/yml/YmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/yml/YmlFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/yml/YmlObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/yml/YmlObjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/file/yml/type/YmlObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/file/yml/type/YmlObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/interfaces/Temporary.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/interfaces/Temporary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/interfaces/impl/SimpleArgsMethodRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/interfaces/impl/SimpleArgsMethodRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/interfaces/impl/SimpleMethodRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/interfaces/impl/SimpleMethodRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/interfaces/runner/ArgsMethodRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/interfaces/runner/ArgsMethodRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/interfaces/runner/MethodRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/interfaces/runner/MethodRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/logger/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/logger/abztract/AbstractLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/logger/abztract/AbstractLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/logger/abztract/DefaultLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/logger/abztract/DefaultLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/logger/interfaces/ILogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/logger/interfaces/ILogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/logger/type/LogLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/logger/type/LogLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/test/RuntimeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/test/RuntimeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/test/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/test/TestRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/test/tests/JsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/test/tests/JsonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/test/tests/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/test/tests/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/triggered/logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/triggered/logger/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/triggered/manager/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/triggered/manager/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/triggered/manager/TriggerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/triggered/manager/TriggerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/triggered/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/triggered/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/triggered/trigger/Trigger.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/triggered/trigger/Trigger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/triggered/trigger/TriggerTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/triggered/trigger/TriggerTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/triggered/trigger/Triggers.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/triggered/trigger/Triggers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/triggered/type/TriggerType.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/triggered/type/TriggerType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/AttributeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/AttributeMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/Options.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/Options.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/ReflectionData.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/ReflectionData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/Registry.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/Registry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/SafeMethodRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/SafeMethodRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/Timer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/TypeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/TypeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/callback/Callback.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/callback/Callback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/callback/MeteredCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/callback/MeteredCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/callback/RuntimeCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/callback/RuntimeCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/reflection/CachedPackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/reflection/CachedPackage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/reflection/ClassSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/reflection/ClassSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/type/rng/RNGJesus.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/type/rng/RNGJesus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/ArrayHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/ArrayHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/BufferUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/BufferUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/ColorUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/ColorUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/DataStructureAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/DataStructureAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/ExceptionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/ExceptionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/FileUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/HttpUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/HttpUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/ListUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/ListUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/MathUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/MathUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/NameHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/NameHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/Stopwatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/Stopwatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/StringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/StringFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/StringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/StringUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/TimeFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/TimeFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/TimeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/TimeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/Validation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/ZipUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/ZipUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/general/args/ArgParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/general/args/ArgParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/gl/GL11Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/gl/GL11Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/minecraft/ChatColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/minecraft/ChatColor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/reflection/JarClassLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/reflection/JarClassLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/reflection/ReflectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/reflection/ReflectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/reflection/ReflectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/reflection/ReflectionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Core/src/main/java/dev/dankom/util/steam/SteamGameExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/src/main/java/dev/dankom/util/steam/SteamGameExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Maven/Plight-Maven.iml" beforeDir="false" afterPath="$PROJECT_DIR$/plight-maven-plugin/plight-maven-plugin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plight-Maven/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plight-maven-plugin/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit3 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,11 +136,90 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="dev.dankom.util.general" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.Build">
+    <configuration name="MathUtilTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="plight-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.util.general.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dev.dankom.util.general" />
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.util.general.MathUtilTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="plight-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.util.general.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dev.dankom.util.general" />
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.util.general.TimeFormatterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Build" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+                <option value="deploy" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.MathUtilTest" />
+      <item itemvalue="Maven.Build" />
+      <item itemvalue="JUnit.TimeFormatterTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TimeFormatterTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

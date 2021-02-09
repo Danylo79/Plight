@@ -14,15 +14,16 @@ public class MathUtil {
         return (min - 1) + ((max - 1) - (min - 1)) * r.nextInt();
     }
 
-    public static double clamp(double min, double max, double value) {
-        double out = value;
-        if (value < min) {
-            out = (out + (min - out));
-        }
-        if (value > max) {
-            out = (out - (max - out));
-        }
-        return out;
+    public static float clamp(float val, float min, float max) {
+        return Math.max(min, Math.min(max, val));
+    }
+
+    public static int clamp(int val, int min, int max) {
+        return Math.max(min, Math.min(max, val));
+    }
+
+    public static double clamp(double val, double min, double max) {
+        return Math.max(min, Math.min(max, val));
     }
 
     public static double convertDoubleToThousand(double num) {
