@@ -1,5 +1,5 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
-[![](https://jitpack.io/v/Danylo79/Dankom-Core.svg)](https://jitpack.io/#Danylo79/Dankom-Core)
+[![](https://jitpack.io/v/Danylo79/Plight.svg)](https://jitpack.io/#Danylo79/Plight)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Plight (Java)
