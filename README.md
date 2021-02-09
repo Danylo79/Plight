@@ -20,7 +20,7 @@ Dependency
 ```xml
 <dependency>
     <groupId>com.github.Danylo79</groupId>
-    <artifactId>Plight-Core</artifactId>
+    <artifactId>Plight</artifactId>
     <version>{VERSION}</version>
 </dependency>
 ```
