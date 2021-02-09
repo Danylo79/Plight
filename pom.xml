@@ -8,7 +8,7 @@
     <artifactId>Plight</artifactId>
     <version>1.0</version>
     <modules>
-        <module>Core</module>
+        <module>Plight-Core</module>
     </modules>
     <packaging>pom</packaging>
 
