@@ -8,6 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="plight-core" />
+        <module name="plight-plugin-loader" />
+        <module name="plight-test" />
         <module name="plight-maven-plugin" />
       </profile>
     </annotationProcessing>

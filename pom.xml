@@ -15,6 +15,8 @@
     <modules>
         <module>plight-core</module>
         <module>plight-maven-plugin</module>
+        <module>plight-plugin-loader</module>
+        <module>plight-test</module>
     </modules>
 
     <properties>

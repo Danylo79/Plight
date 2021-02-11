@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/PluginManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/exception/InvalidPluginException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/loader/PluginClassLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/loader/PluginLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/plugin/IPlugin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/plugin/IPluginInstance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/plugin/PluginConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/startup/PluginBoostrap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/type/PluginService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-plugin-loader/src/main/java/dev/dankom/pl/util/JsonUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-test/plight-test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plight-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plight-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plight-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +32,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit3 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -39,7 +55,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
