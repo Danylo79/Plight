@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/interfaces/impl/ThreadMethodRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/operation/IOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/operation/operations/ShutdownOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/operation/ShutdownOperationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/operation/IOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/operation/IOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/operation/operations/ShutdownOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/operation/operations/ShutdownOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/ColorUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/ColorUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,13 +56,26 @@
       <recent name="dev.dankom.util.general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AgentLoaderTest">
+  <component name="RunManager" selected="Application.ShutdownOperationTest">
     <configuration name="AgentLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.agent.AgentLoaderTest" />
       <module name="Plight" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.dankom.tests.agent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShutdownOperationTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.operation.ShutdownOperationTest" />
+      <module name="Plight" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.tests.operation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -178,11 +192,13 @@
       <item itemvalue="JUnit.MathUtilTest" />
       <item itemvalue="JUnit.TimeFormatterTest" />
       <item itemvalue="Maven.Build" />
+      <item itemvalue="Application.ShutdownOperationTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TimeFormatterTest" />
+        <item itemvalue="Application.ShutdownOperationTest" />
         <item itemvalue="Application.AgentLoaderTest" />
+        <item itemvalue="JUnit.TimeFormatterTest" />
       </list>
     </recent_temporary>
   </component>

@@ -7,7 +7,6 @@ public abstract class IOperation {
     private ILogger logger;
 
     public abstract String getName();
-    public abstract void run();
 
     public IOperation(ILogger logger) {
         this.logger = logger;
@@ -15,5 +14,9 @@ public abstract class IOperation {
 
     protected AbstractLogger getLog() {
         return new AbstractLogger(logger);
+    }
+
+    protected void log(String msg) {
+        getLog().info(getClass().getSimpleName() + "$" + getName(), msg);
     }
 }

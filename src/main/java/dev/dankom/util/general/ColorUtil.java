@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class ColorUtil {
 
-    private static ColorUtil instance;
     // ANSI escape code
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -25,9 +24,5 @@ public class ColorUtil {
         double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
         rainbowState %= 360;
         return Color.getHSBColor((float) (rainbowState / 360.0f), 0.8f, 0.7f).getRGB();
-    }
-
-    static {
-        instance = new ColorUtil();
     }
 }

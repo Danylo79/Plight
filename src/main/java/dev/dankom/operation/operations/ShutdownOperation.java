@@ -12,6 +12,7 @@ public class ShutdownOperation extends IOperation {
         super(logger);
         this.runner = runner;
         this.name = name;
+        register(getRunner());
     }
 
     @Override
@@ -19,16 +20,11 @@ public class ShutdownOperation extends IOperation {
         return name;
     }
 
-    @Override
-    public void run() {
-        getLog().info("ShutdownOperation$" + getName(), "Starting Operation . . .");
-        try {
-            Runtime.getRuntime().addShutdownHook(runner);
-        } catch (Exception e) {
-            getLog().error("ShutdownOperation$" + getName(), "Operation Failed!");
-            e.printStackTrace();
-            return;
-        }
-        getLog().info("ShutdownOperation$" + getName(), "Operation Successful!");
+    public ThreadMethodRunner getRunner() {
+        return runner;
+    }
+
+    protected void register(Thread runner) {
+        Runtime.getRuntime().addShutdownHook(runner);
     }
 }
