@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/AlgebraUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/PhysicsUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/OperatingSystemNotSupported.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/exe/ExeFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/JavaUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,10 +174,10 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.AgentLoaderTest" />
       <item itemvalue="JUnit.MathUtilTest" />
       <item itemvalue="JUnit.TimeFormatterTest" />
       <item itemvalue="Maven.Build" />
-      <item itemvalue="Application.AgentLoaderTest" />
     </list>
     <recent_temporary>
       <list>
