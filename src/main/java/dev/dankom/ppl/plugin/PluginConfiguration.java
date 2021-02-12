@@ -1,7 +1,7 @@
 package dev.dankom.ppl.plugin;
 
 import dev.dankom.ppl.util.JsonUtil;
-import org.apache.commons.lang3.Validate;
+import dev.dankom.util.general.Validation;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
@@ -12,8 +12,8 @@ public class PluginConfiguration extends JSONObject {
     public PluginConfiguration(String pluginName, ClassLoader loader) throws IOException, ParseException {
         super(JsonUtil.getJsonFromResourceStream("plugin", loader));
 
-        Validate.notNull(getName(), pluginName + " is missing a name attribute!");
-        Validate.notNull(getMainClass(), pluginName + " is missing a main attribute!");
+        Validation.notNull(pluginName + " is missing a name attribute!", getName());
+        Validation.notNull(pluginName + " is missing a main attribute!", getMainClass());
     }
 
     public String getName() {

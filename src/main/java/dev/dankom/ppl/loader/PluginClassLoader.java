@@ -7,7 +7,7 @@ import dev.dankom.ppl.plugin.IPluginInstance;
 import dev.dankom.ppl.plugin.PluginConfiguration;
 import dev.dankom.ppl.startup.PluginBoostrap;
 import dev.dankom.ppl.type.PluginService;
-import org.apache.commons.lang3.Validate;
+import dev.dankom.util.general.Validation;
 
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -24,7 +24,7 @@ public class PluginClassLoader extends URLClassLoader {
         super(new URL[] {loader.getJar().toURI().toURL()}, loader);
         this.parent = parent;
         this.configuration = configuration;
-        Validate.notNull(loader, "Loader can not me null!");
+        Validation.notNull("Loader can not me null!", loader);
 
         getLog().info("PluginClassLoader", "Loading " + configuration.getName());
 
