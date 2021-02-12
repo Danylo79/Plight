@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.github.Danylo79</groupId>
             <artifactId>Plight</artifactId>
-            <version>${parent.version}</version>
+            <version>1.1</version>
         </dependency>
     </dependencies>
 </project>
