@@ -7,11 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="plight-core" />
-        <module name="plight-plugin-loader" />
-        <module name="plight-test" />
-        <module name="plight-maven-plugin" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="plight-core" target="8" />
+      <module name="plight-maven-plugin" target="8" />
+      <module name="plight-plugin-loader" target="8" />
+      <module name="plight-test" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

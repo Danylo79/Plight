@@ -23,6 +23,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <plight.latest>${project.version}</plight.latest>
         <plight.build>b${project.version}</plight.build>
         <plight.version>v${project.version}</plight.version>
         <plight.fullname>${project.name}-${project.version}</plight.fullname>
