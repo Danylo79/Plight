@@ -1,28 +1,26 @@
 package dev.dankom.file.type.file;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 
 public class AdvancedFile extends File {
-    public AdvancedFile(@NotNull String pathname) {
+    public AdvancedFile(String pathname) {
         super(pathname);
         init();
     }
 
-    public AdvancedFile(String parent, @NotNull String child) {
+    public AdvancedFile(String parent, String child) {
         super(parent, child);
         init();
     }
 
-    public AdvancedFile(File parent, @NotNull String child) {
+    public AdvancedFile(File parent, String child) {
         super(parent, child);
         init();
     }
 
-    public AdvancedFile(@NotNull URI uri) {
+    public AdvancedFile(URI uri) {
         super(uri);
         init();
     }

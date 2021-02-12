@@ -1,7 +1,5 @@
 package dev.dankom.file.custom;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
 import java.net.URI;
 import java.util.ArrayList;
@@ -13,22 +11,22 @@ public class CustomFile extends File implements Cloneable {
         this(file.getAbsolutePath());
     }
 
-    public CustomFile(@NotNull String pathname) {
+    public CustomFile(String pathname) {
         super(pathname);
         init();
     }
 
-    public CustomFile(String parent, @NotNull String child) {
+    public CustomFile(String parent, String child) {
         super(parent, child);
         init();
     }
 
-    public CustomFile(File parent, @NotNull String child) {
+    public CustomFile(File parent, String child) {
         super(parent, child);
         init();
     }
 
-    public CustomFile(@NotNull URI uri) {
+    public CustomFile(URI uri) {
         super(uri);
         init();
     }

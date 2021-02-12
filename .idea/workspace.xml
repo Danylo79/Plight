@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/AgentLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/Agent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentAnnotation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentMethod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/interfaces/IAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/BaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/InvalidConstructorException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/agent/AgentLoaderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/agent/AgentTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/annotation/json/JsonSerializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/annotation/json/JsonSerializable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/CallbackFailException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/CallbackFailException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/custom/CustomFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/custom/CustomFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/type/file/AdvancedFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/type/file/AdvancedFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/test/tests/JsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/test/tests/JsonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/ZipUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/ZipUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +69,20 @@
       <recent name="dev.dankom.util.general" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Build">
+  <component name="RunManager" selected="Application.AgentLoaderTest">
+    <configuration name="AgentLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.agent.AgentLoaderTest" />
+      <module name="Plight" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.tests.agent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MathUtilTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="plight-core" />
       <extension name="coverage">
@@ -162,9 +191,11 @@
       <item itemvalue="JUnit.MathUtilTest" />
       <item itemvalue="JUnit.TimeFormatterTest" />
       <item itemvalue="Maven.Build" />
+      <item itemvalue="Application.AgentLoaderTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AgentLoaderTest" />
         <item itemvalue="JUnit.TimeFormatterTest" />
       </list>
     </recent_temporary>

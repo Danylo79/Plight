@@ -1,7 +1,7 @@
 package dev.dankom.annotation.json;
 
-import dev.dankom.util.general.StringUtil;
 import dev.dankom.type.Token;
+import dev.dankom.util.general.StringUtil;
 import org.json.simple.JSONAware;
 
 import java.lang.reflect.Field;
