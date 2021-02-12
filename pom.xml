@@ -55,31 +55,6 @@
         </plugins>
     </build>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>dev.dankom.plight</groupId>
-                <artifactId>plight-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>dev.dankom.plight</groupId>
-                <artifactId>plight-maven-plugin</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>dev.dankom.plight</groupId>
-                <artifactId>plight-plugin-loader</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>dev.dankom.plight</groupId>
-                <artifactId>plight-test</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <distributionManagement>
         <repository>
             <id>internal.repo</id>
