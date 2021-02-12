@@ -25,6 +25,10 @@ public class Agent implements IAgent {
         this(null, clazz);
     }
 
+    public Agent(String className) throws ClassNotFoundException {
+        this(Class.forName(className));
+    }
+
     @Override
     public boolean isFromAgentLoader() {
         return parent != null;

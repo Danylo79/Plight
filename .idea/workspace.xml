@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/AgentLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/Agent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentAnnotation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/interfaces/IAgent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/BaseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/InvalidConstructorException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/agent/AgentLoaderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/agent/AgentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/AlgebraUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/PhysicsUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/annotation/json/JsonSerializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/annotation/json/JsonSerializable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/CallbackFailException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/CallbackFailException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/custom/CustomFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/custom/CustomFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/type/file/AdvancedFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/type/file/AdvancedFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/test/tests/JsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/test/tests/JsonTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/ZipUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/ZipUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

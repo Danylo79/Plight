@@ -38,4 +38,11 @@ public class Token implements java.io.Serializable, Comparable<String>, CharSequ
     public char tokenChar() {
         return token.charAt(0);
     }
+
+    @Override
+    public String toString() {
+        return "Token{" +
+                "token='" + token + '\'' +
+                '}';
+    }
 }
