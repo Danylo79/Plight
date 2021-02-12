@@ -6,19 +6,12 @@
 
     <groupId>dev.dankom.plight</groupId>
     <artifactId>Plight</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <packaging>pom</packaging>
     <name>Plight</name>
     <url>https://github.com/Danylo79/Plight</url>
     <description>Plight is a library of useful util and helper classes.</description>
     <inceptionYear>2021</inceptionYear>
-
-    <modules>
-        <module>plight-core</module>
-        <module>plight-maven-plugin</module>
-        <module>plight-plugin-loader</module>
-        <module>plight-test</module>
-    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
