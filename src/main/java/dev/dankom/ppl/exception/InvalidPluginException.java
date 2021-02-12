@@ -1,4 +1,4 @@
-package dev.dankom.pl.exception;
+package dev.dankom.ppl.exception;
 
 public class InvalidPluginException extends Exception {
     public InvalidPluginException(String msg, Throwable ex) {

@@ -1,7 +1,7 @@
-package dev.dankom.pl;
+package dev.dankom.ppl;
 
-import dev.dankom.pl.plugin.IPluginInstance;
-import dev.dankom.pl.startup.PluginBoostrap;
+import dev.dankom.ppl.plugin.IPluginInstance;
+import dev.dankom.ppl.startup.PluginBoostrap;
 
 import java.util.ArrayList;
 import java.util.List;

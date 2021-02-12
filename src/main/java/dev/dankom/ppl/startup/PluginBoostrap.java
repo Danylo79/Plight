@@ -1,12 +1,12 @@
-package dev.dankom.pl.startup;
+package dev.dankom.ppl.startup;
 
 import dev.dankom.interfaces.Temporary;
 import dev.dankom.logger.abztract.DefaultLogger;
-import dev.dankom.pl.PluginManager;
-import dev.dankom.pl.loader.PluginClassLoader;
-import dev.dankom.pl.loader.PluginLoader;
-import dev.dankom.pl.plugin.IPluginInstance;
-import dev.dankom.pl.type.PluginService;
+import dev.dankom.ppl.PluginManager;
+import dev.dankom.ppl.loader.PluginClassLoader;
+import dev.dankom.ppl.loader.PluginLoader;
+import dev.dankom.ppl.plugin.IPluginInstance;
+import dev.dankom.ppl.type.PluginService;
 import dev.dankom.triggered.trigger.Trigger;
 import dev.dankom.triggered.type.TriggerType;
 

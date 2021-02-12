@@ -1,4 +1,4 @@
-package dev.dankom.pl.loader;
+package dev.dankom.ppl.loader;
 
 import java.io.File;
 import java.io.IOException;

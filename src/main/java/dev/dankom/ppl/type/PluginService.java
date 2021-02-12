@@ -1,4 +1,4 @@
-package dev.dankom.pl.type;
+package dev.dankom.ppl.type;
 
 import dev.dankom.logger.abztract.AbstractLogger;
 import dev.dankom.logger.abztract.DefaultLogger;

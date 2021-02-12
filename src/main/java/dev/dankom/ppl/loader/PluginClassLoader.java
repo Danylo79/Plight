@@ -1,12 +1,12 @@
-package dev.dankom.pl.loader;
+package dev.dankom.ppl.loader;
 
 import dev.dankom.logger.abztract.AbstractLogger;
-import dev.dankom.pl.exception.InvalidPluginException;
-import dev.dankom.pl.plugin.IPlugin;
-import dev.dankom.pl.plugin.IPluginInstance;
-import dev.dankom.pl.plugin.PluginConfiguration;
-import dev.dankom.pl.startup.PluginBoostrap;
-import dev.dankom.pl.type.PluginService;
+import dev.dankom.ppl.exception.InvalidPluginException;
+import dev.dankom.ppl.plugin.IPlugin;
+import dev.dankom.ppl.plugin.IPluginInstance;
+import dev.dankom.ppl.plugin.PluginConfiguration;
+import dev.dankom.ppl.startup.PluginBoostrap;
+import dev.dankom.ppl.type.PluginService;
 import org.apache.commons.lang3.Validate;
 
 import java.net.URL;

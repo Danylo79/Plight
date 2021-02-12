@@ -1,4 +1,4 @@
-package dev.dankom.pl.plugin;
+package dev.dankom.ppl.plugin;
 
 public abstract class IPlugin {
 

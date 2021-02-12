@@ -1,6 +1,6 @@
-package dev.dankom.pl.plugin;
+package dev.dankom.ppl.plugin;
 
-import dev.dankom.pl.util.JsonUtil;
+import dev.dankom.ppl.util.JsonUtil;
 import org.apache.commons.lang3.Validate;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;

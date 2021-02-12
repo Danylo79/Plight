@@ -1,4 +1,4 @@
-package dev.dankom.pl.util;
+package dev.dankom.ppl.util;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

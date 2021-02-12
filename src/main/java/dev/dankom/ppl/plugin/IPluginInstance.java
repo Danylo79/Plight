@@ -1,7 +1,7 @@
-package dev.dankom.pl.plugin;
+package dev.dankom.ppl.plugin;
 
-import dev.dankom.pl.loader.PluginLoader;
-import dev.dankom.pl.type.PluginService;
+import dev.dankom.ppl.loader.PluginLoader;
+import dev.dankom.ppl.type.PluginService;
 
 public class IPluginInstance {
     private final IPlugin parent;
