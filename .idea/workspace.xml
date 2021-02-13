@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/reflection/scanner/AnnotationScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/dev/dankom/agent/type/interfaces/IAgentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/dev/dankom/agent/type/interfaces/IAgentTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,9 +211,9 @@
     <list>
       <item itemvalue="Application.AgentLoaderTest" />
       <item itemvalue="Application.ShutdownOperationTest" />
+      <item itemvalue="JUnit.IAgentTest" />
       <item itemvalue="JUnit.MathUtilTest" />
       <item itemvalue="JUnit.TimeFormatterTest" />
-      <item itemvalue="JUnit.IAgentTest" />
       <item itemvalue="Maven.Build" />
     </list>
     <recent_temporary>

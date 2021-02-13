@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 public class IAgentTest extends TestCase {
 
-    public IAgentTest(String name) {
+    public IAgentTest() {
 
     }
 
