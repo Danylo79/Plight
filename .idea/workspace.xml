@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/dev/dankom/agent/type/interfaces/IAgentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/reflection/scanner/AnnotationScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/AgentLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/AgentLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/Agent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentAnnotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/wrappers/AgentAnnotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/wrappers/AgentField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/AgentMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/wrappers/AgentMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/interfaces/IAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/agent/type/interfaces/IAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/agent/AgentLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/agent/AgentLoaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/agent/AgentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/agent/AgentTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +16,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JUnit3 Test Class" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="JUnit3 Test Class" />
       </list>
     </option>
   </component>
@@ -221,8 +213,8 @@
       <item itemvalue="Application.ShutdownOperationTest" />
       <item itemvalue="JUnit.MathUtilTest" />
       <item itemvalue="JUnit.TimeFormatterTest" />
-      <item itemvalue="Maven.Build" />
       <item itemvalue="JUnit.IAgentTest" />
+      <item itemvalue="Maven.Build" />
     </list>
     <recent_temporary>
       <list>
