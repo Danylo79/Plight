@@ -2,17 +2,22 @@ package dev.dankom.agent.type;
 
 import dev.dankom.agent.AgentLoader;
 import dev.dankom.agent.type.interfaces.IAgent;
+import dev.dankom.agent.type.wrappers.AgentAnnotation;
+import dev.dankom.agent.type.wrappers.AgentField;
+import dev.dankom.agent.type.wrappers.AgentMethod;
 import dev.dankom.exception.InvalidConstructorException;
-import dev.dankom.util.general.DataStructureAdapter;
+import dev.dankom.type.ReflectionData;
+import dev.dankom.util.reflection.ReflectionUtil;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Agent implements IAgent {
+public class Agent<T> implements IAgent<T> {
     private AgentLoader parent;
     private Class<?> clazz;
 
@@ -73,20 +78,21 @@ public class Agent implements IAgent {
 
     //Run Methods
     @Override
-    public void run() throws InvalidConstructorException {
+    public T newInstance() throws InvalidConstructorException {
         try {
-            getClazz().newInstance();
+            return (T) getClazz().newInstance();
         } catch (IllegalAccessException e) {
             throw new InvalidConstructorException("A Agent constructor can not have parameters if it is called by the run() or runSilent() method!");
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override
-    public void run(Class<?>[] argTypes, Object[] args) throws InvalidConstructorException {
+    public T newInstance(Class<?>[] argTypes, Object[] args) {
         try {
-            getClazz().getDeclaredConstructor(argTypes).newInstance(args);
+            return (T) getClazz().getDeclaredConstructor(argTypes).newInstance(args);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
@@ -96,17 +102,19 @@ public class Agent implements IAgent {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override
-    public void run(Object[] args) throws InvalidConstructorException {
+    public T newInstance(Object[] args) {
         List<Class<?>> argTypes = new ArrayList<>();
         for (Object o : args) {
             argTypes.add(o.getClass());
         }
 
         try {
-            getClazz().getDeclaredConstructor(DataStructureAdapter.listToArray(argTypes)).newInstance(args);
+            Constructor<?> ctor = getClazz().getDeclaredConstructor(getParTypes(argTypes.toArray()));
+            return (T) ctor.newInstance(args);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
@@ -116,6 +124,23 @@ public class Agent implements IAgent {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return null;
     }
     //
+
+    public Class[] getParTypes(Object[] argTypes) {
+        List<Class<?>> out = new ArrayList<>();
+        for (Object o : argTypes) {
+            out.add((Class<?>) o);
+        }
+        Class<?>[] parTypes = new Class[out.size()];
+        for (int i = 0; i < out.size(); i++) {
+            parTypes[i] = out.get(i);
+        }
+        return parTypes;
+    }
+
+    public ReflectionData getData() {
+        return ReflectionUtil.getClassData(getClazz());
+    }
 }

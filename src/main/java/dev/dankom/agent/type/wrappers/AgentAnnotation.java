@@ -1,4 +1,6 @@
-package dev.dankom.agent.type;
+package dev.dankom.agent.type.wrappers;
+
+import dev.dankom.agent.type.Agent;
 
 import java.lang.annotation.Annotation;
 

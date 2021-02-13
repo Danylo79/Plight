@@ -1,4 +1,8 @@
-package dev.dankom.agent.type;
+package dev.dankom.agent.type.wrappers;
+
+import dev.dankom.agent.type.Agent;
+import dev.dankom.type.ReflectionData;
+import dev.dankom.util.reflection.ReflectionUtil;
 
 import java.lang.reflect.Field;
 
@@ -25,5 +29,9 @@ public class AgentField {
 
     public Agent getParent() {
         return parent;
+    }
+
+    public ReflectionData getData() {
+        return ReflectionUtil.getFieldData(field);
     }
 }

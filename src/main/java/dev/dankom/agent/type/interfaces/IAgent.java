@@ -1,13 +1,13 @@
 package dev.dankom.agent.type.interfaces;
 
 import dev.dankom.agent.AgentLoader;
-import dev.dankom.agent.type.AgentAnnotation;
-import dev.dankom.agent.type.AgentField;
-import dev.dankom.agent.type.AgentMethod;
+import dev.dankom.agent.type.wrappers.AgentAnnotation;
+import dev.dankom.agent.type.wrappers.AgentField;
+import dev.dankom.agent.type.wrappers.AgentMethod;
 
 import java.util.List;
 
-public interface IAgent {
+public interface IAgent<T> {
     boolean isFromAgentLoader();
 
     List<AgentAnnotation> annotations();
@@ -17,31 +17,34 @@ public interface IAgent {
     AgentLoader getParent();
     Class<?> getClazz();
 
-    void run() throws Exception;
-    void run(Class<?>[] argTypes, Object[] args) throws Exception;
-    void run(Object[] args) throws Exception;
+    T newInstance() throws Exception;
+    T newInstance(Class<?>[] argTypes, Object[] args) throws Exception;
+    T newInstance(Object[] args) throws Exception;
 
-    default void runSilent(Object... args) {
+    default T newSilentInstance(Object... args) {
         try {
-            run(args);
+            return newInstance(args);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    default void runSilent(Class<?>[] argTypes, Object... args) {
+    default T newSilentInstance(Class<?>[] argTypes, Object... args) {
         try {
-            run(argTypes, args);
+            return newInstance(argTypes, args);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-    default void runSilent() {
+    default T newSilentInstance() {
         try {
-            run();
+            return newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

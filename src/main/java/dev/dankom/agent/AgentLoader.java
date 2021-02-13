@@ -34,13 +34,13 @@ public class AgentLoader {
 
     public void run() {
         for (IAgent agent : agents) {
-            agent.runSilent();
+            agent.newSilentInstance();
         }
     }
 
     public void run(Object... args) {
         for (IAgent agent : agents) {
-            agent.runSilent(args);
+            agent.newSilentInstance(args);
         }
     }
 
