@@ -4,7 +4,7 @@ import dev.dankom.logger.abztract.AbstractLogger;
 import dev.dankom.ppl.exception.InvalidPluginException;
 import dev.dankom.ppl.plugin.IPlugin;
 import dev.dankom.ppl.plugin.IPluginInstance;
-import dev.dankom.ppl.plugin.PluginConfiguration;
+import dev.dankom.ppl.configuration.PluginConfiguration;
 import dev.dankom.ppl.startup.PluginBoostrap;
 import dev.dankom.ppl.type.PluginService;
 import dev.dankom.util.general.Validation;

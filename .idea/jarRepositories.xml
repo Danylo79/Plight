@@ -31,5 +31,10 @@
       <option name="name" value="reflection" />
       <option name="url" value="https://mvnrepository.com/artifact/org.reflections/reflections/0.9.12" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="json-simple" />
+      <option name="name" value="json-simple" />
+      <option name="url" value="https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple" />
+    </remote-repository>
   </component>
 </project>

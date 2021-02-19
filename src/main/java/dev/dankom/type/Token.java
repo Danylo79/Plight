@@ -4,6 +4,7 @@ public class Token implements java.io.Serializable, Comparable<String>, CharSequ
 
     public static Token QUOTE = new Token("\"");
     public static Token JSON_QUOTE = new Token(QUOTE.token());
+    public static Token PIPE = new Token("|");
 
     private String token;
 

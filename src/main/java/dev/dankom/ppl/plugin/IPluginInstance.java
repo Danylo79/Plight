@@ -1,5 +1,6 @@
 package dev.dankom.ppl.plugin;
 
+import dev.dankom.ppl.configuration.PluginConfiguration;
 import dev.dankom.ppl.loader.PluginLoader;
 import dev.dankom.ppl.type.PluginService;
 

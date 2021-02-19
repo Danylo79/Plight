@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/LogManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/profiler/ProfileSection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/profiler/Profiler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/configuration/ConfigurationAttribute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/RefectionEncryptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/ReflectionEncryptorUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/encryptors/ClassEncryptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/encryptors/FieldEncryptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/encryptors/MethodEncryptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/plugin/PluginConfigurationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/dev/dankom/re/ReflectionEncryptorUtilTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/dev/dankom/agent/type/interfaces/IAgentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/dev/dankom/agent/type/interfaces/IAgentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/loader/PluginClassLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/loader/PluginClassLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/plugin/IPluginInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/plugin/IPluginInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/plugin/PluginConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/configuration/PluginConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/Token.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +32,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit3 Test Class" />
         <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="JUnit3 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -48,7 +65,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
@@ -57,18 +74,48 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="junit.framework.TestCase" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.dankom" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="dev.dankom.re" />
       <recent name="dev.dankom.agent.type.interfaces" />
       <recent name="dev.dankom.util.general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AgentLoaderTest">
+  <component name="RunManager" selected="Application.ReflectionEncryptorUtil">
     <configuration name="AgentLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.agent.AgentLoaderTest" />
       <module name="Plight" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.dankom.tests.agent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PluginConfigurationTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.plugin.PluginConfigurationTest" />
+      <module name="Plight" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.tests.plugin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionEncryptorUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.re.ReflectionEncryptorUtil" />
+      <module name="Plight" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.re.encryptors.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -114,21 +161,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="dev.dankom.util.general" />
       <option name="MAIN_CLASS_NAME" value="dev.dankom.util.general.MathUtilTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TimeFormatterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="plight-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.util.general.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="dev.dankom.util.general" />
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.util.general.TimeFormatterTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -211,17 +243,19 @@
     <list>
       <item itemvalue="Application.AgentLoaderTest" />
       <item itemvalue="Application.ShutdownOperationTest" />
-      <item itemvalue="JUnit.IAgentTest" />
+      <item itemvalue="Application.PluginConfigurationTest" />
+      <item itemvalue="Application.ReflectionEncryptorUtil" />
       <item itemvalue="JUnit.MathUtilTest" />
-      <item itemvalue="JUnit.TimeFormatterTest" />
+      <item itemvalue="JUnit.IAgentTest" />
       <item itemvalue="Maven.Build" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ReflectionEncryptorUtil" />
+        <item itemvalue="Application.PluginConfigurationTest" />
         <item itemvalue="Application.AgentLoaderTest" />
         <item itemvalue="JUnit.IAgentTest" />
         <item itemvalue="Application.ShutdownOperationTest" />
-        <item itemvalue="JUnit.TimeFormatterTest" />
       </list>
     </recent_temporary>
   </component>
