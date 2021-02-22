@@ -5,24 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/LogManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/profiler/ProfileSection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/profiler/Profiler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/configuration/ConfigurationAttribute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/RefectionEncryptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/ReflectionEncryptorUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/encryptors/ClassEncryptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/encryptors/FieldEncryptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/re/encryptors/MethodEncryptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/plugin/PluginConfigurationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/dev/dankom/re/ReflectionEncryptorUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/EventManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/annotation/Advanced.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/annotation/EventTarget.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/events/DisplayCreateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/events/LoggerAttachEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/type/Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/type/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/type/interfaces/Cancellable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/InvalidEventException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Block.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/PlightScriptLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Tokenizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Type.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/loader/PluginClassLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/loader/PluginClassLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/plugin/IPluginInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/plugin/IPluginInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/plugin/PluginConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/configuration/PluginConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/DataStructureAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/DataStructureAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,18 +66,27 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/dev/dankom/athena" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="dev.dankom.exception" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\danko\IdeaProjects\Plight\src\main\java\dev\dankom\athena" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dev.dankom" />
+    </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="dev.dankom.script" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="dev.dankom.re" />
@@ -83,13 +94,26 @@
       <recent name="dev.dankom.util.general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ReflectionEncryptorUtil">
+  <component name="RunManager" selected="Application.PlightScriptLoader">
     <configuration name="AgentLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.agent.AgentLoaderTest" />
       <module name="Plight" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.dankom.tests.agent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlightScriptLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.script.PlightScriptLoader" />
+      <module name="Plight" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.script.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -116,19 +140,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.dankom.re.encryptors.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShutdownOperationTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.operation.ShutdownOperationTest" />
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.tests.operation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -242,7 +253,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.AgentLoaderTest" />
-      <item itemvalue="Application.ShutdownOperationTest" />
+      <item itemvalue="Application.PlightScriptLoader" />
       <item itemvalue="Application.PluginConfigurationTest" />
       <item itemvalue="Application.ReflectionEncryptorUtil" />
       <item itemvalue="JUnit.MathUtilTest" />
@@ -251,11 +262,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PlightScriptLoader" />
         <item itemvalue="Application.ReflectionEncryptorUtil" />
         <item itemvalue="Application.PluginConfigurationTest" />
         <item itemvalue="Application.AgentLoaderTest" />
         <item itemvalue="JUnit.IAgentTest" />
-        <item itemvalue="Application.ShutdownOperationTest" />
       </list>
     </recent_temporary>
   </component>

@@ -1,9 +1,6 @@
 package dev.dankom.util.general;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class DataStructureAdapter {
     public static <T> List<T> listFromLinkedList(LinkedList<T> ll) {
@@ -46,6 +43,10 @@ public class DataStructureAdapter {
         return (T[]) listFromQueue(queue).toArray(listFromQueue(queue).toArray());
     }
 
+    public static <T> T[] arrayFromArray(T... array) {
+        return array;
+    }
+
     public static <T> Queue<T> listToQueue(List<T> l) {
         Queue<T> out = new LinkedList<>();
         for (T o : l) {
@@ -66,6 +67,14 @@ public class DataStructureAdapter {
         List<T> out = new ArrayList<>();
         for (T o : objects) {
             out.add(o);
+        }
+        return out;
+    }
+
+    public static <T, K> Map<T, K> arrayToMap(T[] objects, K[] objects1) {
+        Map<T, K> out = new HashMap<>();
+        for (int i = 0; i < objects.length; i++) {
+            out.put(objects[i], objects1[i]);
         }
         return out;
     }
