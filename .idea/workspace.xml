@@ -5,26 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/EventManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/annotation/Advanced.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/annotation/EventTarget.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/events/DisplayCreateEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/events/LoggerAttachEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/type/Data.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/type/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/athena/engine/event/type/interfaces/Cancellable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/InvalidEventException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Block.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/PlightScriptLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Token.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Tokenizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Type.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MathUtil.jmanifest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/clazz/ClassManifestGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/ThreadQuickExitException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/jmanifest/JManifestFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/ClassGeneratorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/ITickable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/LazyLoadBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/DataStructureAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/DataStructureAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/cipher/Vigenere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/cipher/Vigenere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/yml/type/YmlObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/yml/type/YmlObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/configuration/PluginConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/configuration/PluginConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/gl/GL11Color.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +30,7 @@
         <option value="Interface" />
         <option value="AnnotationType" />
         <option value="JUnit3 Test Class" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -66,7 +60,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/dev/dankom/athena" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ViperClientV2" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -94,13 +88,26 @@
       <recent name="dev.dankom.util.general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PlightScriptLoader">
+  <component name="RunManager" selected="Application.ClassGeneratorTest">
     <configuration name="AgentLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.agent.AgentLoaderTest" />
       <module name="Plight" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.dankom.tests.agent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClassGeneratorTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.ClassGeneratorTest" />
+      <module name="Plight" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.tests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,21 +150,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="IAgentTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.agent.type.interfaces.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="dev.dankom.agent.type.interfaces" />
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.agent.type.interfaces.IAgentTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -257,16 +249,16 @@
       <item itemvalue="Application.PluginConfigurationTest" />
       <item itemvalue="Application.ReflectionEncryptorUtil" />
       <item itemvalue="JUnit.MathUtilTest" />
-      <item itemvalue="JUnit.IAgentTest" />
       <item itemvalue="Maven.Build" />
+      <item itemvalue="Application.ClassGeneratorTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClassGeneratorTest" />
+        <item itemvalue="Application.AgentLoaderTest" />
         <item itemvalue="Application.PlightScriptLoader" />
         <item itemvalue="Application.ReflectionEncryptorUtil" />
         <item itemvalue="Application.PluginConfigurationTest" />
-        <item itemvalue="Application.AgentLoaderTest" />
-        <item itemvalue="JUnit.IAgentTest" />
       </list>
     </recent_temporary>
   </component>

@@ -49,13 +49,4 @@ public class Vigenere {
         }
         return result;
     }
-
-    public static void main(String[] args) {
-        String text = "Hello World!";
-        String key = "itsakey";
-        System.out.println(text);
-        String ciphertext = encrypt(text, key);
-        System.out.println(ciphertext);
-        System.out.println(decrypt(ciphertext, key));
-    }
 }

@@ -22,7 +22,7 @@ public class PluginConfiguration extends JSONObject {
     public String mainClass;
 
     public PluginConfiguration(String pluginName, ClassLoader loader) throws IOException, ParseException {
-        super(JsonUtil.getJsonFromResourceStream("plugin", loader));
+        JsonUtil.getJsonFromResourceStream("plugin", loader);
 
         this.attributes = new ArrayList<>();
         AnnotationScanner scanner = new AnnotationScanner(getClass());

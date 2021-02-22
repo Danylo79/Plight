@@ -73,10 +73,6 @@ public class YmlObject extends HashMap<String, Object> {
         }
     }
 
-    public JSONObject toJSON() {
-        return new JSONObject(this);
-    }
-
     public YmlObject put(HashMap<String, Object> map) {
         return new YmlObject(map);
     }
