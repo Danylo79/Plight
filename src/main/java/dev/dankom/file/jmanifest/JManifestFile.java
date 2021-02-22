@@ -1,13 +1,18 @@
 package dev.dankom.file.jmanifest;
 
-import dev.dankom.clazz.ClassManifestGenerator;
+import dev.dankom.jmanifest.JManifestGenerator;
+import dev.dankom.util.general.DataStructureAdapter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Iterator;
+import java.util.List;
 
 public class JManifestFile {
     private File path;
@@ -201,7 +206,23 @@ public class JManifestFile {
     }
 
     public void genManifest(Class<?> clazz) {
-        ClassManifestGenerator generator = new ClassManifestGenerator(path, clazz);
+        JManifestGenerator generator = new JManifestGenerator(path, clazz);
         generator.gen();
+    }
+
+    public Class<?> getJClass() throws ClassNotFoundException {
+        return Class.forName((String) get().get("name"));
+    }
+
+    public List<Method> getMethods() throws ClassNotFoundException {
+        return DataStructureAdapter.arrayToList(getJClass().getMethods());
+    }
+
+    public List<Field> getFields() throws ClassNotFoundException {
+        return DataStructureAdapter.arrayToList(getJClass().getFields());
+    }
+
+    public List<Annotation> getAnnotations() throws ClassNotFoundException {
+        return DataStructureAdapter.arrayToList(getJClass().getAnnotations());
     }
 }

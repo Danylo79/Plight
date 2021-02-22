@@ -5,19 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MathUtil.jmanifest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/clazz/ClassManifestGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/exception/ThreadQuickExitException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/jmanifest/JManifestFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/ClassGeneratorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/ITickable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/LazyLoadBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Lexer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptVariable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/cipher/Vigenere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/cipher/Vigenere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/yml/type/YmlObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/yml/type/YmlObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/configuration/PluginConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/ppl/configuration/PluginConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/gl/GL11Color.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MathUtil.jmanifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/clazz/ClassManifestGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jmanifest/JManifestGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/jmanifest/JManifestFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/jmanifest/JManifestFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/ClassGeneratorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/tests/ClassGeneratorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +61,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
   </component>
   <component name="RecentsManager">
@@ -88,7 +86,7 @@
       <recent name="dev.dankom.util.general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClassGeneratorTest">
+  <component name="RunManager" selected="Application.ScriptLoader">
     <configuration name="AgentLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.agent.AgentLoaderTest" />
       <module name="Plight" />
@@ -115,38 +113,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlightScriptLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.script.PlightScriptLoader" />
+    <configuration name="ScriptLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.script.ScriptLoader" />
       <module name="Plight" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="dev.dankom.script.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PluginConfigurationTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.plugin.PluginConfigurationTest" />
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.tests.plugin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReflectionEncryptorUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.re.ReflectionEncryptorUtil" />
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.re.encryptors.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -245,20 +217,16 @@
     </configuration>
     <list>
       <item itemvalue="Application.AgentLoaderTest" />
-      <item itemvalue="Application.PlightScriptLoader" />
-      <item itemvalue="Application.PluginConfigurationTest" />
-      <item itemvalue="Application.ReflectionEncryptorUtil" />
+      <item itemvalue="Application.ClassGeneratorTest" />
+      <item itemvalue="Application.ScriptLoader" />
       <item itemvalue="JUnit.MathUtilTest" />
       <item itemvalue="Maven.Build" />
-      <item itemvalue="Application.ClassGeneratorTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ScriptLoader" />
         <item itemvalue="Application.ClassGeneratorTest" />
         <item itemvalue="Application.AgentLoaderTest" />
-        <item itemvalue="Application.PlightScriptLoader" />
-        <item itemvalue="Application.ReflectionEncryptorUtil" />
-        <item itemvalue="Application.PluginConfigurationTest" />
       </list>
     </recent_temporary>
   </component>

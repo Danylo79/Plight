@@ -1,15 +1,2 @@
-uniform(name);
-
-define(s, "foo");
-define(s1, "bar");
-
-struct file_default {
-   {
-        "<s>": "<s1>",
-        "<s1>": "<s>"
-   }
-};
-
-struct start {
-
-};
+define(s, string, foo);
+define(s1, string, bar);

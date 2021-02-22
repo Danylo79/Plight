@@ -1,4 +1,4 @@
-package dev.dankom.clazz;
+package dev.dankom.jmanifest;
 
 import dev.dankom.file.jmanifest.JManifestFile;
 import dev.dankom.file.json.JsonObjectBuilder;
@@ -19,13 +19,13 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassManifestGenerator {
+public class JManifestGenerator {
     private Class<?> clazz;
     private File path;
     private JManifestFile file;
     private ILogger logger;
 
-    public ClassManifestGenerator(File path, Class<?> clazz) {
+    public JManifestGenerator(File path, Class<?> clazz) {
         this.clazz = clazz;
         this.path = path;
         this.logger = LogManager.addLogger(clazz.getSimpleName(), new DefaultLogger());
@@ -185,5 +185,9 @@ public class ClassManifestGenerator {
     public void put(String key, Object value) {
         file.get().put(key, value);
         file.save();
+    }
+
+    public JManifestFile getFile() {
+        return file;
     }
 }
