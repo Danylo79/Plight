@@ -49,6 +49,7 @@ public class LogManager {
             profilers = new HashMap<>();
 
             addLogger("default", new DefaultLogger());
+            addLogger("profiler", new DefaultLogger());
 
             addProfiler("default", new Profiler());
         }

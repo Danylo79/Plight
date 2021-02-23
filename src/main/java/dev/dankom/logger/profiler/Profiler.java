@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Profiler {
     private List<ProfilerSection> sections = new ArrayList<>();
-    private final ILogger logger = LogManager.getLogger("Profiler");
+    private final ILogger logger = LogManager.getLogger("profiler");
 
     public void clear() {
         sections.clear();
@@ -105,9 +105,7 @@ public class Profiler {
                     return sections.get(sectionNum - 1);
                 }
             }
-        } catch (NullPointerException e) {
-            logger.error("Profiler", "No sections created!");
-        }
+        } catch (NullPointerException e) {}
         return section;
     }
 }

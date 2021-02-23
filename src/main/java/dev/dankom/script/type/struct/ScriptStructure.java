@@ -1,6 +1,7 @@
 package dev.dankom.script.type.struct;
 
 import dev.dankom.lexer.Token;
+import dev.dankom.script.ScriptHelper;
 import dev.dankom.script.ScriptLoader;
 
 import java.util.ArrayList;
@@ -27,10 +28,15 @@ public class ScriptStructure {
                 runInside(ttrack, ltrack);
                 ttrack.clear();
                 ltrack.clear();
+                continue;
             }
 
             ttrack.add(bodyTokens.get(i));
             ltrack.add(bodyLexemes.get(i));
+        }
+
+        if (!ttrack.isEmpty()) {
+            parent.log().error("MethodRunner", "Missing semicolon!");
         }
     }
 
@@ -55,8 +61,20 @@ public class ScriptStructure {
                 pars.add(cl.replace("\"", ""));
             }
 
+            if (ScriptHelper.isInt(cl) || ScriptHelper.isBool(cl)) {
+                pars.add(cl);
+            }
+
             if (ct == Token.IDENTIFIER && trackingPars) {
-                pars.add(parent.getVariableValue(cl));
+                try {
+                    pars.add(parent.getVariableValue(cl));
+                } catch (NullPointerException e) {
+                    try {
+                        pars.add(parent.getUniform(cl).getValue());
+                    } catch (NullPointerException ex) {
+                        pars.add(cl);
+                    }
+                }
             }
         }
 

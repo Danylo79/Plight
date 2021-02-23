@@ -1,9 +1,10 @@
 uniform(name);
 uniform(java_version);
 
-define(s, string, foo);
+define(s, string, "foo");
 define(s1, string, bar);
 
-struct void main(String name) {
-    print(s);
+struct void main() {
+    info("Main", s);
+    info("Main", s1);
 }

@@ -42,35 +42,40 @@ public class ScriptLoader {
     }
 
     public void loadFile(File file) {
-        this.lexer = new Lexer(file);
-        this.logger = LogManager.addLogger(file.getName().replace(".plight", ""), new DefaultLogger());
-        this.profiler = LogManager.addProfiler(file.getName().replace(".plight", ""), new Profiler());
+        try {
+            this.lexer = new Lexer(file);
+            this.logger = LogManager.addLogger(file.getName().replace(".plight", ""), new DefaultLogger());
+            this.profiler = LogManager.addProfiler(file.getName().replace(".plight", ""), new Profiler());
 
-        profiler.startSection("find_tokens");
-        while (!lexer.isExhausted()) {
-            tokens.add(lexer.currentToken());
-            lexemes.add(lexer.currentLexeme());
-            lexer.next();
+            profiler.startSection("find_tokens");
+            while (!lexer.isExhausted()) {
+                tokens.add(lexer.currentToken());
+                lexemes.add(lexer.currentLexeme());
+                lexer.next();
+            }
+
+            profiler.startSection("find_uniform_vars");
+            findUniformVars();
+
+            profiler.startSection("bind_default_uniforms");
+            HashMap<String, String> duniforms = new HashMap<>();
+            duniforms.put("name", file.getName().replace(".plight", ""));
+            duniforms.put("java_version", JavaUtil.version());
+            bindUniforms(duniforms);
+
+            profiler.startSection("find_vars");
+            findVars();
+
+            profiler.startSection("find_structs");
+            findStructs();
+            profiler.startSection("find_methods");
+            findMethods();
+            profiler.stopSection("find_methods");
+
+            methods.get(0).run();
+        } catch (Exception e) {
+            profiler.crash("Failed: " + e.getMessage(), e);
         }
-
-        profiler.startSection("find_vars");
-        findVars();
-        profiler.startSection("find_uniform_vars");
-        findUniformVars();
-
-        profiler.startSection("bind_default_uniforms");
-        HashMap<String, String> duniforms = new HashMap<>();
-        duniforms.put("name", file.getName().replace(".plight", ""));
-        duniforms.put("java_version", JavaUtil.version());
-        bindUniforms(duniforms);
-
-        profiler.startSection("find_structs");
-        findStructs();
-        profiler.startSection("find_methods");
-        findMethods();
-        profiler.stopSection("find_methods");
-
-        methods.get(0).run();
     }
 
     public void findMethods() {
@@ -289,8 +294,18 @@ public class ScriptLoader {
                         } else if (it == Token.IDENTIFIER && importantTokens.get(j - 1) == Token.COMMA && importantTokens.get(j + 1) == Token.COMMA) {
                             type = lexemes.get(j);
                         } else if (it == Token.COMMA && ScriptVariable.isValidTokenValue(importantTokens.get(j + 1), importantLexemes.get(j + 1)) && importantTokens.get(j + 2) == Token.CLOSE) {
-                            value = importantLexemes.get(j + 1);
-                            variables.add(new ScriptVariable(name, type, value));
+                            if (getVariable(importantLexemes.get(j + 1)) == null && getUniform(importantLexemes.get(j + 1)) == null) {
+                                value = importantLexemes.get(j + 1);
+                                variables.add(new ScriptVariable(name, type, value));
+                            } else {
+                                if (getUniform(importantLexemes.get(j + 1)) == null) {
+                                    value = getVariableValue(importantLexemes.get(j + 1));
+                                    variables.add(new ScriptVariable(name, type, getVariableValue(importantLexemes.get(j + 1))));
+                                } else {
+                                    value = getUniform(importantLexemes.get(j + 1)).getValue();
+                                    variables.add(new ScriptVariable(name, type, getUniform(importantLexemes.get(j + 1)).getValue()));
+                                }
+                            }
                             break;
                         }
                     } catch (IndexOutOfBoundsException e) {
