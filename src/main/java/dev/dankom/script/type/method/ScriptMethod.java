@@ -1,6 +1,7 @@
 package dev.dankom.script.type.method;
 
 import dev.dankom.lexer.Token;
+import dev.dankom.script.ScriptLoader;
 import dev.dankom.script.type.struct.ScriptStructure;
 import dev.dankom.script.type.var.ScriptVariable;
 
@@ -10,8 +11,8 @@ public class ScriptMethod extends ScriptStructure {
     private final String returnType;
     private final List<ScriptMethodParameter> pars;
 
-    public ScriptMethod(String name, String returnType, List<ScriptMethodParameter> pars, List<Token> bodyTokens, List<String> bodyLexemes) {
-        super(name, bodyTokens, bodyLexemes);
+    public ScriptMethod(ScriptLoader parent, String name, String returnType, List<ScriptMethodParameter> pars, List<Token> bodyTokens, List<String> bodyLexemes) {
+        super(parent, name, bodyTokens, bodyLexemes);
         this.returnType = returnType;
         this.pars = pars;
     }

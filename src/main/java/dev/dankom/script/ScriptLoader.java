@@ -69,6 +69,8 @@ public class ScriptLoader {
         profiler.startSection("find_methods");
         findMethods();
         profiler.stopSection("find_methods");
+
+        methods.get(0).run();
     }
 
     public void findMethods() {
@@ -116,12 +118,10 @@ public class ScriptLoader {
                         }
                         if (ScriptVariable.isValidTokenValue(ct, cl) && cParType == null && lookingForPars) {
                             cParType = cl;
-                            System.out.println("Set Par Type: " + cParType);
                             continue;
                         }
                         if (ct == Token.IDENTIFIER && cParName == null && lookingForPars) {
                             cParName = cl;
-                            System.out.println("Set Par Name: " + cParName);
                             continue;
                         }
                         if (ct == Token.CLOSE && lookingForPars) {
@@ -148,7 +148,7 @@ public class ScriptLoader {
                             continue;
                         }
                         if (ct == Token.CLOSE_BRACKET && bodyt != null) {
-                            methods.add(new ScriptMethod(name, returnType, pars, bodyt, bodyl));
+                            methods.add(new ScriptMethod(this, name, returnType, pars, bodyt, bodyl));
                             break;
                         }
                         if (bodyt != null) {
@@ -156,7 +156,7 @@ public class ScriptLoader {
                             bodyl.add(cl);
                         }
                     } catch (IndexOutOfBoundsException e) {
-                        methods.add(new ScriptMethod(name, returnType, pars, bodyt, bodyl));
+                        methods.add(new ScriptMethod(this, name, returnType, pars, bodyt, bodyl));
                         break;
                     }
                 }
@@ -204,7 +204,7 @@ public class ScriptLoader {
                         }
 
                         if (ct == Token.CLOSE_BRACKET && bodyt != null) {
-                            structs.add(new ScriptStructure(name, bodyt, bodyl));
+                            structs.add(new ScriptStructure(this, name, bodyt, bodyl));
                             break;
                         }
 
@@ -213,7 +213,7 @@ public class ScriptLoader {
                             bodyl.add(cl);
                         }
                     } catch (IndexOutOfBoundsException e) {
-                        structs.add(new ScriptStructure(name, bodyt, bodyl));
+                        structs.add(new ScriptStructure(this, name, bodyt, bodyl));
                         break;
                     }
                 }
@@ -352,6 +352,14 @@ public class ScriptLoader {
 
     public List<String> getLexemes() {
         return lexemes;
+    }
+
+    public ILogger log() {
+        return logger;
+    }
+
+    public Profiler profiler() {
+        return profiler;
     }
 
     public static void main(String[] args) {
