@@ -1,4 +1,4 @@
-package dev.dankom.script;
+package dev.dankom.script.type.var;
 
 import dev.dankom.lexer.Token;
 

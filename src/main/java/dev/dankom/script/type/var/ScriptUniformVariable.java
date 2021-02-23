@@ -1,4 +1,4 @@
-package dev.dankom.script;
+package dev.dankom.script.type.var;
 
 public class ScriptUniformVariable extends ScriptVariable {
     public ScriptUniformVariable(String name) {

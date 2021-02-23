@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptUniformVariable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/struct/ScriptStructure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/abztract/DefaultLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/abztract/DefaultLogger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptVariable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptUniformVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptUniformVariable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptVariable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +115,7 @@
       <module name="Plight" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dev.dankom.script.*" />
+          <option name="PATTERN" value="dev.dankom.script.type.var.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

@@ -23,6 +23,7 @@ public enum Token {
     COMMA(","),
     DEFINE("define"),
     UNIFORM("uniform"),
+    STRUCT("struct"),
     AS("as"),
     IS("is"),
     IF("if"),

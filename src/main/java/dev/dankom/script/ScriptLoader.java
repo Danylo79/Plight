@@ -6,6 +6,9 @@ import dev.dankom.logger.LogManager;
 import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
 import dev.dankom.logger.profiler.Profiler;
+import dev.dankom.script.type.struct.ScriptStructure;
+import dev.dankom.script.type.var.ScriptUniformVariable;
+import dev.dankom.script.type.var.ScriptVariable;
 import dev.dankom.util.general.JavaUtil;
 
 import java.io.File;
@@ -23,6 +26,7 @@ public class ScriptLoader {
 
     private final List<ScriptVariable> variables = new ArrayList<>();
     private final List<ScriptUniformVariable> uniforms = new ArrayList<>();
+    private final List<ScriptStructure> structs = new ArrayList<>();
 
     private ILogger logger;
     private Profiler profiler;
@@ -57,27 +61,70 @@ public class ScriptLoader {
         duniforms.put("java_version", JavaUtil.version());
         bindUniforms(duniforms);
         profiler.stopSection("bind_default_uniforms");
-    }
 
-    public final void bindUniforms(Map<String, String> map) {
-        for (Map.Entry me : map.entrySet()) {
-            if (getUniform((String) me.getKey()) != null) {
-                bindUniform((String) me.getKey(), (String) me.getValue());
-            }
+        profiler.startSection("find_structs");
+        findStructs();
+
+        for (ScriptStructure ss : structs) {
+            System.out.println(ss.toString());
         }
     }
 
-    public final void bindUniform(String name, String value) {
-        getUniform(name).setValue(value);
-    }
+    public void findStructs() {
+        List<Token> importantTokens = null;
+        List<String> importantLexemes = null;
+        for (int i = 0; i < tokens.size(); i++) {
+            Token t = tokens.get(i);
+            String l = lexemes.get(i);
+            if (importantTokens == null && t == Token.STRUCT) {
+                importantTokens = new ArrayList<>();
+                importantLexemes = new ArrayList<>();
+                importantTokens.add(t);
+                importantLexemes.add(l);
+            } else if (importantTokens != null && t == Token.CLOSE_BRACKET) {
+                importantTokens.add(t);
 
-    public final ScriptUniformVariable getUniform(String name) {
-        for (ScriptUniformVariable v : uniforms) {
-            if (v.getName().equalsIgnoreCase(name)) {
-                return v;
+
+                String name = null;
+                List<Token> bodyt = null;
+                List<String> bodyl = null;
+                for (int j = 0; j < importantTokens.size(); j++) {
+                    try {
+                        Token ct = importantTokens.get(j);
+                        String cl = importantLexemes.get(j);
+                        if (ct == Token.IDENTIFIER && name == null) {
+                            name = cl;
+                            continue;
+                        }
+
+                        if (ct == Token.OPEN_BRACKET && bodyt == null) {
+                            bodyt = new ArrayList<>();
+                            bodyl = new ArrayList<>();
+                            continue;
+                        }
+
+                        if (ct == Token.CLOSE_BRACKET && bodyt != null) {
+                            structs.add(new ScriptStructure(name, bodyt, bodyl));
+                            break;
+                        }
+
+                        if (bodyt != null) {
+                            bodyt.add(ct);
+                            bodyl.add(cl);
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        structs.add(new ScriptStructure(name, bodyt, bodyl));
+                        break;
+                    }
+                }
+
+                importantTokens = null;
+                continue;
+            } else if (importantTokens != null) {
+                importantTokens.add(t);
+                importantLexemes.add(l);
             }
         }
-        return null;
     }
 
     public final void findUniformVars() {
@@ -159,6 +206,27 @@ public class ScriptLoader {
                 importantLexemes.add(l);
             }
         }
+    }
+
+    public final void bindUniforms(Map<String, String> map) {
+        for (Map.Entry me : map.entrySet()) {
+            if (getUniform((String) me.getKey()) != null) {
+                bindUniform((String) me.getKey(), (String) me.getValue());
+            }
+        }
+    }
+
+    public final void bindUniform(String name, String value) {
+        getUniform(name).setValue(value);
+    }
+
+    public final ScriptUniformVariable getUniform(String name) {
+        for (ScriptUniformVariable v : uniforms) {
+            if (v.getName().equalsIgnoreCase(name)) {
+                return v;
+            }
+        }
+        return null;
     }
 
     public final void setVariableValue(String name, String value) {
