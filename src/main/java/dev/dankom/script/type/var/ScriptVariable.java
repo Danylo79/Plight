@@ -62,7 +62,7 @@ public class ScriptVariable {
                 '}';
     }
 
-    public static boolean isValidTokenValue(Token t) {
-        return t.equals(Token.STRING) || t.equals(Token.INTEGER) || t.equals(Token.IDENTIFIER);
+    public static boolean isValidTokenValue(Token t, String lexeme) {
+        return lexeme.equalsIgnoreCase("string") || lexeme.equalsIgnoreCase("str") || t.equals(Token.INTEGER) || t.equals(Token.IDENTIFIER);
     }
 }

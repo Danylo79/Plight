@@ -6,6 +6,8 @@ import dev.dankom.logger.LogManager;
 import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
 import dev.dankom.logger.profiler.Profiler;
+import dev.dankom.script.type.method.ScriptMethod;
+import dev.dankom.script.type.method.ScriptMethodParameter;
 import dev.dankom.script.type.struct.ScriptStructure;
 import dev.dankom.script.type.var.ScriptUniformVariable;
 import dev.dankom.script.type.var.ScriptVariable;
@@ -27,6 +29,7 @@ public class ScriptLoader {
     private final List<ScriptVariable> variables = new ArrayList<>();
     private final List<ScriptUniformVariable> uniforms = new ArrayList<>();
     private final List<ScriptStructure> structs = new ArrayList<>();
+    private final List<ScriptMethod> methods = new ArrayList<>();
 
     private ILogger logger;
     private Profiler profiler;
@@ -60,13 +63,110 @@ public class ScriptLoader {
         duniforms.put("name", file.getName().replace(".plight", ""));
         duniforms.put("java_version", JavaUtil.version());
         bindUniforms(duniforms);
-        profiler.stopSection("bind_default_uniforms");
 
         profiler.startSection("find_structs");
         findStructs();
+        profiler.startSection("find_methods");
+        findMethods();
+        profiler.stopSection("find_methods");
+    }
 
-        for (ScriptStructure ss : structs) {
-            System.out.println(ss.toString());
+    public void findMethods() {
+        List<Token> importantTokens = null;
+        List<String> importantLexemes = null;
+        for (int i = 0; i < tokens.size(); i++) {
+            Token t = tokens.get(i);
+            String l = lexemes.get(i);
+            if (importantTokens == null && t == Token.STRUCT) {
+                importantTokens = new ArrayList<>();
+                importantLexemes = new ArrayList<>();
+                importantTokens.add(t);
+                importantLexemes.add(l);
+            } else if (importantTokens != null && t == Token.CLOSE_BRACKET) {
+                importantTokens.add(t);
+
+
+                String name = null;
+                String returnType = null;
+                List<Token> bodyt = null;
+                List<String> bodyl = null;
+
+                List<ScriptMethodParameter> pars = null;
+                boolean lookingForPars = false;
+                boolean hasLookedIn = false;
+                String cParName = null;
+                String cParType = null;
+
+                for (int j = 0; j < importantTokens.size(); j++) {
+                    try {
+                        Token ct = importantTokens.get(j);
+                        String cl = importantLexemes.get(j);
+
+                        //Parameters
+                        if (ct == Token.OPEN && !lookingForPars && !hasLookedIn) {
+                            lookingForPars = true;
+                            pars = new ArrayList<>();
+                            continue;
+                        }
+                        if (ct == Token.COMMA) {
+                            pars.add(new ScriptMethodParameter(cParName, cParType, "unset"));
+                            cParName = null;
+                            cParType = null;
+                            continue;
+                        }
+                        if (ScriptVariable.isValidTokenValue(ct, cl) && cParType == null && lookingForPars) {
+                            cParType = cl;
+                            System.out.println("Set Par Type: " + cParType);
+                            continue;
+                        }
+                        if (ct == Token.IDENTIFIER && cParName == null && lookingForPars) {
+                            cParName = cl;
+                            System.out.println("Set Par Name: " + cParName);
+                            continue;
+                        }
+                        if (ct == Token.CLOSE && lookingForPars) {
+                            lookingForPars = false;
+                            hasLookedIn = true;
+                            pars.add(new ScriptMethodParameter(cParName, cParType, "unset"));
+                            cParName = null;
+                            cParType = null;
+                            continue;
+                        }
+                        //Name and ReturnType
+                        if (ct == Token.IDENTIFIER && returnType == null && ScriptMethod.isValidReturnType(ct, cl)) {
+                            returnType = cl;
+                            continue;
+                        }
+                        if (ct == Token.IDENTIFIER && name == null) {
+                            name = cl;
+                            continue;
+                        }
+                        //Body
+                        if (ct == Token.OPEN_BRACKET && bodyt == null) {
+                            bodyt = new ArrayList<>();
+                            bodyl = new ArrayList<>();
+                            continue;
+                        }
+                        if (ct == Token.CLOSE_BRACKET && bodyt != null) {
+                            methods.add(new ScriptMethod(name, returnType, pars, bodyt, bodyl));
+                            break;
+                        }
+                        if (bodyt != null) {
+                            bodyt.add(ct);
+                            bodyl.add(cl);
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        methods.add(new ScriptMethod(name, returnType, pars, bodyt, bodyl));
+                        break;
+                    }
+                }
+
+                importantTokens = null;
+                continue;
+            } else if (importantTokens != null) {
+                importantTokens.add(t);
+                importantLexemes.add(l);
+            }
         }
     }
 
@@ -92,7 +192,7 @@ public class ScriptLoader {
                     try {
                         Token ct = importantTokens.get(j);
                         String cl = importantLexemes.get(j);
-                        if (ct == Token.IDENTIFIER && name == null) {
+                        if (ct == Token.IDENTIFIER && name == null && !ScriptMethod.isValidReturnType(ct, cl)) {
                             name = cl;
                             continue;
                         }
@@ -145,7 +245,7 @@ public class ScriptLoader {
                 for (int j = 0; j < importantTokens.size(); j++) {
                     try {
                         Token it = importantTokens.get(j);
-                        if (it == Token.UNIFORM && importantTokens.get(j + 1) == Token.OPEN && ScriptUniformVariable.isValidTokenValue(importantTokens.get(j + 2)) && importantTokens.get(j + 3) == Token.CLOSE) {
+                        if (it == Token.UNIFORM && importantTokens.get(j + 1) == Token.OPEN && ScriptUniformVariable.isValidTokenValue(importantTokens.get(j + 2), importantLexemes.get(j + 2)) && importantTokens.get(j + 3) == Token.CLOSE) {
                             name = importantLexemes.get(j + 2);
                             uniforms.add(new ScriptUniformVariable(name));
                         }
@@ -188,7 +288,7 @@ public class ScriptLoader {
                             name = importantLexemes.get(j);
                         } else if (it == Token.IDENTIFIER && importantTokens.get(j - 1) == Token.COMMA && importantTokens.get(j + 1) == Token.COMMA) {
                             type = lexemes.get(j);
-                        } else if (it == Token.COMMA && ScriptVariable.isValidTokenValue(importantTokens.get(j + 1)) && importantTokens.get(j + 2) == Token.CLOSE) {
+                        } else if (it == Token.COMMA && ScriptVariable.isValidTokenValue(importantTokens.get(j + 1), importantLexemes.get(j + 1)) && importantTokens.get(j + 2) == Token.CLOSE) {
                             value = importantLexemes.get(j + 1);
                             variables.add(new ScriptVariable(name, type, value));
                             break;
