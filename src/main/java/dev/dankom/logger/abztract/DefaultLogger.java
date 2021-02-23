@@ -19,15 +19,17 @@ public class DefaultLogger implements ILogger {
 
     @Override
     public void log(LogLevel level, String loc, Object msg) {
-        Date date = new Date();
-        String time = "[" + date.getHours() + ":" + date.getMinutes() + "." + date.getSeconds() + "]";
-        loc = "[" + loc + "]";
-        String print = level.getColor() + time + " [" + level.getName() + "] " + loc + " " + msg + ColorUtil.ANSI_RESET;
-        System.out.println(print);
-        log.add(print);
-        if (level.equals(LogLevel.FATAL)) {
-            Runtime.getRuntime().exit(-1);
-        }
+        try {
+            Date date = new Date();
+            String time = "[" + date.getHours() + ":" + date.getMinutes() + "." + date.getSeconds() + "]";
+            loc = "[" + loc + "]";
+            String print = level.getColor() + time + " [" + level.getName() + "] " + loc + " " + msg + ColorUtil.ANSI_RESET;
+            System.out.println(print);
+            log.add(print);
+            if (level.equals(LogLevel.FATAL)) {
+                Runtime.getRuntime().exit(-1);
+            }
+        } catch (NullPointerException e) {}
     }
 
     public List<String> logs() {

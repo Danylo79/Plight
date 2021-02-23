@@ -22,6 +22,7 @@ public enum Token {
     END_LINE(";"),
     COMMA(","),
     DEFINE("define"),
+    UNIFORM("uniform"),
     AS("as"),
     IS("is"),
     IF("if"),
@@ -34,6 +35,7 @@ public enum Token {
 
     STRING("\"[^\"]+\""),
     INTEGER("\\d+"),
+
     IDENTIFIER("\\w+");
 
     private final Pattern pattern;

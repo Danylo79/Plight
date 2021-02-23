@@ -1,2 +1,5 @@
+uniform(name);
+uniform(java_version);
+
 define(s, string, foo);
 define(s1, string, bar);

@@ -2,10 +2,17 @@ package dev.dankom.script;
 
 import dev.dankom.lexer.Lexer;
 import dev.dankom.lexer.Token;
+import dev.dankom.logger.LogManager;
+import dev.dankom.logger.abztract.DefaultLogger;
+import dev.dankom.logger.interfaces.ILogger;
+import dev.dankom.logger.profiler.Profiler;
+import dev.dankom.util.general.JavaUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ScriptLoader {
 
@@ -15,6 +22,10 @@ public class ScriptLoader {
     private final List<String> lexemes = new ArrayList<>();
 
     private final List<ScriptVariable> variables = new ArrayList<>();
+    private final List<ScriptUniformVariable> uniforms = new ArrayList<>();
+
+    private ILogger logger;
+    private Profiler profiler;
 
     public void loadFromResource(String pathToFile) {
         if (!pathToFile.contains(".plight")) {
@@ -24,22 +35,89 @@ public class ScriptLoader {
     }
 
     public void loadFile(File file) {
-        lexer = new Lexer(file);
+        this.lexer = new Lexer(file);
+        this.logger = LogManager.addLogger(file.getName().replace(".plight", ""), new DefaultLogger());
+        this.profiler = LogManager.addProfiler(file.getName().replace(".plight", ""), new Profiler());
 
+        profiler.startSection("find_tokens");
         while (!lexer.isExhausted()) {
             tokens.add(lexer.currentToken());
             lexemes.add(lexer.currentLexeme());
             lexer.next();
         }
 
+        profiler.startSection("find_vars");
         findVars();
+        profiler.startSection("find_uniform_vars");
+        findUniformVars();
 
-        for (ScriptVariable s : variables) {
-            System.out.println(s.toString());
+        profiler.startSection("bind_default_uniforms");
+        HashMap<String, String> duniforms = new HashMap<>();
+        duniforms.put("name", file.getName().replace(".plight", ""));
+        duniforms.put("java_version", JavaUtil.version());
+        bindUniforms(duniforms);
+        profiler.stopSection("bind_default_uniforms");
+    }
+
+    public final void bindUniforms(Map<String, String> map) {
+        for (Map.Entry me : map.entrySet()) {
+            if (getUniform((String) me.getKey()) != null) {
+                bindUniform((String) me.getKey(), (String) me.getValue());
+            }
         }
     }
 
-    public void findVars() {
+    public final void bindUniform(String name, String value) {
+        getUniform(name).setValue(value);
+    }
+
+    public final ScriptUniformVariable getUniform(String name) {
+        for (ScriptUniformVariable v : uniforms) {
+            if (v.getName().equalsIgnoreCase(name)) {
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public final void findUniformVars() {
+        List<Token> importantTokens = null;
+        List<String> importantLexemes = null;
+        for (int i = 0; i < tokens.size(); i++) {
+            Token t = tokens.get(i);
+            String l = lexemes.get(i);
+            if (importantTokens == null && t == Token.UNIFORM) {
+                importantTokens = new ArrayList<>();
+                importantLexemes = new ArrayList<>();
+                importantTokens.add(t);
+                importantLexemes.add(l);
+            } else if (importantTokens != null && t == Token.END_LINE) {
+                importantTokens.add(t);
+
+                String name = "";
+                for (int j = 0; j < importantTokens.size(); j++) {
+                    try {
+                        Token it = importantTokens.get(j);
+                        if (it == Token.UNIFORM && importantTokens.get(j + 1) == Token.OPEN && ScriptUniformVariable.isValidTokenValue(importantTokens.get(j + 2)) && importantTokens.get(j + 3) == Token.CLOSE) {
+                            name = importantLexemes.get(j + 2);
+                            uniforms.add(new ScriptUniformVariable(name));
+                        }
+                    } catch (IndexOutOfBoundsException e) {
+                        uniforms.add(new ScriptUniformVariable(name));
+                        break;
+                    }
+                }
+
+                importantTokens = null;
+                continue;
+            } else if (importantTokens != null) {
+                importantTokens.add(t);
+                importantLexemes.add(l);
+            }
+        }
+    }
+
+    public final void findVars() {
         List<Token> importantTokens = null;
         List<String> importantLexemes = null;
         for (int i = 0; i < tokens.size(); i++) {
@@ -63,7 +141,7 @@ public class ScriptLoader {
                             name = importantLexemes.get(j);
                         } else if (it == Token.IDENTIFIER && importantTokens.get(j - 1) == Token.COMMA && importantTokens.get(j + 1) == Token.COMMA) {
                             type = lexemes.get(j);
-                        } else if (it == Token.COMMA && importantTokens.get(j + 1) == Token.IDENTIFIER && importantTokens.get(j + 2) == Token.CLOSE) {
+                        } else if (it == Token.COMMA && ScriptVariable.isValidTokenValue(importantTokens.get(j + 1)) && importantTokens.get(j + 2) == Token.CLOSE) {
                             value = importantLexemes.get(j + 1);
                             variables.add(new ScriptVariable(name, type, value));
                             break;
@@ -83,9 +161,21 @@ public class ScriptLoader {
         }
     }
 
-    public static void main(String[] args) {
-        ScriptLoader sl = new ScriptLoader();
-        sl.loadFromResource("test");
+    public final void setVariableValue(String name, String value) {
+        getVariable(name).setValue(value);
+    }
+
+    public final String getVariableValue(String name) {
+        return getVariable(name).getValue();
+    }
+
+    public final ScriptVariable getVariable(String name) {
+        for (ScriptVariable v : variables) {
+            if (v.getName().equalsIgnoreCase(name)) {
+                return v;
+            }
+        }
+        return null;
     }
 
     public List<Token> getTokens() {
@@ -94,5 +184,10 @@ public class ScriptLoader {
 
     public List<String> getLexemes() {
         return lexemes;
+    }
+
+    public static void main(String[] args) {
+        ScriptLoader sl = new ScriptLoader();
+        sl.loadFromResource("test");
     }
 }
