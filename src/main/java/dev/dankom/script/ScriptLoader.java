@@ -12,6 +12,7 @@ import dev.dankom.script.type.struct.ScriptStructure;
 import dev.dankom.script.type.var.ScriptUniformVariable;
 import dev.dankom.script.type.var.ScriptVariable;
 import dev.dankom.util.general.JavaUtil;
+import dev.dankom.util.general.ListUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,14 +23,15 @@ import java.util.Map;
 public class ScriptLoader {
 
     private Lexer lexer;
+    public ScriptHelper helper;
 
     private final List<Token> tokens = new ArrayList<>();
     private final List<String> lexemes = new ArrayList<>();
 
-    private final List<ScriptVariable> variables = new ArrayList<>();
-    private final List<ScriptUniformVariable> uniforms = new ArrayList<>();
     private final List<ScriptStructure> structs = new ArrayList<>();
     private final List<ScriptMethod> methods = new ArrayList<>();
+    private final List<ScriptVariable> variables = new ArrayList<>();
+    private final List<ScriptUniformVariable> uniforms = new ArrayList<>();
 
     private ILogger logger;
     private Profiler profiler;
@@ -44,6 +46,7 @@ public class ScriptLoader {
     public void loadFile(File file) {
         try {
             this.lexer = new Lexer(file);
+            this.helper = new ScriptHelper();
             this.logger = LogManager.addLogger(file.getName().replace(".plight", ""), new DefaultLogger());
             this.profiler = LogManager.addProfiler(file.getName().replace(".plight", ""), new Profiler());
 
@@ -54,9 +57,18 @@ public class ScriptLoader {
                 lexer.next();
             }
 
+            if (!lexer.isSuccessful()) {
+                logger.error("Lexer", "Failed to lex!");
+                return;
+            }
+
+            profiler.startSection("find_structs");
+            findStructs();
+            profiler.startSection("find_methods");
+            findMethods();
+
             profiler.startSection("find_uniform_vars");
             findUniformVars();
-
             profiler.startSection("bind_default_uniforms");
             HashMap<String, String> duniforms = new HashMap<>();
             duniforms.put("name", file.getName().replace(".plight", ""));
@@ -65,12 +77,7 @@ public class ScriptLoader {
 
             profiler.startSection("find_vars");
             findVars();
-
-            profiler.startSection("find_structs");
-            findStructs();
-            profiler.startSection("find_methods");
-            findMethods();
-            profiler.stopSection("find_methods");
+            profiler.stopSection("find_vars");
 
             methods.get(0).run();
         } catch (Exception e) {
@@ -116,7 +123,7 @@ public class ScriptLoader {
                             continue;
                         }
                         if (ct == Token.COMMA) {
-                            pars.add(new ScriptMethodParameter(cParName, cParType, "unset"));
+                            pars.add(new ScriptMethodParameter(this, cParName, cParType, "unset"));
                             cParName = null;
                             cParType = null;
                             continue;
@@ -132,7 +139,7 @@ public class ScriptLoader {
                         if (ct == Token.CLOSE && lookingForPars) {
                             lookingForPars = false;
                             hasLookedIn = true;
-                            pars.add(new ScriptMethodParameter(cParName, cParType, "unset"));
+                            pars.add(new ScriptMethodParameter(this, cParName, cParType, "unset"));
                             cParName = null;
                             cParType = null;
                             continue;
@@ -252,10 +259,10 @@ public class ScriptLoader {
                         Token it = importantTokens.get(j);
                         if (it == Token.UNIFORM && importantTokens.get(j + 1) == Token.OPEN && ScriptUniformVariable.isValidTokenValue(importantTokens.get(j + 2), importantLexemes.get(j + 2)) && importantTokens.get(j + 3) == Token.CLOSE) {
                             name = importantLexemes.get(j + 2);
-                            uniforms.add(new ScriptUniformVariable(name));
+                            uniforms.add(new ScriptUniformVariable(this, name));
                         }
                     } catch (IndexOutOfBoundsException e) {
-                        uniforms.add(new ScriptUniformVariable(name));
+                        uniforms.add(new ScriptUniformVariable(this, name));
                         break;
                     }
                 }
@@ -283,34 +290,30 @@ public class ScriptLoader {
             } else if (importantTokens != null && t == Token.END_LINE) {
                 importantTokens.add(t);
 
-                String name = "";
-                String type = "";
-                String value = "";
-                for (int j = 0; j < importantTokens.size(); j++) {
+                String name = null;
+                String type = null;
+                String value = null;
+                for (int j = 0; j < importantTokens.size() - 1; j++) {
                     try {
                         Token it = importantTokens.get(j);
-                        if (it == Token.IDENTIFIER && importantTokens.get(j - 1) == Token.OPEN) {
-                            name = importantLexemes.get(j);
-                        } else if (it == Token.IDENTIFIER && importantTokens.get(j - 1) == Token.COMMA && importantTokens.get(j + 1) == Token.COMMA) {
-                            type = lexemes.get(j);
-                        } else if (it == Token.COMMA && ScriptVariable.isValidTokenValue(importantTokens.get(j + 1), importantLexemes.get(j + 1)) && importantTokens.get(j + 2) == Token.CLOSE) {
-                            if (getVariable(importantLexemes.get(j + 1)) == null && getUniform(importantLexemes.get(j + 1)) == null) {
-                                value = importantLexemes.get(j + 1);
-                                variables.add(new ScriptVariable(name, type, value));
-                            } else {
-                                if (getUniform(importantLexemes.get(j + 1)) == null) {
-                                    value = getVariableValue(importantLexemes.get(j + 1));
-                                    variables.add(new ScriptVariable(name, type, getVariableValue(importantLexemes.get(j + 1))));
-                                } else {
-                                    value = getUniform(importantLexemes.get(j + 1)).getValue();
-                                    variables.add(new ScriptVariable(name, type, getUniform(importantLexemes.get(j + 1)).getValue()));
-                                }
-                            }
-                            break;
+                        String il = importantLexemes.get(j);
+
+                        if (name == null && it == Token.DEFINE && importantTokens.get(j + 1) == Token.OPEN) {
+                            name = importantLexemes.get(j + 2);
+                            continue;
+                        }
+
+                        if (type == null && it == Token.COMMA && importantTokens.get(j + 1) == Token.IDENTIFIER && importantTokens.get(j + 2) == Token.COMMA) {
+                            type = importantLexemes.get(j + 1);
+                            continue;
+                        }
+
+                        if (value == null && it == Token.COMMA) {
+                            value = helper.getValue(this, ListUtil.getSub(importantTokens, j, importantTokens.size()), ListUtil.getSub(importantLexemes, j, importantLexemes.size()));
+                            addVar(new ScriptVariable(this, name, type, value));
                         }
                     } catch (IndexOutOfBoundsException e) {
-                        variables.add(new ScriptVariable(name, type, value));
-                        break;
+                        addVar(new ScriptVariable(this, name, type, value));
                     }
                 }
 
@@ -320,6 +323,12 @@ public class ScriptLoader {
                 importantTokens.add(t);
                 importantLexemes.add(l);
             }
+        }
+    }
+
+    public void addVar(ScriptVariable variable) {
+        if (!variables.contains(variable)) {
+            variables.add(variable);
         }
     }
 
@@ -356,6 +365,15 @@ public class ScriptLoader {
         for (ScriptVariable v : variables) {
             if (v.getName().equalsIgnoreCase(name)) {
                 return v;
+            }
+        }
+        return null;
+    }
+
+    public final ScriptMethod getMethod(String name) {
+        for (ScriptMethod sm : methods) {
+            if (sm.getName().equals(name)) {
+                return sm;
             }
         }
         return null;

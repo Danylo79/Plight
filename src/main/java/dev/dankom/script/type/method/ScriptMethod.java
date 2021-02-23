@@ -9,12 +9,34 @@ import java.util.List;
 
 public class ScriptMethod extends ScriptStructure {
     private final String returnType;
+    private ScriptLoader parent;
     private final List<ScriptMethodParameter> pars;
+
+    private List<Token> retT;
+    private List<String> retL;
 
     public ScriptMethod(ScriptLoader parent, String name, String returnType, List<ScriptMethodParameter> pars, List<Token> bodyTokens, List<String> bodyLexemes) {
         super(parent, name, bodyTokens, bodyLexemes);
+        this.parent = parent;
         this.returnType = returnType;
         this.pars = pars;
+    }
+
+    public String getResult() {
+        if (retT == null || retL == null) {
+            run();
+        }
+        return parent.helper.getValue(parent, retT, retL);
+    }
+
+    public void setRet(List<Token> tokens, List<String> lexemes) {
+        this.retT = tokens;
+        this.retL = lexemes;
+    }
+
+    @Override
+    public void evaluate(List<Token> tokens, List<String> lexemes) {
+        setRet(tokens, lexemes);
     }
 
     public String getReturnType() {

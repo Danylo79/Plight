@@ -1,8 +1,8 @@
 package dev.dankom.script.type.struct;
 
 import dev.dankom.lexer.Token;
-import dev.dankom.script.ScriptHelper;
 import dev.dankom.script.ScriptLoader;
+import dev.dankom.util.general.ListUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,20 +35,27 @@ public class ScriptStructure {
             ltrack.add(bodyLexemes.get(i));
         }
 
-        if (!ttrack.isEmpty()) {
-            parent.log().error("MethodRunner", "Missing semicolon!");
+        if (!ttrack.isEmpty() || !ltrack.isEmpty()) {
+            parent.log().error("MethodRunner", "Missing semicolon in method body of " + name + "!");
         }
     }
 
     public void runInside(List<Token> tokens, List<String> lexemes) {
         String methodName = null;
-        List<String> pars = null;
 
+        List<String> pars = null;
         boolean trackingPars = false;
+
+        boolean hasReturned = false;
 
         for (int i = 0; i < tokens.size(); i++) {
             Token ct = tokens.get(i);
             String cl = lexemes.get(i);
+
+            if ((ct == Token.IDENTIFIER && parent.getMethod(cl) != null) || (ct == Token.IDENTIFIER || parent.helper.isInt(cl) || parent.helper.isBool(cl)) && trackingPars) {
+                pars.add(parent.helper.getValue(parent, ListUtil.getSub(tokens, i, tokens.size() - 1), ListUtil.getSub(lexemes, i, lexemes.size() - 1)));
+                continue;
+            }
 
             if (ct == Token.IDENTIFIER && tokens.get(i + 1) == Token.OPEN) {
                 methodName = cl;
@@ -59,22 +66,13 @@ public class ScriptStructure {
 
             if (ct == Token.STRING) {
                 pars.add(cl.replace("\"", ""));
+                continue;
             }
 
-            if (ScriptHelper.isInt(cl) || ScriptHelper.isBool(cl)) {
-                pars.add(cl);
-            }
-
-            if (ct == Token.IDENTIFIER && trackingPars) {
-                try {
-                    pars.add(parent.getVariableValue(cl));
-                } catch (NullPointerException e) {
-                    try {
-                        pars.add(parent.getUniform(cl).getValue());
-                    } catch (NullPointerException ex) {
-                        pars.add(cl);
-                    }
-                }
+            if (ct == Token.RETURN) {
+                evaluate(ListUtil.getSub(tokens, i, tokens.size()), ListUtil.getSub(lexemes, i, lexemes.size()));
+                hasReturned = true;
+                break;
             }
         }
 
@@ -90,8 +88,14 @@ public class ScriptStructure {
             } else if (methodName.equalsIgnoreCase("fatal")) {
                 parent.log().fatal(pars.get(0), pars.get(1));
             }
-        } catch (IndexOutOfBoundsException e) {}
+        } catch (IndexOutOfBoundsException | NullPointerException e) {}
+
+        if (!hasReturned) {
+            evaluate(new ArrayList<>(), new ArrayList<>());
+        }
     }
+
+    public void evaluate(List<Token> tokens, List<String> lexemes) {}
 
     public String getName() {
         return name;

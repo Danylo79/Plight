@@ -24,6 +24,7 @@ public enum Token {
     DEFINE("define"),
     UNIFORM("uniform"),
     STRUCT("struct"),
+    RETURN("return"),
     AS("as"),
     IS("is"),
     IF("if"),
