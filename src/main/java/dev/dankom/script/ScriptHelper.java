@@ -44,8 +44,36 @@ public class ScriptHelper {
             }
 
             if (t == Token.PLUS) {
-                out = out + getFullValue(loader, lexemes.get(i + 1).replace("\"", ""));
-                continue;
+                if (isInt(lexemes.get(i + 1).replace("\"", "")) || isInt(out)) {
+                    out = String.valueOf(Integer.parseInt(out) + Integer.parseInt(getFullValue(loader, lexemes.get(i + 1).replace("\"", ""))));
+                } else {
+                    out = out + getFullValue(loader, lexemes.get(i + 1).replace("\"", ""));
+                    continue;
+                }
+            }
+
+            if (t == Token.MINUS) {
+                try {
+                    out = String.valueOf(Integer.parseInt(out) - Integer.parseInt(getFullValue(loader, lexemes.get(i + 1).replace("\"", ""))));
+                } catch (NumberFormatException e) {
+                    loader.log().error("ValueParser", "Cannot apply subtract operation to a string!");
+                }
+            }
+
+            if (t == Token.DIVISION) {
+                try {
+                    out = String.valueOf(Integer.parseInt(out) / Integer.parseInt(getFullValue(loader, lexemes.get(i + 1).replace("\"", ""))));
+                } catch (NumberFormatException e) {
+                    loader.log().error("ValueParser", "Cannot apply subtract operation to a string!");
+                }
+            }
+
+            if (t == Token.MULTIPLY) {
+                try {
+                    out = String.valueOf(Integer.parseInt(out) * Integer.parseInt(getFullValue(loader, lexemes.get(i + 1).replace("\"", ""))));
+                } catch (NumberFormatException e) {
+                    loader.log().error("ValueParser", "Cannot apply subtract operation to a string!");
+                }
             }
         }
         return out;

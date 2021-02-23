@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public enum Token {
     MINUS("-"),
     PLUS("\\+"),
-    MUL("\\*"),
-    DIV("/"),
+    MULTIPLY("\\*"),
+    DIVISION("/"),
     NOT("~"),
     AND("&"),
     OR("\\|"),

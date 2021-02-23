@@ -1,7 +1,5 @@
 struct void main() {
-    test("Main", getFoo());
-    test("Main", getBar());
-    test("Main", getFoo() + getBar());
+
 }
 
 struct String getFoo() {
