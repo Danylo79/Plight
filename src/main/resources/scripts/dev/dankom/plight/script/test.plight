@@ -1,6 +1,7 @@
 import dev.dankom.plight.script.test1;
-jimport dev.dankom.util.general.MathUtil;
+import dev.dankom.plight.script.core.logger;
 
 struct void main() {
     info("Main", getFoo() + getBar());
+    return;
 }

@@ -88,6 +88,7 @@ public class Script {
 
             if (!lexer.isSuccessful()) {
                 logger.error("Lexer", "Failed to lex! (" + lexer.errorMessage() + ")");
+                profiler.crash(lexer.errorMessage(), new Exception(lexer.errorMessage()));
                 return;
             }
 
@@ -229,7 +230,7 @@ public class Script {
                             continue;
                         }
                         if (ct == Token.COMMA) {
-                            pars.add(new ScriptMethodParameter(this, cParName, cParType, "unset"));
+                            pars.add(new ScriptMethodParameter(this, cParName, cParType));
                             cParName = null;
                             cParType = null;
                             continue;
@@ -245,7 +246,7 @@ public class Script {
                         if (ct == Token.CLOSE && lookingForPars) {
                             lookingForPars = false;
                             hasLookedIn = true;
-                            pars.add(new ScriptMethodParameter(this, cParName, cParType, "unset"));
+                            pars.add(new ScriptMethodParameter(this, cParName, cParType));
                             cParName = null;
                             cParType = null;
                             continue;
@@ -456,6 +457,17 @@ public class Script {
                 return v;
             }
         }
+
+        for (ScriptImport si : getImports()) {
+            Script s = parent.getScript(si.getCpackage());
+            if (s != null && !s.getName().equalsIgnoreCase(getName())) {
+                for (ScriptUniformVariable v : s.uniforms) {
+                    if (v.getName().equalsIgnoreCase(name)) {
+                        return v;
+                    }
+                }
+            }
+        }
         return null;
     }
 
@@ -473,6 +485,17 @@ public class Script {
                 return v;
             }
         }
+
+        for (ScriptImport si : getImports()) {
+            Script s = parent.getScript(si.getCpackage());
+            if (s != null && !s.getName().equalsIgnoreCase(getName())) {
+                for (ScriptVariable v : s.variables) {
+                    if (v.getName().equalsIgnoreCase(name)) {
+                        return v;
+                    }
+                }
+            }
+        }
         return null;
     }
 
@@ -480,6 +503,17 @@ public class Script {
         for (ScriptMethod sm : methods) {
             if (sm.getName().equals(name)) {
                 return sm;
+            }
+        }
+
+        for (ScriptImport si : getImports()) {
+            Script s = parent.getScript(si.getCpackage());
+            if (s != null && !s.getName().equalsIgnoreCase(getName())) {
+                for (ScriptMethod sm : s.methods) {
+                    if (sm.getName().equals(name)) {
+                        return sm;
+                    }
+                }
             }
         }
         return null;

@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptJavaImport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Lexeme.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/core/logger.plight" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Token.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Script.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Script.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptImport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodParameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/struct/ScriptStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/struct/ScriptStructure.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test.plight" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test.plight" afterDir="false" />
     </list>

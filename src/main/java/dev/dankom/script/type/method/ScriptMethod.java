@@ -5,12 +5,14 @@ import dev.dankom.script.Script;
 import dev.dankom.script.type.struct.ScriptStructure;
 import dev.dankom.script.type.var.ScriptVariable;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ScriptMethod extends ScriptStructure {
     private final String returnType;
     private Script parent;
-    private final List<ScriptMethodParameter> pars;
+    private List<ScriptMethodParameter> pars;
 
     private List<Token> retT;
     private List<String> retL;
@@ -20,13 +22,27 @@ public class ScriptMethod extends ScriptStructure {
         this.parent = parent;
         this.returnType = returnType;
         this.pars = pars;
+
+        if (pars == null) {
+            this.pars = new ArrayList<>();
+        }
     }
 
-    public String getResult() {
+    public String getResult(HashMap<String, String> pars) {
         if (retT == null || retL == null) {
             run();
         }
-        return parent.helper.getValue(parent, retT, retL);
+
+        for (ScriptMethodParameter smp : this.pars) {
+            if (pars.get(smp.getName()) != null) {
+                smp.setValue(pars.get(smp.getName()));
+            }
+        }
+
+        System.out.println("retT: " + retT);
+        System.out.println("retL: " + retL);
+
+        return parent.helper.getValue(parent, this.pars, retT, retL);
     }
 
     public void setRet(List<Token> tokens, List<String> lexemes) {
@@ -36,6 +52,7 @@ public class ScriptMethod extends ScriptStructure {
 
     @Override
     public void evaluate(List<Token> tokens, List<String> lexemes) {
+        System.out.println("Returned with these tokens " + tokens + " and these lexemes " + lexemes + "!");
         setRet(tokens, lexemes);
     }
 

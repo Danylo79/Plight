@@ -42,6 +42,6 @@ public class ScriptLoader {
         loader.loadResourceScript("dev/dankom/plight/script/test1");
         loader.loadResourceScript("dev/dankom/plight/script/test");
 
-        loader.scripts.get(1).getMethod("main").run();
+        loader.scripts.get(1).getStructs().get(0).run();
     }
 }
