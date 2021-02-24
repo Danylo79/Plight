@@ -2,6 +2,7 @@ package dev.dankom.script.util;
 
 import dev.dankom.lexer.Token;
 import dev.dankom.script.Script;
+import dev.dankom.script.type.imported.ScriptImport;
 import dev.dankom.script.type.method.ScriptMethod;
 import dev.dankom.script.type.var.ScriptUniformVariable;
 import dev.dankom.script.type.var.ScriptVariable;
@@ -123,7 +124,8 @@ public class ScriptHelper {
         }
 
         else {
-            for (Script s : loader.getParent().getScripts()) {
+            for (ScriptImport si : loader.getImports()) {
+                Script s = loader.getParent().getScript(si.getCpackage());
                 ScriptMethod m = s.getMethod(value);
                 if (m != null) {
                     if (m.getResult() != null) {

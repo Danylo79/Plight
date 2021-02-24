@@ -20,6 +20,7 @@ public class ScriptLoader {
     }
 
     public Script getScript(String packageAndName) {
+        packageAndName = packageAndName.replace('.', '/');
         for (Script s : scripts) {
             if ((s.getPackage() + s.getName()).equalsIgnoreCase(packageAndName)) {
                 return s;

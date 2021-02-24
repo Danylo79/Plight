@@ -27,6 +27,7 @@ public enum Token {
     STRUCT("struct"),
     RETURN("return"),
     IMPORT("import"),
+    IMPORT_JAVA("jimport"),
     IMPORT_SEPARATOR("\\."),
     AS("as"),
     IS("is"),

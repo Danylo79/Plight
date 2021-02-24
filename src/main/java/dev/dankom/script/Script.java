@@ -7,6 +7,7 @@ import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
 import dev.dankom.logger.profiler.Profiler;
 import dev.dankom.script.type.imported.ScriptImport;
+import dev.dankom.script.type.imported.ScriptJavaImport;
 import dev.dankom.script.type.method.ScriptMethod;
 import dev.dankom.script.type.method.ScriptMethodParameter;
 import dev.dankom.script.type.struct.ScriptStructure;
@@ -34,6 +35,7 @@ public class Script {
     private final List<String> lexemes = new ArrayList<>();
 
     private final List<ScriptImport> imports = new ArrayList<>();
+    private final List<ScriptJavaImport> java_imports = new ArrayList<>();
     private final List<ScriptStructure> structs = new ArrayList<>();
     private final List<ScriptMethod> methods = new ArrayList<>();
     private final List<ScriptVariable> variables = new ArrayList<>();
@@ -61,7 +63,6 @@ public class Script {
             this.logger = LogManager.addLogger(file.getName().replace(".plight", ""), new DefaultLogger());
             this.profiler = LogManager.addProfiler(file.getName().replace(".plight", ""), new Profiler());
             this.file = file;
-
 
             this.spackage = "";
             boolean startListening = false;
@@ -92,6 +93,8 @@ public class Script {
 
             profiler.startSection("find_imports");
             findImports();
+            profiler.startSection("find_java_imports");
+            findJavaImports();
             profiler.startSection("find_structs");
             findStructs();
             profiler.startSection("find_methods");
@@ -119,7 +122,44 @@ public class Script {
         for (int i = 0; i < tokens.size(); i++) {
             Token t = tokens.get(i);
             String l = lexemes.get(i);
-            if (importantTokens == null && t == Token.IMPORT) {
+            if (importantTokens == null && t == Token.IMPORT && t != Token.IMPORT_JAVA) {
+                importantTokens = new ArrayList<>();
+                importantLexemes = new ArrayList<>();
+                importantTokens.add(t);
+                importantLexemes.add(l);
+            } else if (importantTokens != null && t == Token.END_LINE) {
+                if (importantTokens.contains(Token.IMPORT_JAVA)) {
+                    return;
+                }
+                String spackage = null;
+                for (int j = 0; j < importantTokens.size(); j++) {
+                    Token ct = importantTokens.get(j);
+                    String cl = importantLexemes.get(j);
+
+                    if (ct == Token.IMPORT && ct != Token.IMPORT_JAVA) {
+                        spackage = "";
+                        continue;
+                    }
+
+                    if (spackage != null) {
+                        spackage += cl;
+                    }
+                }
+                imports.add(new ScriptImport(this, spackage));
+            } else if (importantTokens != null) {
+                importantTokens.add(t);
+                importantLexemes.add(l);
+            }
+        }
+    }
+
+    public void findJavaImports() {
+        List<Token> importantTokens = null;
+        List<String> importantLexemes = null;
+        for (int i = 0; i < tokens.size(); i++) {
+            Token t = tokens.get(i);
+            String l = lexemes.get(i);
+            if (importantTokens == null && t == Token.IMPORT_JAVA) {
                 importantTokens = new ArrayList<>();
                 importantLexemes = new ArrayList<>();
                 importantTokens.add(t);
@@ -130,7 +170,11 @@ public class Script {
                     Token ct = importantTokens.get(j);
                     String cl = importantLexemes.get(j);
 
-                    if (ct == Token.IMPORT) {
+                    if (importantTokens.contains(Token.STRUCT)) {
+                        return;
+                    }
+
+                    if (ct == Token.IMPORT_JAVA) {
                         spackage = "";
                         continue;
                     }
@@ -139,7 +183,7 @@ public class Script {
                         spackage += cl;
                     }
                 }
-                imports.add(new ScriptImport(spackage));
+                java_imports.add(new ScriptJavaImport(this, spackage));
             } else if (importantTokens != null) {
                 importantTokens.add(t);
                 importantLexemes.add(l);
