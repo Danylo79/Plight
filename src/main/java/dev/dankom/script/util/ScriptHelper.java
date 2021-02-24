@@ -1,8 +1,10 @@
-package dev.dankom.script;
+package dev.dankom.script.util;
 
 import dev.dankom.lexer.Token;
+import dev.dankom.script.Script;
 import dev.dankom.script.type.method.ScriptMethod;
 import dev.dankom.script.type.var.ScriptUniformVariable;
+import dev.dankom.script.type.var.ScriptVariable;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class ScriptHelper {
         return -1;
     }
 
-    public String getValue(ScriptLoader loader, List<Token> tokens, List<String> lexemes) {
+    public String getValue(Script loader, List<Token> tokens, List<String> lexemes) {
         String out = null;
         for (int i = 0; i < tokens.size(); i++) {
             Token t = tokens.get(i);
@@ -56,7 +58,7 @@ public class ScriptHelper {
                 try {
                     out = String.valueOf(Integer.parseInt(out) - Integer.parseInt(getFullValue(loader, lexemes.get(i + 1).replace("\"", ""))));
                 } catch (NumberFormatException e) {
-                    loader.log().error("ValueParser", "Cannot apply subtract operation to a string!");
+                    loader.log().error("ValueParser", "Cannot apply - operation to a string!");
                 }
             }
 
@@ -64,7 +66,7 @@ public class ScriptHelper {
                 try {
                     out = String.valueOf(Integer.parseInt(out) / Integer.parseInt(getFullValue(loader, lexemes.get(i + 1).replace("\"", ""))));
                 } catch (NumberFormatException e) {
-                    loader.log().error("ValueParser", "Cannot apply subtract operation to a string!");
+                    loader.log().error("ValueParser", "Cannot apply / operation to a string!");
                 }
             }
 
@@ -72,14 +74,22 @@ public class ScriptHelper {
                 try {
                     out = String.valueOf(Integer.parseInt(out) * Integer.parseInt(getFullValue(loader, lexemes.get(i + 1).replace("\"", ""))));
                 } catch (NumberFormatException e) {
-                    loader.log().error("ValueParser", "Cannot apply subtract operation to a string!");
+                    loader.log().error("ValueParser", "Cannot apply * operation to a string!");
+                }
+            }
+
+            if (t == Token.MOD) {
+                try {
+                    out = String.valueOf(Integer.parseInt(out) % Integer.parseInt(getFullValue(loader, lexemes.get(i + 1).replace("\"", ""))));
+                } catch (NumberFormatException e) {
+                    loader.log().error("ValueParser", "Cannot apply % operation to a string!");
                 }
             }
         }
         return out;
     }
 
-    public String getFullValue(ScriptLoader loader, String value) {
+    public String getFullValue(Script loader, String value) {
         value = value.replace("\"", "");
         ScriptMethod method = loader.getMethod(value);
         if (method != null) {
@@ -100,7 +110,7 @@ public class ScriptHelper {
             }
         }
 
-        else {
+        else if (loader.getUniform(value) != null) {
             ScriptUniformVariable uniform = loader.getUniform(value);
             if (uniform != null) {
                 if (uniform.getValue() != null) {
@@ -108,6 +118,41 @@ public class ScriptHelper {
                 } else {
                     loader.log().error("Evaluator", "Failed to evaluate the uniform " + value + "!");
                     return "null";
+                }
+            }
+        }
+
+        else {
+            for (Script s : loader.getParent().getScripts()) {
+                ScriptMethod m = s.getMethod(value);
+                if (m != null) {
+                    if (m.getResult() != null) {
+                        return m.getResult().replace("\"", "");
+                    } else {
+                        s.log().error("Evaluator", "Failed to evaluate the method " + value + "!");
+                        return "null";
+                    }
+                }
+
+                else if (s.getVariable(value) != null) {
+                    if (s.getVariableValue(value) != null) {
+                        return s.getVariableValue(value);
+                    } else {
+                        s.log().error("Evaluator", "Failed to evaluate the variable " + value + "!");
+                        return "null";
+                    }
+                }
+
+                else if (s.getUniform(value) != null) {
+                    ScriptUniformVariable uniform = s.getUniform(value);
+                    if (uniform != null) {
+                        if (uniform.getValue() != null) {
+                            return uniform.getValue();
+                        } else {
+                            s.log().error("Evaluator", "Failed to evaluate the uniform " + value + "!");
+                            return "null";
+                        }
+                    }
                 }
             }
         }

@@ -1,9 +1,9 @@
 package dev.dankom.script.type.var;
 
-import dev.dankom.script.ScriptLoader;
+import dev.dankom.script.Script;
 
 public class ScriptUniformVariable extends ScriptVariable {
-    public ScriptUniformVariable(ScriptLoader parent, String name) {
+    public ScriptUniformVariable(Script parent, String name) {
         super(parent, name, "String", "uniform_not_bound");
     }
 }

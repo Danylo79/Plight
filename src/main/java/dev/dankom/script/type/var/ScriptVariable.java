@@ -1,14 +1,14 @@
 package dev.dankom.script.type.var;
 
 import dev.dankom.lexer.Token;
-import dev.dankom.script.ScriptLoader;
+import dev.dankom.script.Script;
 
 public class ScriptVariable {
     private final String name;
     private final String type;
     private String value;
 
-    public ScriptVariable(ScriptLoader parent, String name, String type, String value) {
+    public ScriptVariable(Script parent, String name, String type, String value) {
         this.name = name;
         this.type = type;
         this.value = value;

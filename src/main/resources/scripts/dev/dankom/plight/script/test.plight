@@ -1,0 +1,5 @@
+import dev.dankom.plight.script.test1;
+
+struct void main() {
+    info("Main", getFoo() + getBar());
+}

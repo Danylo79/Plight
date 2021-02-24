@@ -5,10 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/Script.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptImport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test.plight" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test1.plight" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/ScriptLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodParameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/struct/ScriptStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/struct/ScriptStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptUniformVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptUniformVariable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptVariable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/test.plight" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +78,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="junit.framework.TestCase" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\danko\IdeaProjects\Plight\src\main\resources\scripts\dev\dankom\plight\script" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dev.dankom" />
     </key>
@@ -107,12 +120,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Script" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.script.Script" />
+      <module name="Plight" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.script.type.var.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ScriptLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.dankom.script.ScriptLoader" />
       <module name="Plight" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dev.dankom.script.type.var.*" />
+          <option name="PATTERN" value="dev.dankom.script.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -218,6 +244,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ScriptLoader" />
         <item itemvalue="Application.ScriptLoader" />
         <item itemvalue="Application.ClassGeneratorTest" />
         <item itemvalue="Application.AgentLoaderTest" />

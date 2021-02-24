@@ -1,19 +1,19 @@
 package dev.dankom.script.type.struct;
 
 import dev.dankom.lexer.Token;
-import dev.dankom.script.ScriptLoader;
+import dev.dankom.script.Script;
 import dev.dankom.util.general.ListUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScriptStructure {
-    private ScriptLoader parent;
+    private Script parent;
     private final String name;
     private final List<Token> bodyTokens;
     private final List<String> bodyLexemes;
 
-    public ScriptStructure(ScriptLoader parent, String name, List<Token> bodyTokens, List<String> bodyLexemes) {
+    public ScriptStructure(Script parent, String name, List<Token> bodyTokens, List<String> bodyLexemes) {
         this.parent = parent;
         this.name = name;
         this.bodyTokens = bodyTokens;

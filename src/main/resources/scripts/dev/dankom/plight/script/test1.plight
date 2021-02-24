@@ -1,0 +1,7 @@
+struct String getFoo() {
+    return foo;
+}
+
+struct String getBar() {
+    return bar;
+}
