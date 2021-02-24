@@ -1,10 +1,27 @@
 package dev.dankom.script.type.method;
 
-import dev.dankom.script.Script;
-import dev.dankom.script.type.var.ScriptVariable;
+public class ScriptMethodParameter {
+    private final String name;
+    private final String type;
 
-public class ScriptMethodParameter extends ScriptVariable {
-    public ScriptMethodParameter(Script parent, String name, String type) {
-        super(parent, name, type, null);
+    public ScriptMethodParameter(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public String toString() {
+        return "ScriptMethodParameter{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

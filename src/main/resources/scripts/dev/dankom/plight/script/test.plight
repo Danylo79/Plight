@@ -1,7 +1,10 @@
 import dev.dankom.plight.script.test1;
-import dev.dankom.plight.script.core.logger;
+
+uniform(name);
+define(s, string, "foo");
+define(s1, string, "bar");
 
 struct void main() {
-    info("Main", getFoo() + getBar());
+    info("Main", "Test!");
     return;
 }

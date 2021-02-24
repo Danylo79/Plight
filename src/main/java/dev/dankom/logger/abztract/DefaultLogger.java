@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DefaultLogger implements ILogger {
 
-    private List<String> log;
+    private List<String> log = new ArrayList<>();
 
     @Override
     public void log(LogLevel level, String loc, Object msg) {

@@ -5,24 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScriptLoader {
-    private List<Script> scripts = new ArrayList<>();
 
-    public void loadResourceScript(String pathToFile) {
-        Script script = new Script(this);
-        script.loadFromResource(pathToFile);
-        scripts.add(script);
+    private List<Script> scripts;
+
+    public void load(File... scripts) {
+        this.scripts = new ArrayList<>();
+        for (File f : scripts) {
+            Script s = new Script(this);
+            s.loadToMemory(f);
+        }
     }
 
-    public void loadScript(File file) {
-        Script script = new Script(this);
-        script.loadFile(file);
-        scripts.add(script);
+    public void load(String... scripts) {
+        this.scripts = new ArrayList<>();
+        for (String f : scripts) {
+            f = f.replace(".", "\\\\");
+            Script s = new Script(this);
+            s.loadToMemoryFromResource(f);
+        }
     }
 
     public Script getScript(String packageAndName) {
-        packageAndName = packageAndName.replace('.', '/');
         for (Script s : scripts) {
-            if ((s.getPackage() + s.getName()).equalsIgnoreCase(packageAndName)) {
+            if ((s.getName().replace(".plight", "") + "/" + s.getPackage()).equalsIgnoreCase(packageAndName)) {
                 return s;
             }
         }
@@ -30,18 +35,11 @@ public class ScriptLoader {
     }
 
     public Script getScript(String spackage, String name) {
-        return getScript(spackage + name);
-    }
-
-    public List<Script> getScripts() {
-        return scripts;
+        return getScript(spackage + "/" + name);
     }
 
     public static void main(String[] args) {
         ScriptLoader loader = new ScriptLoader();
-        loader.loadResourceScript("dev/dankom/plight/script/test1");
-        loader.loadResourceScript("dev/dankom/plight/script/test");
-
-        loader.scripts.get(1).getStructs().get(0).run();
+        loader.load("dev/dankom/plight/script/test", "dev/dankom/plight/script/test1");
     }
 }
