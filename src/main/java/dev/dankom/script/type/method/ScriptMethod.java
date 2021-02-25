@@ -8,6 +8,7 @@ import dev.dankom.script.interfaces.MemoryBoundStructure;
 import dev.dankom.script.pointer.Pointer;
 import dev.dankom.script.type.var.ScriptVariable;
 import dev.dankom.script.util.ScriptHelper;
+import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,13 +49,19 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
                 }
 
                 if (l.getToken() == Token.END_LINE) {
-                    methodCalls.add(new ScriptMethodCall().loadToMemory(storage));
+                    methodCalls.add(getScript().loadToMemory(storage, new ScriptMethodCall(this)));
                     storage.clear();
                 }
             }
             return this;
         } else {
             return null;
+        }
+    }
+
+    public void call() {
+        for (ScriptMethodCall smc : methodCalls) {
+            smc.call();
         }
     }
 
@@ -68,7 +75,6 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
                 "name='" + name + '\'' +
                 ", pars=" + pars +
                 ", script=" + script +
-                ", methodCalls=" + methodCalls +
                 ", returnPointer=" + returnPointer +
                 '}';
     }
@@ -83,5 +89,9 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
 
     public String getReturnType() {
         return returnType;
+    }
+
+    public Script getScript() {
+        return script;
     }
 }

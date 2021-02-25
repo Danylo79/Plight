@@ -35,4 +35,9 @@ public class ScriptRuntimeException extends BaseException {
     public Pointer getPointer() {
         return p;
     }
+
+    @Override
+    public void printStackTrace() {
+        script.profiler().crash(getMessage(), this);
+    }
 }

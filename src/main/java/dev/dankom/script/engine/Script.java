@@ -2,6 +2,7 @@ package dev.dankom.script.engine;
 
 import dev.dankom.script.exception.ScriptRuntimeException;
 import dev.dankom.script.exception.exceptions.ScriptMethodNotFoundException;
+import dev.dankom.script.exception.exceptions.ScriptNotLoadedException;
 import dev.dankom.script.exception.exceptions.ScriptUniformNotFoundException;
 import dev.dankom.script.exception.exceptions.ScriptVariableNotFoundException;
 import dev.dankom.script.lexer.Lexeme;
@@ -340,6 +341,13 @@ public class Script {
         }
 
         for (ScriptImport si : imports) {
+            if (getLoader().getScript(si.getPackage()) == null) {
+                try {
+                    throw new ScriptNotLoadedException("Failed to find script " + si.getPackage() + "!", this);
+                } catch (ScriptNotLoadedException e) {
+                    e.printStackTrace();
+                }
+            }
             for (ScriptUniform su : getLoader().getScript(si.getPackage()).uniforms) {
                 if (su.getName().equalsIgnoreCase(name)) {
                     return su;
@@ -349,7 +357,7 @@ public class Script {
         try {
             throw new ScriptUniformNotFoundException("Failed to find uniform " + name + "!", this);
         } catch (ScriptRuntimeException e) {
-            profiler.crash(e.getMessage(), e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -362,7 +370,13 @@ public class Script {
         }
 
         for (ScriptImport si : imports) {
-            System.out.println(getLoader().getScript(si.getPackage()));
+            if (getLoader().getScript(si.getPackage()) == null) {
+                try {
+                    throw new ScriptNotLoadedException("Failed to find script " + si.getPackage() + "!", this);
+                } catch (ScriptNotLoadedException e) {
+                    e.printStackTrace();
+                }
+            }
             for (ScriptVariable su : getLoader().getScript(si.getPackage()).variables) {
                 if (su.getName().equalsIgnoreCase(name)) {
                     return su;
@@ -372,7 +386,7 @@ public class Script {
         try {
             throw new ScriptVariableNotFoundException("Failed to find variable " + name + "!", this);
         } catch (ScriptRuntimeException e) {
-            profiler.crash(e.getMessage(), e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -385,6 +399,13 @@ public class Script {
         }
 
         for (ScriptImport si : imports) {
+            if (getLoader().getScript(si.getPackage()) == null) {
+                try {
+                    throw new ScriptNotLoadedException("Failed to find script " + si.getPackage() + "!", this);
+                } catch (ScriptNotLoadedException e) {
+                    e.printStackTrace();
+                }
+            }
             for (ScriptMethod sm : getLoader().getScript(si.getPackage()).methods) {
                 if (sm.getName().equalsIgnoreCase(name)) {
                     return sm;
@@ -394,7 +415,7 @@ public class Script {
         try {
             throw new ScriptMethodNotFoundException("Failed to find method " + name + "!", this);
         } catch (ScriptRuntimeException e) {
-            profiler.crash(e.getMessage(), e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -406,10 +427,10 @@ public class Script {
         try {
             t = (T) mbs.loadToMemory(lexemes);
         } catch (ScriptRuntimeException e) {
-            profiler.crash(e.getMessage(), e);
+            e.printStackTrace();
         }
         if (t != null) {
-            debug.test("MemoryStructureManager", "Binding memory structure " + mbs.getClass().getName() + " to " + lexemes + "!");
+            debug.test("MemoryStructureManager", "Binding memory structure " + mbs.getClass().getName() + " to " + mbs.toString() + "!");
         } else {
             logger.error("MemoryStructureManager", "Returned null! (Aborting) (Failed to bind " + mbs.getClass().getName() + " to memory!)");
         }
@@ -434,5 +455,9 @@ public class Script {
 
     public ILogger debug() {
         return debug;
+    }
+
+    public Profiler profiler() {
+        return profiler;
     }
 }

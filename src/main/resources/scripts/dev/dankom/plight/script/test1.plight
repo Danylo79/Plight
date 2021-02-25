@@ -1,5 +1,3 @@
-import scripts.dev.dankom.plight.script.test;
-
 struct String getFoo() {
     return foo;
 }

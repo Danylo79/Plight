@@ -46,6 +46,8 @@ public class ScriptLoader {
 
     public static void main(String[] args) {
         ScriptLoader loader = new ScriptLoader();
-        loader.load("dev/dankom/plight/script/test", "dev/dankom/plight/script/test1");
+        loader.load("dev/dankom/plight/script/test");
+
+        loader.getScript("scripts/dev/dankom/plight/script/test").getMethod("ee").call();
     }
 }

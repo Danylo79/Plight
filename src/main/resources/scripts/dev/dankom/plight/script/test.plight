@@ -1,5 +1,3 @@
-import scripts.dev.dankom.plight.script.test1;
-
 uniform(name);
 define(s, string, "foo");
 define(s1, string, "bar");

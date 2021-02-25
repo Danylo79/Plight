@@ -3,6 +3,7 @@ package dev.dankom.script.type.method;
 import dev.dankom.script.lexer.Lexeme;
 import dev.dankom.script.lexer.Token;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
+import dev.dankom.script.util.ScriptHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,11 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
     private List<List<Lexeme>> pars = new ArrayList<>();
 
     private boolean isReturn = false;
+    private ScriptMethod parent;
+
+    public ScriptMethodCall(ScriptMethod parent) {
+        this.parent = parent;
+    }
 
     @Override
     public ScriptMethodCall loadToMemory(List<Lexeme> lexemes) {
@@ -67,6 +73,18 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
         }
     }
 
+    public void call() {
+        try {
+            List<String> pars = new ArrayList<>();
+            for (List<Lexeme> ls : this.pars) {
+                pars.add(ScriptHelper.getFullValue(parent.getScript(), ls));
+            }
+            if (method.equalsIgnoreCase("info")) {
+                parent.getScript().logger().info(pars.get(0), pars.get(1));
+            }
+        } catch (NullPointerException e) {}
+    }
+
     public void addPar(List<Lexeme> pars) {
         this.pars.add(pars);
     }
@@ -87,6 +105,8 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
                 ", lexemes=" + lexemes +
                 ", method='" + method + '\'' +
                 ", pars=" + pars +
+                ", isReturn=" + isReturn +
+                ", parent=" + parent +
                 '}';
     }
 }
