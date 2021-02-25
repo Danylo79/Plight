@@ -1,6 +1,9 @@
 package dev.dankom.script.engine;
 
 import dev.dankom.script.exception.ScriptRuntimeException;
+import dev.dankom.script.exception.exceptions.ScriptMethodNotFoundException;
+import dev.dankom.script.exception.exceptions.ScriptUniformNotFoundException;
+import dev.dankom.script.exception.exceptions.ScriptVariableNotFoundException;
 import dev.dankom.script.lexer.Lexeme;
 import dev.dankom.script.lexer.Lexer;
 import dev.dankom.script.lexer.Token;
@@ -92,7 +95,7 @@ public class Script {
         }
     }
 
-    public void bindMemoryStructures() {
+    public final void bindMemoryStructures() {
         try {
             profiler.startSection("bind_imports");
             bindImports();
@@ -343,6 +346,11 @@ public class Script {
                 }
             }
         }
+        try {
+            throw new ScriptUniformNotFoundException("Failed to find uniform " + name + "!", this);
+        } catch (ScriptRuntimeException e) {
+            profiler.crash(e.getMessage(), e);
+        }
         return null;
     }
 
@@ -354,11 +362,17 @@ public class Script {
         }
 
         for (ScriptImport si : imports) {
+            System.out.println(getLoader().getScript(si.getPackage()));
             for (ScriptVariable su : getLoader().getScript(si.getPackage()).variables) {
                 if (su.getName().equalsIgnoreCase(name)) {
                     return su;
                 }
             }
+        }
+        try {
+            throw new ScriptVariableNotFoundException("Failed to find variable " + name + "!", this);
+        } catch (ScriptRuntimeException e) {
+            profiler.crash(e.getMessage(), e);
         }
         return null;
     }
@@ -376,6 +390,11 @@ public class Script {
                     return sm;
                 }
             }
+        }
+        try {
+            throw new ScriptMethodNotFoundException("Failed to find method " + name + "!", this);
+        } catch (ScriptRuntimeException e) {
+            profiler.crash(e.getMessage(), e);
         }
         return null;
     }

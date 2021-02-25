@@ -13,6 +13,7 @@ public class ScriptLoader {
         for (File f : scripts) {
             Script s = new Script(this);
             s.loadToMemory(f);
+            this.scripts.add(s);
         }
     }
 
@@ -22,12 +23,13 @@ public class ScriptLoader {
             f = f.replace(".", "\\\\");
             Script s = new Script(this);
             s.loadToMemoryFromResource(f);
+            this.scripts.add(s);
         }
     }
 
     public Script getScript(String packageAndName) {
         for (Script s : scripts) {
-            if ((s.getName().replace(".plight", "") + s.getPackage()).equalsIgnoreCase(packageAndName)) {
+            if ((s.getPackage() + s.getName().replace(".plight", "")).equalsIgnoreCase(packageAndName)) {
                 return s;
             }
         }
@@ -36,6 +38,10 @@ public class ScriptLoader {
 
     public Script getScript(String spackage, String name) {
         return getScript(spackage + name);
+    }
+
+    public List<Script> scripts() {
+        return scripts;
     }
 
     public static void main(String[] args) {

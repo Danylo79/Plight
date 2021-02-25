@@ -20,6 +20,18 @@ public class ScriptRuntimeException extends BaseException {
         this.p = p;
     }
 
+    public ScriptRuntimeException(String msg, Script script) {
+        super(msg + " (Script: " + script.getPackage() + script.getName() + ".plight)");
+        this.script = script;
+        this.p = p;
+    }
+
+    public ScriptRuntimeException(String msg, Throwable ex, Script script) {
+        super(msg + " (Script: " + script.getPackage() + "/" + script.getName() + ")", ex);
+        this.script = script;
+        this.p = p;
+    }
+
     public Pointer getPointer() {
         return p;
     }

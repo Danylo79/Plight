@@ -42,7 +42,7 @@ public class ScriptImport implements MemoryBoundStructure<ScriptImport> {
     }
 
     public String getPackage() {
-        return spackage;
+        return spackage.replace('.', '/');
     }
 
     @Override
