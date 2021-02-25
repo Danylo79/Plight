@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/exception/exceptions/ScriptNotLoadedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptJavaImport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/Script.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/Script.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/ScriptLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/ScriptLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/exception/ScriptRuntimeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/exception/ScriptRuntimeException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodCall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/FileUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test.plight" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test.plight" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test1.plight" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test1.plight" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

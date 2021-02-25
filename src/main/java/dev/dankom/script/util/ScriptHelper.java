@@ -28,7 +28,7 @@ public class ScriptHelper {
                 out = getValue(loader, l.getLexeme());
             }
         }
-        return out;
+        return out.replace("\"", "");
     }
 
     public static String getValue(Script loader, String lexeme) {

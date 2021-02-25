@@ -7,12 +7,17 @@ import java.util.List;
 public class ScriptLoader {
 
     private List<Script> scripts;
+    private boolean seeDebug;
+
+    public ScriptLoader(boolean seeDebug) {
+        this.seeDebug = seeDebug;
+    }
 
     public void load(File... scripts) {
         this.scripts = new ArrayList<>();
         for (File f : scripts) {
-            Script s = new Script(this);
-            s.loadToMemory(f);
+            Script s = new Script(this, seeDebug);
+            s.bindScriptToMemory(f);
             this.scripts.add(s);
         }
     }
@@ -21,8 +26,8 @@ public class ScriptLoader {
         this.scripts = new ArrayList<>();
         for (String f : scripts) {
             f = f.replace(".", "\\\\");
-            Script s = new Script(this);
-            s.loadToMemoryFromResource(f);
+            Script s = new Script(this, seeDebug);
+            s.bindResourceAsScriptToMemory(f);
             this.scripts.add(s);
         }
     }
@@ -45,9 +50,9 @@ public class ScriptLoader {
     }
 
     public static void main(String[] args) {
-        ScriptLoader loader = new ScriptLoader();
+        ScriptLoader loader = new ScriptLoader(true);
         loader.load("dev/dankom/plight/script/test");
 
-        loader.getScript("scripts/dev/dankom/plight/script/test").getMethod("ee").call();
+        loader.getScript("scripts/dev/dankom/plight/script/test").getMethod("main").call(new ArrayList<>());
     }
 }

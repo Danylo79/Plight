@@ -15,12 +15,14 @@ import dev.dankom.logger.profiler.Profiler;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
 import dev.dankom.logger.abztract.DebugLogger;
 import dev.dankom.script.type.imported.ScriptImport;
+import dev.dankom.script.type.imported.ScriptJavaImport;
 import dev.dankom.script.type.method.ScriptMethod;
 import dev.dankom.script.type.method.ScriptMethodParameter;
 import dev.dankom.script.type.var.ScriptUniform;
 import dev.dankom.script.type.var.ScriptVariable;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +34,7 @@ public class Script {
     private String name;
     private String spackage;
     private ScriptLoader loader;
+    private boolean seeDebug;
 
     private ILogger logger;
     private ILogger debug;
@@ -44,19 +47,21 @@ public class Script {
     public List<ScriptVariable> variables = new ArrayList<>();
     public List<ScriptUniform> uniforms = new ArrayList<>();
     public List<ScriptMethod> methods = new ArrayList<>();
+    public List<ScriptJavaImport> java_imports = new ArrayList<>();
 
-    public Script(ScriptLoader loader) {
+    public Script(ScriptLoader loader, boolean seeDebug) {
         this.loader = loader;
+        this.seeDebug = seeDebug;
     }
 
-    public boolean loadToMemoryFromResource(String pathToFile) {
+    public boolean bindResourceAsScriptToMemory(String pathToFile) {
         if (!pathToFile.contains(".plight")) {
             pathToFile += ".plight";
         }
-        return loadToMemory(new File(Script.class.getClassLoader().getResource("scripts/" + pathToFile).getPath()));
+        return bindScriptToMemory(new File(Script.class.getClassLoader().getResource("scripts/" + pathToFile).getPath()));
     }
 
-    public boolean loadToMemory(File file) {
+    public boolean bindScriptToMemory(File file) {
         try {
             this.file = file;
             this.name = file.getName().replace(".plight", "");
@@ -74,10 +79,13 @@ public class Script {
                 }
             }
 
-            this.debug = LogManager.addLogger(getPackage() + "/" + getName() + "-debug", new DebugLogger(true));
+            this.debug = LogManager.addLogger(getPackage() + "/" + getName() + "-debug", new DebugLogger(seeDebug));
             this.logger = LogManager.addLogger(getPackage() + "/" + getName() + "", new DefaultLogger());
             this.profiler = LogManager.addProfiler(getPackage() + "/" + getName(), new Profiler());
 
+            logger.important("Script%loadToMemory()", "Loading " + file.getName() + " to memory!");
+
+            profiler.startSection("scanning_lexemes");
             this.lexer = new Lexer(file);
             while (!lexer.isExhausted()) {
                 lexemes.add(new Lexeme(lexer.currentToken(), lexer.currentLexeme(), lexer.currentPos() + 1, lexer.currentLine() + 1));
@@ -85,7 +93,7 @@ public class Script {
             }
 
             if (!lexer.isSuccessful()) {
-                debug.fatal("Lexer", lexer.errorMessage());
+                profiler.crash(lexer.errorMessage(), new Exception("Lexer failed!"));
             }
 
             bindMemoryStructures();
@@ -100,6 +108,8 @@ public class Script {
         try {
             profiler.startSection("bind_imports");
             bindImports();
+            profiler.startSection("bind_java_imports");
+            bindJavaImports();
             profiler.startSection("bind_variables");
             bindVariables();
             profiler.startSection("bind_uniforms");
@@ -139,7 +149,7 @@ public class Script {
             if (l.getToken().equals(Token.END_LINE) && listening) {
                 if (!importantLexemes.isEmpty()) {
                     listening = false;
-                    ScriptImport e = loadToMemory(importantLexemes, new ScriptImport(this));
+                    ScriptImport e = bindScriptToMemory(importantLexemes, new ScriptImport(this));
                     if (e != null) {
                         temp.add(e);
                     }
@@ -161,6 +171,42 @@ public class Script {
         }
     }
 
+    public void bindJavaImports() {
+        List<Lexeme> importantLexemes = new ArrayList<>();
+        List<ScriptJavaImport> temp = new ArrayList<>();
+        boolean listening = false;
+        for (int i = 0; i < lexemes.size(); i++) {
+            Lexeme l = lexemes.get(i);
+            if (l.getToken().equals(Token.IMPORT_JAVA)) {
+                listening = true;
+                continue;
+            }
+
+            if (l.getToken().equals(Token.END_LINE) && listening) {
+                if (!importantLexemes.isEmpty()) {
+                    listening = false;
+                    ScriptJavaImport e = bindScriptToMemory(importantLexemes, new ScriptJavaImport(this));
+                    if (e != null) {
+                        temp.add(e);
+                    }
+                    importantLexemes.clear();
+                    continue;
+                } else {
+                    debug.warning("JavaImportBinder", "Ran into empty lexeme array!");
+                }
+            }
+
+            if (listening) {
+                importantLexemes.add(l);
+                continue;
+            }
+        }
+
+        for (ScriptJavaImport sv : temp) {
+            java_imports.add(sv);
+        }
+    }
+
     public void bindVariables() {
         List<Lexeme> importantLexemes = new ArrayList<>();
         List<ScriptVariable> temp = new ArrayList<>();
@@ -175,7 +221,7 @@ public class Script {
             if (l.getToken().equals(Token.END_LINE) && listening) {
                 if (!importantLexemes.isEmpty()) {
                     listening = false;
-                    ScriptVariable e = loadToMemory(importantLexemes, new ScriptVariable(this));
+                    ScriptVariable e = bindScriptToMemory(importantLexemes, new ScriptVariable(this));
                     if (e != null) {
                         temp.add(e);
                     }
@@ -211,7 +257,7 @@ public class Script {
             if (l.getToken().equals(Token.END_LINE) && listening) {
                 if (!importantLexemes.isEmpty()) {
                     listening = false;
-                    ScriptUniform e = loadToMemory(importantLexemes, new ScriptUniform(this));
+                    ScriptUniform e = bindScriptToMemory(importantLexemes, new ScriptUniform(this));
                     if (e != null) {
                         temp.add(e);
                     }
@@ -234,7 +280,6 @@ public class Script {
     }
 
     public void bindMethods() {
-        List<Lexeme> importantLexemes = new ArrayList<>();
         List<ScriptMethod> temp = new ArrayList<>();
 
         List<ScriptMethodParameter> pars = new ArrayList<>();
@@ -293,7 +338,7 @@ public class Script {
 
                     if (l.getToken() == Token.CLOSE_BRACKET) {
                         lookingForBody = false;
-                        methods.add(loadToMemory(body, new ScriptMethod(this, methodName, returnType, pars)));
+                        methods.add(bindScriptToMemory(body, new ScriptMethod(this, methodName, returnType, pars)));
                         found = false;
                     }
 
@@ -354,11 +399,6 @@ public class Script {
                 }
             }
         }
-        try {
-            throw new ScriptUniformNotFoundException("Failed to find uniform " + name + "!", this);
-        } catch (ScriptRuntimeException e) {
-            e.printStackTrace();
-        }
         return null;
     }
 
@@ -382,11 +422,6 @@ public class Script {
                     return su;
                 }
             }
-        }
-        try {
-            throw new ScriptVariableNotFoundException("Failed to find variable " + name + "!", this);
-        } catch (ScriptRuntimeException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -412,8 +447,31 @@ public class Script {
                 }
             }
         }
+        return null;
+    }
+
+    public Method getJavaMethod(String name, Class<?>... pars) {
+        for (ScriptJavaImport sji : java_imports) {
+            try {
+                return sji.getClazz().getMethod(name, pars);
+            } catch (NoSuchMethodException e) {
+                continue;
+            }
+        }
+        return null;
+    }
+
+    public Method getJavaMethod(String clazz, String name, Class<?>... pars) {
         try {
-            throw new ScriptMethodNotFoundException("Failed to find method " + name + "!", this);
+            try {
+                Class<?> fclazz = Class.forName(clazz);
+                Method m = fclazz.getDeclaredMethod(name, pars);
+                return m;
+            } catch (ClassNotFoundException e) {
+                throw new ScriptRuntimeException("Failed to find class " + clazz + "!", this);
+            } catch (NoSuchMethodException e) {
+                throw new ScriptRuntimeException("Failed to find method " + name + " in class " + clazz + "!", this);
+            }
         } catch (ScriptRuntimeException e) {
             e.printStackTrace();
         }
@@ -421,7 +479,7 @@ public class Script {
     }
     //
 
-    public <T> T loadToMemory(List<Lexeme> lexemes, MemoryBoundStructure mbs) {
+    public <T> T bindScriptToMemory(List<Lexeme> lexemes, MemoryBoundStructure mbs) {
         debug.test("MemoryStructureManager", "Starting binder!");
         T t = null;
         try {
