@@ -1,9 +1,11 @@
 package dev.dankom.script.type.var;
 
-import dev.dankom.lexer.Lexeme;
-import dev.dankom.lexer.Token;
-import dev.dankom.script.Script;
+import dev.dankom.script.exception.ScriptRuntimeException;
+import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.script.lexer.Token;
+import dev.dankom.script.engine.Script;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
+import dev.dankom.script.pointer.Pointer;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class ScriptUniform implements MemoryBoundStructure<ScriptUniform> {
 
     private String name;
     private String value;
-    private int namePointer;
+    private Pointer namePointer = Pointer.NOT_SET;
     private Script script;
 
     public ScriptUniform(Script script) {
@@ -19,7 +21,7 @@ public class ScriptUniform implements MemoryBoundStructure<ScriptUniform> {
     }
 
     @Override
-    public ScriptUniform loadToMemory(List<Lexeme> lexemes) {
+    public ScriptUniform loadToMemory(List<Lexeme> lexemes) throws ScriptRuntimeException {
         if (!lexemes.isEmpty()) {
             for (int i = 0; i < lexemes.size(); i++) {
                 try {
@@ -27,8 +29,8 @@ public class ScriptUniform implements MemoryBoundStructure<ScriptUniform> {
 
                     if (lexemes.get(i - 1).getToken() == Token.OPEN && l.getToken() == Token.IDENTIFIER && lexemes.get(i + 1).getToken() == Token.CLOSE && name == null) {
                         name = l.getLexeme();
-                        script.logger().test("Uniform%Binder", "Set uniform key to " + name + "!");
-                        this.namePointer = i;
+                        script.debug().test("Uniform%Binder", "Set uniform key to " + name + "!");
+                        this.namePointer = new Pointer(i, l);
                         continue;
                     }
                 } catch (IndexOutOfBoundsException e) {}
@@ -36,8 +38,9 @@ public class ScriptUniform implements MemoryBoundStructure<ScriptUniform> {
 
             this.value = "unbound";
 
-            if (namePointer == -1) {
+            if (namePointer == Pointer.NOT_SET) {
                 script.logger().error("Uniform%MemoryBinder", "Failed to bind name!");
+                throw new ScriptRuntimeException("Failed to bind name!", script, namePointer);
             }
 
             return this;
@@ -50,7 +53,7 @@ public class ScriptUniform implements MemoryBoundStructure<ScriptUniform> {
         return name;
     }
 
-    public int getNamePointer() {
+    public Pointer getNamePointer() {
         return namePointer;
     }
 

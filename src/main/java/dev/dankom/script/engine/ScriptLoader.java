@@ -1,4 +1,4 @@
-package dev.dankom.script;
+package dev.dankom.script.engine;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class ScriptLoader {
 
     public Script getScript(String packageAndName) {
         for (Script s : scripts) {
-            if ((s.getName().replace(".plight", "") + "/" + s.getPackage()).equalsIgnoreCase(packageAndName)) {
+            if ((s.getName().replace(".plight", "") + s.getPackage()).equalsIgnoreCase(packageAndName)) {
                 return s;
             }
         }
@@ -35,7 +35,7 @@ public class ScriptLoader {
     }
 
     public Script getScript(String spackage, String name) {
-        return getScript(spackage + "/" + name);
+        return getScript(spackage + name);
     }
 
     public static void main(String[] args) {

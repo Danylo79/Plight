@@ -1,8 +1,8 @@
 package dev.dankom.script.util;
 
-import dev.dankom.lexer.Lexeme;
-import dev.dankom.lexer.Token;
-import dev.dankom.script.Script;
+import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.script.lexer.Token;
+import dev.dankom.script.engine.Script;
 
 import java.util.List;
 
@@ -38,7 +38,19 @@ public class ScriptHelper {
         if (loader.getUniform(lexeme) != null) {
             return loader.getUniform(lexeme).getValue();
         }
+        if (loader.getMethod(lexeme) != null) {
+            return loader.getMethod(lexeme).getReturn();
+        }
         return lexeme;
+    }
+
+    public static boolean hasReturn(List<Lexeme> lexemes) {
+        for (Lexeme l : lexemes) {
+            if (l.getToken() == Token.RETURN) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean isValidParType(Lexeme l) {

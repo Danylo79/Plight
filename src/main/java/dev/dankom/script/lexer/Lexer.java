@@ -1,4 +1,4 @@
-package dev.dankom.lexer;
+package dev.dankom.script.lexer;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +13,9 @@ public class Lexer {
     private boolean exhausted = false;
     private String errorMessage = "";
     private Set<Character> blankChars = new HashSet<Character>();
+
+    private int line;
+    private int pos;
 
     public Lexer(File file) {
         try (Stream<String> st = Files.lines(file.toPath())) {
@@ -71,12 +74,19 @@ public class Lexer {
 
     private boolean findNextToken() {
         for (Token t : Token.values()) {
+            if (t.equals(Token.UNKNOWN)) {
+                continue;
+            }
             int end = t.endOfMatch(input.toString());
 
             if (end != -1) {
                 token = t;
                 lexeme = input.substring(0, end);
                 input.delete(0, end);
+                pos++;
+                if (t == Token.END_LINE || t == Token.CLOSE_BRACKET || t == Token.OPEN_BRACKET) {
+                    line++;
+                }
                 return true;
             }
         }
@@ -90,6 +100,14 @@ public class Lexer {
 
     public String currentLexeme() {
         return lexeme;
+    }
+
+    public int currentPos() {
+        return pos;
+    }
+
+    public int currentLine() {
+        return line;
     }
 
     public boolean isSuccessful() {

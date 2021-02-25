@@ -1,62 +1,61 @@
 package dev.dankom.script.type.method;
 
-import dev.dankom.lexer.Lexeme;
-import dev.dankom.lexer.Token;
-import dev.dankom.script.Script;
+import dev.dankom.script.exception.ScriptRuntimeException;
+import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.script.lexer.Token;
+import dev.dankom.script.engine.Script;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
+import dev.dankom.script.pointer.Pointer;
 import dev.dankom.script.type.var.ScriptVariable;
-import dev.dankom.util.general.ListUtil;
+import dev.dankom.script.util.ScriptHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
 
-    private String name;
-    private List<ScriptMethodParameter> pars;
-    private Script script;
+    private final String name;
+    private final String returnType;
+    private final List<ScriptMethodParameter> pars;
+    private final Script script;
 
     private List<ScriptMethodCall> methodCalls = new ArrayList<>();
-    private int returnPointer = -1;
+    private Pointer returnPointer = Pointer.NOT_SET;
 
-    public ScriptMethod(Script script, String name, List<ScriptMethodParameter> pars) {
+    public ScriptMethod(Script script, String name, String returnType, List<ScriptMethodParameter> pars) {
         this.name = name;
+        this.returnType = returnType;
         this.pars = pars;
         this.script = script;
     }
 
     @Override
-    public ScriptMethod loadToMemory(List<Lexeme> lexemes) {
+    public ScriptMethod loadToMemory(List<Lexeme> lexemes) throws ScriptRuntimeException {
         if (!lexemes.isEmpty()) {
+            List<Lexeme> storage = new ArrayList<>();
             for (int i = 0; i < lexemes.size(); i++) {
-                Lexeme l = lexemes.get(i);
 
-                if (l.getToken() == Token.RETURN) {
-                    returnPointer = i;
+                if (!ScriptHelper.hasReturn(lexemes)) {
+                    throw new ScriptRuntimeException("No return statement in " + name + "!", script, returnPointer);
                 }
 
-                List<List<Lexeme>> lines = split(lexemes, new Lexeme(Token.END_LINE, ";"));
-                System.out.println(lines);
+                Lexeme l = lexemes.get(i);
+
+                storage.add(l);
+
+                if (l.getToken() == Token.RETURN) {
+                    returnPointer = new Pointer(i, l);
+                }
+
+                if (l.getToken() == Token.END_LINE) {
+                    methodCalls.add(new ScriptMethodCall().loadToMemory(storage));
+                    storage.clear();
+                }
             }
             return this;
         } else {
             return null;
         }
-    }
-
-    public List<List<Lexeme>> split(List<Lexeme> input, Lexeme object) {
-        List<List<Lexeme>> out = new ArrayList<>();
-        List<Lexeme> storage = new ArrayList<>();
-        for (Lexeme o : input) {
-            storage.add(o);
-            if (o.getToken() == object.getToken() && o.getLexeme().equalsIgnoreCase(object.getLexeme())) {
-                out.add(storage);
-                for (int i = 0 ; i < storage.size(); i++) {
-                    storage.remove(i);
-                }
-            }
-        }
-        return out;
     }
 
     public static boolean isValidReturnType(Token t, String lexeme) {
@@ -72,5 +71,17 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
                 ", methodCalls=" + methodCalls +
                 ", returnPointer=" + returnPointer +
                 '}';
+    }
+
+    public String getReturn() {
+        return "@UnderConstruction";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getReturnType() {
+        return returnType;
     }
 }

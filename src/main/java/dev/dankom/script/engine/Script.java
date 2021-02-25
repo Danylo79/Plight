@@ -1,8 +1,9 @@
-package dev.dankom.script;
+package dev.dankom.script.engine;
 
-import dev.dankom.lexer.Lexeme;
-import dev.dankom.lexer.Lexer;
-import dev.dankom.lexer.Token;
+import dev.dankom.script.exception.ScriptRuntimeException;
+import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.script.lexer.Lexer;
+import dev.dankom.script.lexer.Token;
 import dev.dankom.logger.LogManager;
 import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
@@ -56,10 +57,6 @@ public class Script {
             this.file = file;
             this.name = file.getName().replace(".plight", "");
 
-            this.debug = LogManager.addLogger(getPackage() + "/" + getName() + "-debug", new DebugLogger(true));
-            this.logger = LogManager.addLogger(getPackage() + "/" + getName() + "", new DefaultLogger());
-            this.profiler = LogManager.addProfiler(getPackage() + "/" + getName(), new Profiler());
-
             boolean readPackage = false;
             for (String s : file.getAbsolutePath().split("\\\\")) {
                 if (s.equalsIgnoreCase("scripts")) {
@@ -73,9 +70,13 @@ public class Script {
                 }
             }
 
+            this.debug = LogManager.addLogger(getPackage() + "/" + getName() + "-debug", new DebugLogger(true));
+            this.logger = LogManager.addLogger(getPackage() + "/" + getName() + "", new DefaultLogger());
+            this.profiler = LogManager.addProfiler(getPackage() + "/" + getName(), new Profiler());
+
             this.lexer = new Lexer(file);
             while (!lexer.isExhausted()) {
-                lexemes.add(new Lexeme(lexer.currentToken(), lexer.currentLexeme()));
+                lexemes.add(new Lexeme(lexer.currentToken(), lexer.currentLexeme(), lexer.currentPos() + 1, lexer.currentLine() + 1));
                 lexer.next();
             }
 
@@ -240,6 +241,7 @@ public class Script {
         boolean found = false;
 
         String methodName = null;
+        String returnType = null;
 
         String cParName = null;
         String cParType = null;
@@ -255,6 +257,10 @@ public class Script {
                 if (found) {
                     if (l.getToken() == Token.IDENTIFIER && lexemes.get(i - 2).getToken() == Token.STRUCT) {
                         methodName = l.getLexeme();
+                    }
+
+                    if (l.getToken() == Token.IDENTIFIER && lexemes.get(i - 1).getToken() == Token.STRUCT) {
+                        returnType = l.getLexeme();
                     }
 
                     if (l.getToken() == Token.OPEN) {
@@ -283,7 +289,7 @@ public class Script {
 
                     if (l.getToken() == Token.CLOSE_BRACKET) {
                         lookingForBody = false;
-                        methods.add(new ScriptMethod(this, methodName, pars).loadToMemory(body));
+                        methods.add(loadToMemory(body, new ScriptMethod(this, methodName, returnType, pars)));
                         found = false;
                     }
 
@@ -356,15 +362,37 @@ public class Script {
         }
         return null;
     }
+
+    public ScriptMethod getMethod(String name) {
+        for (ScriptMethod sm : methods) {
+            if (sm.getName().equalsIgnoreCase(name)) {
+                return sm;
+            }
+        }
+
+        for (ScriptImport si : imports) {
+            for (ScriptMethod sm : getLoader().getScript(si.getPackage()).methods) {
+                if (sm.getName().equalsIgnoreCase(name)) {
+                    return sm;
+                }
+            }
+        }
+        return null;
+    }
     //
 
     public <T> T loadToMemory(List<Lexeme> lexemes, MemoryBoundStructure mbs) {
         debug.test("MemoryStructureManager", "Starting binder!");
-        T t = (T) mbs.loadToMemory(lexemes);
+        T t = null;
+        try {
+            t = (T) mbs.loadToMemory(lexemes);
+        } catch (ScriptRuntimeException e) {
+            profiler.crash(e.getMessage(), e);
+        }
         if (t != null) {
             debug.test("MemoryStructureManager", "Binding memory structure " + mbs.getClass().getName() + " to " + lexemes + "!");
         } else {
-            debug.error("MemoryStructureManager", "Returned null!");
+            logger.error("MemoryStructureManager", "Returned null! (Aborting) (Failed to bind " + mbs.getClass().getName() + " to memory!)");
         }
         return t;
     }
@@ -374,7 +402,7 @@ public class Script {
     }
 
     public String getPackage() {
-        return spackage;
+        return spackage.replace("null", "");
     }
 
     public ScriptLoader getLoader() {
@@ -382,6 +410,10 @@ public class Script {
     }
 
     public ILogger logger() {
+        return logger;
+    }
+
+    public ILogger debug() {
         return debug;
     }
 }

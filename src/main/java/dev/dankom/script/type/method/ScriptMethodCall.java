@@ -1,7 +1,7 @@
 package dev.dankom.script.type.method;
 
-import dev.dankom.lexer.Lexeme;
-import dev.dankom.lexer.Token;
+import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.script.lexer.Token;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
 
 import java.util.ArrayList;
@@ -16,12 +16,11 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
     private String method;
     private List<List<Lexeme>> pars = new ArrayList<>();
 
-    public ScriptMethodCall(List<Lexeme> lexemes) {
-        this.lexemes = lexemes;
-    }
+    private boolean isReturn = false;
 
     @Override
     public ScriptMethodCall loadToMemory(List<Lexeme> lexemes) {
+        this.lexemes = lexemes;
         boolean lookingForPars = false;
         List<Lexeme> pars = new ArrayList<>();
 
@@ -30,7 +29,6 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
                 Lexeme l = lexemes.get(i);
                 if (l.getToken() == Token.IDENTIFIER && lexemes.get(i + 1).getToken() == Token.OPEN) {
                     method = l.getLexeme();
-                    System.out.println(method + ": " + lexemes);
                 }
 
                 if (l.getToken() == Token.OPEN) {
@@ -45,16 +43,17 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
                 if (l.getToken() == Token.CLOSE) {
                     closeBracketPointers.add(i);
 
-                    if (i == closeBracketPointers.size() - 1) {
+                    if (i == lexemes.size() - 2) {
                         lookingForPars = false;
+                        addPar(pars);
+                        pars.removeAll(pars);
                         continue;
                     }
                 }
 
-                if (l.getToken() == Token.COMMA || i == lexemes.size()) {
+                if (l.getToken() == Token.COMMA) {
                     addPar(pars);
-                    pars.clear();
-                    System.out.println(pars);
+                    pars.removeAll(pars);
                     continue;
                 }
 
@@ -74,5 +73,20 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
 
     public List<List<Lexeme>> getPars() {
         return this.pars;
+    }
+
+    public boolean isReturn() {
+        return isReturn;
+    }
+
+    @Override
+    public String toString() {
+        return "ScriptMethodCall{" +
+                "openBracketsPointers=" + openBracketsPointers +
+                ", closeBracketPointers=" + closeBracketPointers +
+                ", lexemes=" + lexemes +
+                ", method='" + method + '\'' +
+                ", pars=" + pars +
+                '}';
     }
 }

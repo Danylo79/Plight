@@ -1,4 +1,4 @@
-package dev.dankom.lexer;
+package dev.dankom.script.lexer;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,6 +41,8 @@ public enum Token {
 
     STRING("\"[^\"]+\""),
     INTEGER("\\d+"),
+
+    UNKNOWN(""),
 
     IDENTIFIER("\\w+");
 
