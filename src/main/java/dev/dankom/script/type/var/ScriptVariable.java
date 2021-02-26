@@ -81,6 +81,17 @@ public class ScriptVariable implements MemoryBoundStructure<ScriptVariable> {
         }
     }
 
+    @Override
+    public void unload() {
+        namePointer = Pointer.UNLOADED;
+        typePointer = Pointer.UNLOADED;
+        valuePointer = Pointer.UNLOADED;
+
+        name = null;
+        type = null;
+        value = null;
+    }
+
     public String getName() {
         return name;
     }

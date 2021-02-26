@@ -5,6 +5,7 @@ import dev.dankom.script.lexer.Token;
 
 public class Pointer {
     public static final Pointer NOT_SET = new Pointer(-1, new Lexeme(Token.UNKNOWN, "unknown", -1, -1));
+    public static final Pointer UNLOADED = new Pointer(-1, new Lexeme(Token.UNKNOWN, "unloaded", -1, -1));
 
     private final int index;
     private final Lexeme pointer;

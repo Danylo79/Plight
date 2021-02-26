@@ -49,6 +49,13 @@ public class ScriptUniform implements MemoryBoundStructure<ScriptUniform> {
         }
     }
 
+    @Override
+    public void unload() {
+        name = null;
+        namePointer = Pointer.UNLOADED;
+        value = null;
+    }
+
     public String getName() {
         return name;
     }

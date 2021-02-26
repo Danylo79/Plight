@@ -1,5 +1,8 @@
 package dev.dankom.script.engine;
 
+import dev.dankom.script.lexer.Lexer;
+import dev.dankom.script.type.imported.ScriptImport;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +25,12 @@ public class ScriptLoader {
         }
     }
 
-    public void load(String... scripts) {
+    public void loadDefaultLibraryScript(String... scripts) {
         this.scripts = new ArrayList<>();
         for (String f : scripts) {
             f = f.replace(".", "\\\\");
             Script s = new Script(this, seeDebug);
-            s.bindResourceAsScriptToMemory(f);
+            s.bindLibraryScriptToMemory(f);
             this.scripts.add(s);
         }
     }
@@ -51,8 +54,10 @@ public class ScriptLoader {
 
     public static void main(String[] args) {
         ScriptLoader loader = new ScriptLoader(true);
-        loader.load("dev/dankom/plight/script/test");
+        loader.loadDefaultLibraryScript("dev/dankom/plight/script/test", "dev/dankom/plight/script/test1");
 
-        loader.getScript("scripts/dev/dankom/plight/script/test").getMethod("main").call(new ArrayList<>());
+        Script script = loader.getScript("scripts/dev/dankom/plight/script/test");
+        script.getHotAgent().getInjector().injectImport("import scripts.dev.dankom.plight.script.test1;");
+        script.getMethod("main").call(new ArrayList<>());
     }
 }

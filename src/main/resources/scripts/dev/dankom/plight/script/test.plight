@@ -1,8 +1,4 @@
-uniform(name);
-define(s, string, "foo");
-define(s1, string, "bar");
-
 struct void main() {
-    info("Main", "Test!");
+    info("Main", foo);
     return;
 }

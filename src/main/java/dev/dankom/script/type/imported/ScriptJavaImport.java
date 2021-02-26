@@ -40,6 +40,12 @@ public class ScriptJavaImport implements MemoryBoundStructure<ScriptJavaImport> 
         }
     }
 
+    @Override
+    public void unload() {
+        spackage = null;
+        packagePointer = Pointer.UNLOADED;
+    }
+
     public Class<?> getClazz() {
         try {
             return Class.forName(spackage);

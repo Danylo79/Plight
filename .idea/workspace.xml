@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptJavaImport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/hot/HotAgent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/exception/exceptions/ScriptInjectException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/Script.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/Script.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/ScriptLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/ScriptLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/interfaces/MemoryBoundStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/interfaces/MemoryBoundStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/lexer/Lexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/pointer/Pointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/pointer/Pointer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptImport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptJavaImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptJavaImport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodCall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptUniform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptUniform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptVariable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/FileUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test.plight" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test.plight" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test1.plight" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/scripts/dev/dankom/plight/script/test1.plight" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +82,7 @@
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\danko\IdeaProjects\Plight\src\main\resources" />
       <recent name="C:\Users\danko\IdeaProjects\Plight\src\main\resources\scripts\dev\dankom\plight\script" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">

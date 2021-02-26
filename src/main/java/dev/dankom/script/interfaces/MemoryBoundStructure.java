@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface MemoryBoundStructure<T> {
     T loadToMemory(List<Lexeme> lexemes) throws ScriptRuntimeException;
+    void unload();
 }

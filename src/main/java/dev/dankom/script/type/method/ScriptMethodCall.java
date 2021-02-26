@@ -1,12 +1,11 @@
 package dev.dankom.script.type.method;
 
 import dev.dankom.script.exception.ScriptRuntimeException;
+import dev.dankom.script.interfaces.MemoryBoundStructure;
 import dev.dankom.script.lexer.Lexeme;
 import dev.dankom.script.lexer.Token;
-import dev.dankom.script.interfaces.MemoryBoundStructure;
 import dev.dankom.script.util.ScriptHelper;
 import dev.dankom.util.general.ExceptionUtil;
-import dev.dankom.util.general.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
     private List<Lexeme> lexemes;
 
     private String method;
+    private ScriptMethod scriptMethod;
     private List<ScriptMethodCallParameter> currentPars = new ArrayList<>();
 
     private boolean isReturn = false;
@@ -68,6 +68,8 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
 
                 if (l.getToken() == Token.END_LINE) {
                     lookingForPars = false;
+                    addPar(new ScriptMethodCallParameter(pars));
+                    pars.removeAll(pars);
                 }
 
                 if (l.getToken() == Token.COMMA) {
@@ -84,13 +86,24 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
             if (method == null && isReturn()) {
                 method = "return";
             }
+
+            scriptMethod = parent.getScript().getMethod(method);
             return this;
         } else {
             return null;
         }
     }
 
-    public void call() {
+    @Override
+    public void unload() {
+        openBracketsPointers.clear();
+        closeBracketPointers.clear();
+        method = null;
+        scriptMethod = null;
+        currentPars.clear();
+    }
+
+    public String call() {
         try {
             List<String> pars = new ArrayList<>();
             for (ScriptMethodCallParameter ls : this.currentPars) {
@@ -99,8 +112,13 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
 
             try {
                 if (method.equalsIgnoreCase("return")) {
-                    for (String par : pars) {
-                        System.out.println(par);
+                    if (parent.getReturnType().equalsIgnoreCase("void")) {
+                        return "void";
+                    } else {
+                        if (pars.get(0) == null) {
+                            return "null";
+                        }
+                        return pars.get(0);
                     }
                 }
                 if (method.equalsIgnoreCase("info")) {
@@ -118,14 +136,16 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
                 }
             } catch (IndexOutOfBoundsException e) {
                 ExceptionUtil.throwCompactException(new ScriptRuntimeException("Not all pars are present for method call of " + method + "!", parent.getScript()));
-                return;
+                return "null";
             }
 
             ScriptMethod method = parent.getScript().getMethod(this.method);
             if (method != null) {
                 method.call(pars);
             }
-        } catch (NullPointerException e) {}
+        } catch (NullPointerException e) {
+        }
+        return "null";
     }
 
     public void addPar(ScriptMethodCallParameter par) {

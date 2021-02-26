@@ -1,25 +1,24 @@
 package dev.dankom.script.engine;
 
-import dev.dankom.script.exception.ScriptRuntimeException;
-import dev.dankom.script.exception.exceptions.ScriptMethodNotFoundException;
-import dev.dankom.script.exception.exceptions.ScriptNotLoadedException;
-import dev.dankom.script.exception.exceptions.ScriptUniformNotFoundException;
-import dev.dankom.script.exception.exceptions.ScriptVariableNotFoundException;
-import dev.dankom.script.lexer.Lexeme;
-import dev.dankom.script.lexer.Lexer;
-import dev.dankom.script.lexer.Token;
 import dev.dankom.logger.LogManager;
+import dev.dankom.logger.abztract.DebugLogger;
 import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
 import dev.dankom.logger.profiler.Profiler;
+import dev.dankom.script.exception.ScriptRuntimeException;
+import dev.dankom.script.exception.exceptions.ScriptNotLoadedException;
+import dev.dankom.script.engine.hot.HotAgent;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
-import dev.dankom.logger.abztract.DebugLogger;
+import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.script.lexer.Lexer;
+import dev.dankom.script.lexer.Token;
 import dev.dankom.script.type.imported.ScriptImport;
 import dev.dankom.script.type.imported.ScriptJavaImport;
 import dev.dankom.script.type.method.ScriptMethod;
 import dev.dankom.script.type.method.ScriptMethodParameter;
 import dev.dankom.script.type.var.ScriptUniform;
 import dev.dankom.script.type.var.ScriptVariable;
+import dev.dankom.util.general.ExceptionUtil;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -34,7 +33,12 @@ public class Script {
     private String name;
     private String spackage;
     private ScriptLoader loader;
-    private boolean seeDebug;
+    private HotAgent hotAgent;
+
+    public boolean seeDebug;
+    public boolean isLoaded = false;
+
+    private String loadType;
 
     private ILogger logger;
     private ILogger debug;
@@ -44,17 +48,22 @@ public class Script {
     private List<Lexeme> lexemes = new ArrayList<>();
 
     public List<ScriptImport> imports = new ArrayList<>();
+    public List<ScriptJavaImport> java_imports = new ArrayList<>();
     public List<ScriptVariable> variables = new ArrayList<>();
     public List<ScriptUniform> uniforms = new ArrayList<>();
     public List<ScriptMethod> methods = new ArrayList<>();
-    public List<ScriptJavaImport> java_imports = new ArrayList<>();
+    public List<MemoryBoundStructure> custom = new ArrayList<>();
 
     public Script(ScriptLoader loader, boolean seeDebug) {
         this.loader = loader;
         this.seeDebug = seeDebug;
     }
 
-    public boolean bindResourceAsScriptToMemory(String pathToFile) {
+    /**
+     * This is too load default scripts DO NOT USE! Instead use bindScriptToMemory()!
+     */
+    public boolean bindLibraryScriptToMemory(String pathToFile) {
+        loadType = "library";
         if (!pathToFile.contains(".plight")) {
             pathToFile += ".plight";
         }
@@ -65,6 +74,7 @@ public class Script {
         try {
             this.file = file;
             this.name = file.getName().replace(".plight", "");
+            this.hotAgent = new HotAgent(this);
 
             boolean readPackage = false;
             for (String s : file.getAbsolutePath().split("\\\\")) {
@@ -96,10 +106,16 @@ public class Script {
                 profiler.crash(lexer.errorMessage(), new Exception("Lexer failed!"));
             }
 
+            if (loadType == null) {
+                loadType = "default";
+            }
+
             bindMemoryStructures();
+            isLoaded = true;
             return true;
         } catch (Exception e) {
             profiler.crash("Failed: " + e.getMessage(), e);
+            isLoaded = false;
             return false;
         }
     }
@@ -134,6 +150,55 @@ public class Script {
         }
     }
 
+    public void flush() {
+        logger.important("Script%flush", "Unloading and Cleaning script! (WARNING: Using this operation is risky and may corrupt the in memory script)");
+        for (ScriptImport so : imports) {
+            so.unload();
+        }
+        imports.clear();
+
+        for (ScriptJavaImport so : java_imports) {
+            so.unload();
+        }
+        java_imports.clear();
+
+        for (ScriptVariable so : variables) {
+            so.unload();
+        }
+        variables.clear();
+
+        for (ScriptUniform so : uniforms) {
+            so.unload();
+        }
+        uniforms.clear();
+
+        for (ScriptMethod so : methods) {
+            so.unload();
+        }
+        methods.clear();
+
+        for (MemoryBoundStructure mbs : custom) {
+            mbs.unload();
+        }
+        custom.clear();
+
+        lexemes.clear();
+        isLoaded = false;
+    }
+
+    public void rebind() {
+        try {
+            logger.important("Script%rebind", "Rebinding using the \'" + loadType + "\' load type!");
+            if (loadType.equalsIgnoreCase("default")) {
+                bindScriptToMemory(file);
+            } else {
+                bindLibraryScriptToMemory((getPackage() + getName()).replace("scripts/", ""));
+            }
+        } catch (NullPointerException e) {
+            ExceptionUtil.throwCompactException(new ScriptRuntimeException("Failed to rebind! (Aborting)", e, this));
+        }
+    }
+
     //Memory Binder
     public void bindImports() {
         List<Lexeme> importantLexemes = new ArrayList<>();
@@ -149,7 +214,7 @@ public class Script {
             if (l.getToken().equals(Token.END_LINE) && listening) {
                 if (!importantLexemes.isEmpty()) {
                     listening = false;
-                    ScriptImport e = bindScriptToMemory(importantLexemes, new ScriptImport(this));
+                    ScriptImport e = bindStructureToMemory(importantLexemes, new ScriptImport(this));
                     if (e != null) {
                         temp.add(e);
                     }
@@ -185,7 +250,7 @@ public class Script {
             if (l.getToken().equals(Token.END_LINE) && listening) {
                 if (!importantLexemes.isEmpty()) {
                     listening = false;
-                    ScriptJavaImport e = bindScriptToMemory(importantLexemes, new ScriptJavaImport(this));
+                    ScriptJavaImport e = bindStructureToMemory(importantLexemes, new ScriptJavaImport(this));
                     if (e != null) {
                         temp.add(e);
                     }
@@ -221,7 +286,7 @@ public class Script {
             if (l.getToken().equals(Token.END_LINE) && listening) {
                 if (!importantLexemes.isEmpty()) {
                     listening = false;
-                    ScriptVariable e = bindScriptToMemory(importantLexemes, new ScriptVariable(this));
+                    ScriptVariable e = bindStructureToMemory(importantLexemes, new ScriptVariable(this));
                     if (e != null) {
                         temp.add(e);
                     }
@@ -257,7 +322,7 @@ public class Script {
             if (l.getToken().equals(Token.END_LINE) && listening) {
                 if (!importantLexemes.isEmpty()) {
                     listening = false;
-                    ScriptUniform e = bindScriptToMemory(importantLexemes, new ScriptUniform(this));
+                    ScriptUniform e = bindStructureToMemory(importantLexemes, new ScriptUniform(this));
                     if (e != null) {
                         temp.add(e);
                     }
@@ -338,7 +403,7 @@ public class Script {
 
                     if (l.getToken() == Token.CLOSE_BRACKET) {
                         lookingForBody = false;
-                        methods.add(bindScriptToMemory(body, new ScriptMethod(this, methodName, returnType, pars)));
+                        methods.add(bindStructureToMemory(body, new ScriptMethod(this, methodName, returnType, pars)));
                         found = false;
                     }
 
@@ -479,7 +544,7 @@ public class Script {
     }
     //
 
-    public <T> T bindScriptToMemory(List<Lexeme> lexemes, MemoryBoundStructure mbs) {
+    public <T> T bindStructureToMemory(List<Lexeme> lexemes, MemoryBoundStructure mbs) {
         debug.test("MemoryStructureManager", "Starting binder!");
         T t = null;
         try {
@@ -517,5 +582,9 @@ public class Script {
 
     public Profiler profiler() {
         return profiler;
+    }
+
+    public HotAgent getHotAgent() {
+        return hotAgent;
     }
 }

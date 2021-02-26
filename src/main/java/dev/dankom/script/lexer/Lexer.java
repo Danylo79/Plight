@@ -37,6 +37,20 @@ public class Lexer {
         next();
     }
 
+    public Lexer(String s) {
+        input.append(s);
+
+        blankChars.add('\r');
+        blankChars.add('\n');
+        blankChars.add((char) 8);
+        blankChars.add((char) 9);
+        blankChars.add((char) 11);
+        blankChars.add((char) 12);
+        blankChars.add((char) 32);
+
+        next();
+    }
+
     public void next() {
         if (exhausted) {
             return;
@@ -120,5 +134,25 @@ public class Lexer {
 
     public boolean isExhausted() {
         return exhausted;
+    }
+
+    public static List<Lexeme> simpleLex(String s) {
+        Lexer l = new Lexer(s);
+        List<Lexeme> out = new ArrayList<>();
+        while (!l.isExhausted()) {
+            out.add(new Lexeme(l.currentToken(), l.currentLexeme(), l.currentPos(), l.currentLine()));
+            l.next();
+        }
+        return out;
+    }
+
+    public static List<Lexeme> advancedLex(File f) {
+        Lexer l = new Lexer(f);
+        List<Lexeme> out = new ArrayList<>();
+        while (!l.isExhausted()) {
+            out.add(new Lexeme(l.currentToken(), l.currentLexeme(), l.currentPos(), l.currentLine()));
+            l.next();
+        }
+        return out;
     }
 }

@@ -41,6 +41,12 @@ public class ScriptImport implements MemoryBoundStructure<ScriptImport> {
         }
     }
 
+    @Override
+    public void unload() {
+        spackage = null;
+        packagePointer = Pointer.UNLOADED;
+    }
+
     public String getPackage() {
         return spackage.replace('.', '/');
     }

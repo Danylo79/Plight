@@ -4,6 +4,7 @@ import dev.dankom.script.lexer.Lexeme;
 import dev.dankom.script.lexer.Token;
 import dev.dankom.script.engine.Script;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScriptHelper {
@@ -23,10 +24,13 @@ public class ScriptHelper {
 
     public static String getFullValue(Script loader, List<Lexeme> lexemes) {
         String out = "";
-        for (Lexeme l : lexemes) {
-            if (l.getToken() == Token.IDENTIFIER || isValidParType(l)) {
-                out = getValue(loader, l.getLexeme());
-            }
+        for (int i = 0; i < lexemes.size(); i++) {
+            try {
+                Lexeme l = lexemes.get(i);
+                if (l.getToken() == Token.IDENTIFIER || isValidParType(l)) {
+                    out = getValue(loader, l.getLexeme());
+                }
+            } catch (IndexOutOfBoundsException e) {}
         }
         return out.replace("\"", "");
     }
@@ -38,10 +42,11 @@ public class ScriptHelper {
         if (loader.getUniform(lexeme) != null) {
             return loader.getUniform(lexeme).getValue();
         }
-        if (loader.getMethod(lexeme) != null) {
-            return loader.getMethod(lexeme).getReturn();
-        }
         return lexeme;
+    }
+
+    public static String getMethodValue(Script loader, String name, List<String> pars) {
+        return loader.getMethod(name).call(pars);
     }
 
     public static boolean hasReturn(List<Lexeme> lexemes) {

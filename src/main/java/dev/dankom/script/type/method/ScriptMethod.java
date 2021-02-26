@@ -14,10 +14,10 @@ import java.util.List;
 
 public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
 
-    private final String name;
-    private final String returnType;
-    private final List<ScriptMethodParameter> pars;
-    private final Script script;
+    private String name;
+    private String returnType;
+    private List<ScriptMethodParameter> pars;
+    private Script script;
 
     private List<ScriptMethodCall> methodCalls = new ArrayList<>();
     private Pointer returnPointer = Pointer.NOT_SET;
@@ -48,7 +48,7 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
                 }
 
                 if (l.getToken() == Token.END_LINE) {
-                    methodCalls.add(getScript().bindScriptToMemory(storage, new ScriptMethodCall(this)));
+                    methodCalls.add(getScript().bindStructureToMemory(storage, new ScriptMethodCall(this)));
                     storage.clear();
                 }
             }
@@ -58,7 +58,17 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
         }
     }
 
-    public void call(List<String> pars) {
+    @Override
+    public void unload() {
+        name = null;
+        returnType = null;
+        returnPointer = Pointer.UNLOADED;
+        for (ScriptMethodCall smc : methodCalls) {
+            smc.unload();
+        }
+    }
+
+    public String call(List<String> pars) {
         List<String> parsedPars = new ArrayList<>();
         for (String par : pars) {
             parsedPars.add(ScriptHelper.getValue(getScript(), par));
@@ -66,8 +76,12 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
 
         for (ScriptMethodCall smc : methodCalls) {
             getScript().debug().test("ScriptMethod%call()", "Running method call " + smc.toString());
-            smc.call();
+            String returned = smc.call();
+            if (!returned.equalsIgnoreCase("void")) {
+                return returned;
+            }
         }
+        return "null";
     }
 
     public static boolean isValidReturnType(Token t, String lexeme) {
@@ -82,10 +96,6 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
                 ", script=" + script +
                 ", returnPointer=" + returnPointer +
                 '}';
-    }
-
-    public String getReturn() {
-        return "@UnderConstruction";
     }
 
     public String getName() {
