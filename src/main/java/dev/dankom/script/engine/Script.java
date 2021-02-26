@@ -5,6 +5,7 @@ import dev.dankom.logger.abztract.DebugLogger;
 import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
 import dev.dankom.logger.profiler.Profiler;
+import dev.dankom.script.engine.hot.tranformer.ITransformer;
 import dev.dankom.script.engine.loader.ScriptLoader;
 import dev.dankom.script.exception.ScriptRuntimeException;
 import dev.dankom.script.exception.exceptions.ScriptNotLoadedException;
@@ -13,6 +14,8 @@ import dev.dankom.script.interfaces.MemoryBoundStructure;
 import dev.dankom.script.lexer.Lexeme;
 import dev.dankom.script.lexer.Lexer;
 import dev.dankom.script.lexer.Token;
+import dev.dankom.script.logger.ScriptDebugLogger;
+import dev.dankom.script.logger.ScriptLogger;
 import dev.dankom.script.type.imported.ScriptImport;
 import dev.dankom.script.type.imported.ScriptJavaImport;
 import dev.dankom.script.type.method.ScriptMethod;
@@ -62,28 +65,14 @@ public class Script {
         this.seeDebug = seeDebug;
     }
 
-    /**
-     * This is too load default scripts DO NOT USE! Instead use bindScriptToMemory()!
-     */
-    public boolean bindLibraryScriptToMemory(String pathToFile) {
-        loadType = "library";
-        if (!pathToFile.contains(".plight")) {
-            pathToFile += ".plight";
-        }
-        return bindScriptToMemory(new File(Script.class.getClassLoader().getResource("scripts/" + pathToFile).getPath()));
-    }
-
     public boolean bindScriptToMemory(File file) {
         try {
             this.file = file;
             this.name = file.getName().replace(".plight", "");
             this.hotAgent = new HotAgent(this);
 
-            boolean readPackage = false;
-            for (String s : file.getAbsolutePath().split("\\\\")) {
-                if (s.equalsIgnoreCase("scripts")) {
-                    readPackage = true;
-                }
+            boolean readPackage = true;
+            for (String s : file.getPath().split("\\\\")) {
                 if (s.contains(".plight")) {
                     break;
                 }
@@ -92,8 +81,8 @@ public class Script {
                 }
             }
 
-            this.debug = LogManager.addLogger(getPackage() + "/" + getName() + "-debug", new DebugLogger(seeDebug));
-            this.logger = LogManager.addLogger(getPackage() + "/" + getName() + "", new DefaultLogger());
+            this.debug = LogManager.addLogger(getPackage() + "/" + getName() + "-debug", new ScriptDebugLogger(seeDebug, this));
+            this.logger = LogManager.addLogger(getPackage() + "/" + getName() + "", new ScriptLogger(this));
             this.profiler = LogManager.addProfiler(getPackage() + "/" + getName(), new Profiler());
 
             logger.important("Script%loadToMemory()", "Loading " + file.getName() + " to memory!");
@@ -117,7 +106,7 @@ public class Script {
             isLoaded = true;
             return true;
         } catch (Exception e) {
-            profiler.crash("Failed: " + e.getMessage(), e);
+            e.printStackTrace();
             isLoaded = false;
             return false;
         }
@@ -198,11 +187,7 @@ public class Script {
     public void rebind() {
         try {
             logger.important("Script%rebind", "Rebinding using the \'" + loadType + "\' load type!");
-            if (loadType.equalsIgnoreCase("default")) {
-                bindScriptToMemory(file);
-            } else {
-                bindLibraryScriptToMemory((getPackage() + getName()).replace("scripts/", ""));
-            }
+            bindScriptToMemory(file);
         } catch (NullPointerException e) {
             ExceptionUtil.throwCompactException(new ScriptRuntimeException("Failed to rebind! (Aborting)", e, this));
         }
@@ -422,7 +407,8 @@ public class Script {
 
 
                 }
-            } catch (IndexOutOfBoundsException e) {}
+            } catch (IndexOutOfBoundsException e) {
+            }
         }
 
         for (ScriptMethod sv : temp) {
@@ -447,7 +433,6 @@ public class Script {
                 return true;
             }
         }
-        debug.error("UniformBinder", "Could not find " + name + "!");
         return false;
     }
 
@@ -595,5 +580,23 @@ public class Script {
 
     public HotAgent getHotAgent() {
         return hotAgent;
+    }
+
+    @Override
+    public String toString() {
+        return "Script{" +
+                "file=" + file +
+                ", name='" + name + '\'' +
+                ", spackage='" + spackage + '\'' +
+                ", loader=" + loader +
+                ", hotAgent=" + hotAgent +
+                ", seeDebug=" + seeDebug +
+                ", isLoaded=" + isLoaded +
+                ", loadType='" + loadType + '\'' +
+                ", logger=" + logger +
+                ", debug=" + debug +
+                ", profiler=" + profiler +
+                ", lexer=" + lexer +
+                '}';
     }
 }

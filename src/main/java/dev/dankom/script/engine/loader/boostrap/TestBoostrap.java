@@ -22,4 +22,9 @@ public class TestBoostrap implements ScriptBoostrap {
     public boolean seeDebug() {
         return true;
     }
+
+    @Override
+    public boolean isSimulated() {
+        return true;
+    }
 }

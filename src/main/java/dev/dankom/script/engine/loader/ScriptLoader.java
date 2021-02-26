@@ -5,7 +5,6 @@ import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.operation.operations.ShutdownOperation;
 import dev.dankom.script.engine.Script;
 import dev.dankom.script.engine.loader.boostrap.ScriptBoostrap;
-import dev.dankom.script.type.method.ScriptMethodCall;
 import dev.dankom.util.general.args.ArgParser;
 
 import java.io.File;
@@ -14,7 +13,7 @@ import java.util.List;
 
 public class ScriptLoader {
 
-    private List<Script> scripts;
+    private List<Script> scripts = new ArrayList<>();
     private boolean seeDebug;
     private ScriptBoostrap boostrap;
 
@@ -49,32 +48,38 @@ public class ScriptLoader {
         new ShutdownOperation(new ThreadMethodRunner(() -> {
             this.boostrap.onShutdown();
         }), "", new DefaultLogger());
+
+        loadCore();
+    }
+
+    public void loadCore() {
+        load("dev/dankom/plight/script/core/Core.plight");
     }
 
     public void load(File... scripts) {
         this.scripts = new ArrayList<>();
         for (File f : scripts) {
-            Script s = new Script(this, seeDebug);
-            s.bindScriptToMemory(f);
-            this.scripts.add(s);
-            boostrap.onLoadScript(s);
+            load(f);
         }
     }
 
-    public void loadDefaultLibraryScript(String... scripts) {
-        this.scripts = new ArrayList<>();
-        for (String f : scripts) {
-            f = f.replace(".", "\\\\");
-            Script s = new Script(this, seeDebug);
-            s.bindLibraryScriptToMemory(f);
-            this.scripts.add(s);
-            boostrap.onLoadScript(s);
+    public void load(String... scripts) {
+        for (String s : scripts) {
+            File file = new File(s);
+            load(file);
         }
+    }
+
+    public void load(File f) {
+        Script s = new Script(this, seeDebug);
+        s.bindScriptToMemory(f);
+        this.scripts.add(s);
+        boostrap.onLoadScript(s);
     }
 
     public Script getScript(String packageAndName) {
         for (Script s : scripts) {
-            if ((s.getPackage() + s.getName().replace(".plight", "")).equalsIgnoreCase(packageAndName)) {
+            if ((s.getPackage() + s.getName()).equalsIgnoreCase(packageAndName)) {
                 return s;
             }
         }
@@ -91,9 +96,8 @@ public class ScriptLoader {
 
     public static void main(String[] args) {
         ScriptLoader loader = new ScriptLoader();
-        loader.loadDefaultLibraryScript("dev/dankom/plight/script/test", "dev/dankom/plight/script/test1");
+        loader.load("dev/dankom/plight/script/test.plight", "dev/dankom/plight/script/test1.plight");
 
-        Script script = loader.getScript("scripts/dev/dankom/plight/script/test");
-        script.getMethod("main").call(new ArrayList<>());
+        Script script = loader.getScript("dev/dankom/plight/script/test");
     }
 }

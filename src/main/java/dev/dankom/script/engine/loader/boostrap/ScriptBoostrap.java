@@ -7,4 +7,5 @@ public interface ScriptBoostrap {
     void onShutdown();
     void onLoadScript(Script s);
     boolean seeDebug();
+    boolean isSimulated();
 }

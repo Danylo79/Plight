@@ -1,5 +1,3 @@
-define(foo, string, "test1.plight is kinda cool!");
-
 struct String getFoo() {
     return foo;
 }

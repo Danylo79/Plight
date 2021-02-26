@@ -1,12 +1,13 @@
 package dev.dankom.script.engine.hot;
 
+import dev.dankom.interfaces.runner.MethodRunner;
 import dev.dankom.script.engine.Script;
+import dev.dankom.script.engine.hot.tranformer.ITransformer;
 import dev.dankom.script.exception.ScriptRuntimeException;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
 import dev.dankom.script.lexer.Lexeme;
 import dev.dankom.script.lexer.Lexer;
 import dev.dankom.script.lexer.Token;
-import dev.dankom.script.pointer.Pointer;
 import dev.dankom.script.type.imported.ScriptImport;
 import dev.dankom.script.type.imported.ScriptJavaImport;
 import dev.dankom.script.type.method.ScriptMethod;
@@ -14,7 +15,6 @@ import dev.dankom.script.type.method.ScriptMethodCall;
 import dev.dankom.script.type.method.ScriptMethodParameter;
 import dev.dankom.script.type.var.ScriptUniform;
 import dev.dankom.script.type.var.ScriptVariable;
-import dev.dankom.script.util.ScriptHelper;
 import dev.dankom.util.general.ExceptionUtil;
 
 import java.util.ArrayList;
@@ -23,10 +23,12 @@ import java.util.List;
 public class HotAgent {
     private final Script script;
     private final Injector injector;
+    private List<ITransformer> transformQueue;
 
     public HotAgent(Script script) {
         this.script = script;
         this.injector = new Injector();
+        this.transformQueue = new ArrayList<>();
     }
 
     public void refresh() {
@@ -39,6 +41,26 @@ public class HotAgent {
     public void refreshAll() {
         for (Script s : script.getLoader().scripts()) {
             s.getHotAgent().refresh();
+        }
+    }
+
+    public void addToTransformQueue(ITransformer transformer) {
+        script.debug().debug("HotAgent%addToTransformQueue()", "Added transformer!");
+        transformQueue.add(transformer);
+    }
+
+    public void addToTransformQueue(MethodRunner runner) {
+        addToTransformQueue(new ITransformer(script) {
+            @Override
+            public void apply() {
+                runner.run();
+            }
+        });
+    }
+
+    public void applyTransformers() {
+        for (ITransformer transformer : transformQueue) {
+            transformer.apply();
         }
     }
 

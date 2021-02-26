@@ -22,4 +22,9 @@ public class DefaultBoostrap implements ScriptBoostrap {
     public boolean seeDebug() {
         return false;
     }
+
+    @Override
+    public boolean isSimulated() {
+        return false;
+    }
 }
