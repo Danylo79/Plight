@@ -21,7 +21,7 @@ public interface ILogger {
         log(LogLevel.IMPORTANT, loc, msg);
     }
 
-    default void test(String loc, Object msg) {
+    default void debug(String loc, Object msg) {
         log(LogLevel.TEST, loc, msg);
     }
 

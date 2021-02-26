@@ -130,7 +130,7 @@ public class ScriptMethodCall implements MemoryBoundStructure<ScriptMethodCall> 
                 } else if (method.equalsIgnoreCase("fatal")) {
                     parent.getScript().logger().fatal(pars.get(0), pars.get(1));
                 } else if (method.equalsIgnoreCase("test")) {
-                    parent.getScript().logger().test(pars.get(0), pars.get(1));
+                    parent.getScript().logger().debug(pars.get(0), pars.get(1));
                 } else if (method.equalsIgnoreCase("print")) {
                     System.out.println(pars.get(0));
                 }

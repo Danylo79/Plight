@@ -1,4 +1,9 @@
+uniform(name);
+uniform(package);
+
+define(s, string, "foo");
+define(s1, string, "bar");
+
 struct void main() {
-    info("Main", foo);
     return;
 }

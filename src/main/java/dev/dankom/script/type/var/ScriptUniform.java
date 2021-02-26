@@ -29,7 +29,7 @@ public class ScriptUniform implements MemoryBoundStructure<ScriptUniform> {
 
                     if (lexemes.get(i - 1).getToken() == Token.OPEN && l.getToken() == Token.IDENTIFIER && lexemes.get(i + 1).getToken() == Token.CLOSE && name == null) {
                         name = l.getLexeme();
-                        script.debug().test("Uniform%Binder", "Set uniform key to " + name + "!");
+                        script.debug().debug("Uniform%Binder", "Set uniform key to " + name + "!");
                         this.namePointer = new Pointer(i, l);
                         continue;
                     }

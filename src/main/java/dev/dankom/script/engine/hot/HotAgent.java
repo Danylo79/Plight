@@ -6,12 +6,15 @@ import dev.dankom.script.interfaces.MemoryBoundStructure;
 import dev.dankom.script.lexer.Lexeme;
 import dev.dankom.script.lexer.Lexer;
 import dev.dankom.script.lexer.Token;
+import dev.dankom.script.pointer.Pointer;
 import dev.dankom.script.type.imported.ScriptImport;
 import dev.dankom.script.type.imported.ScriptJavaImport;
 import dev.dankom.script.type.method.ScriptMethod;
+import dev.dankom.script.type.method.ScriptMethodCall;
 import dev.dankom.script.type.method.ScriptMethodParameter;
 import dev.dankom.script.type.var.ScriptUniform;
 import dev.dankom.script.type.var.ScriptVariable;
+import dev.dankom.script.util.ScriptHelper;
 import dev.dankom.util.general.ExceptionUtil;
 
 import java.util.ArrayList;
@@ -50,7 +53,7 @@ public class HotAgent {
     public class Injector {
         //Advanced
         public void injectCustom(List<Lexeme> lexemes, MemoryBoundStructure mbs) {
-            script.debug().info("Script%getHotAgent()%injectCustom()", "Injecting custom structure " + mbs.toString());
+            script.debug().debug("Script%getHotAgent()%injectCustom()", "Injecting custom structure " + mbs.toString());
             if (lexemes.isEmpty()) {
                 ExceptionUtil.throwCompactException(new ScriptRuntimeException("Lexemes is empty!", script));
             }
@@ -58,7 +61,7 @@ public class HotAgent {
         }
 
         public void injectMethod(List<Lexeme> lexemes, ScriptMethod mbs) {
-            script.debug().important("Script%getHotAgent()%injectMethod()", "Injecting method structure " + mbs.toString());
+            script.debug().debug("Script%getHotAgent()%injectMethod()", "Injecting method structure " + mbs.toString());
             if (lexemes.isEmpty()) {
                 ExceptionUtil.throwCompactException(new ScriptRuntimeException("Lexemes is empty!", script));
             }
@@ -66,7 +69,7 @@ public class HotAgent {
         }
 
         public void injectVariable(List<Lexeme> lexemes, ScriptVariable mbs) {
-            script.debug().important("Script%getHotAgent()%injectVariable()", "Injecting variable structure " + mbs.toString());
+            script.debug().debug("Script%getHotAgent()%injectVariable()", "Injecting variable structure " + mbs.toString());
             if (lexemes.isEmpty()) {
                 ExceptionUtil.throwCompactException(new ScriptRuntimeException("Lexemes is empty!", script));
             }
@@ -74,7 +77,7 @@ public class HotAgent {
         }
 
         public void injectUniform(List<Lexeme> lexemes, ScriptUniform mbs) {
-            script.debug().important("Script%getHotAgent()%injectUniform()", "Injecting uniform structure " + mbs.toString());
+            script.debug().debug("Script%getHotAgent()%injectUniform()", "Injecting uniform structure " + mbs.toString());
             if (lexemes.isEmpty()) {
                 ExceptionUtil.throwCompactException(new ScriptRuntimeException("Lexemes is empty!", script));
             }
@@ -82,7 +85,7 @@ public class HotAgent {
         }
 
         public void injectImport(List<Lexeme> lexemes, ScriptImport mbs) {
-            script.debug().important("Script%getHotAgent()%injectImport()", "Injecting import structure " + mbs.toString());
+            script.debug().debug("Script%getHotAgent()%injectImport()", "Injecting import structure " + mbs.toString());
             if (lexemes.isEmpty()) {
                 ExceptionUtil.throwCompactException(new ScriptRuntimeException("Lexemes is empty!", script));
             }
@@ -90,7 +93,7 @@ public class HotAgent {
         }
 
         public void injectJavaImport(List<Lexeme> lexemes, ScriptJavaImport mbs) {
-            script.debug().important("Script%getHotAgent()%injectJavaImport()", "Injecting java import structure " + mbs.toString());
+            script.debug().debug("Script%getHotAgent()%injectJavaImport()", "Injecting java import structure " + mbs.toString());
             if (lexemes.isEmpty()) {
                 ExceptionUtil.throwCompactException(new ScriptRuntimeException("Lexemes is empty!", script));
             }
@@ -287,6 +290,27 @@ public class HotAgent {
                     }
                 } catch (IndexOutOfBoundsException e) {}
             }
+        }
+
+        public void injectMethodCall(String methodName, int index, String call) {
+            script.debug().debug("Script%getHotAgent()%injectMethod()", "Injecting method call " + call);
+            ScriptMethod sm = script.getMethod(methodName);
+            List<Lexeme> lexemes = Lexer.simpleLex(call);
+            List<Lexeme> storage = new ArrayList<>();
+            for (int i = 0; i < lexemes.size(); i++) {
+                Lexeme l = lexemes.get(i);
+
+                storage.add(l);
+
+                if (l.getToken() == Token.END_LINE) {
+                    sm.methodCalls.add(index, getScript().bindStructureToMemory(storage, new ScriptMethodCall(sm)));
+                    storage.clear();
+                }
+            }
+        }
+        //Other
+        public void createGetter(String var, String type) {
+            injectMethod("public " + type + " get" + var + "() { return " + var + "; }");
         }
     }
 }

@@ -19,7 +19,7 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
     private List<ScriptMethodParameter> pars;
     private Script script;
 
-    private List<ScriptMethodCall> methodCalls = new ArrayList<>();
+    public List<ScriptMethodCall> methodCalls = new ArrayList<>();
     private Pointer returnPointer = Pointer.NOT_SET;
 
     public ScriptMethod(Script script, String name, String returnType, List<ScriptMethodParameter> pars) {
@@ -75,7 +75,7 @@ public class ScriptMethod implements MemoryBoundStructure<ScriptMethod> {
         }
 
         for (ScriptMethodCall smc : methodCalls) {
-            getScript().debug().test("ScriptMethod%call()", "Running method call " + smc.toString());
+            getScript().debug().debug("ScriptMethod%call()", "Running method call " + smc.toString());
             String returned = smc.call();
             if (!returned.equalsIgnoreCase("void")) {
                 return returned;

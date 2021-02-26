@@ -5,6 +5,7 @@ import dev.dankom.logger.abztract.DebugLogger;
 import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
 import dev.dankom.logger.profiler.Profiler;
+import dev.dankom.script.engine.loader.ScriptLoader;
 import dev.dankom.script.exception.ScriptRuntimeException;
 import dev.dankom.script.exception.exceptions.ScriptNotLoadedException;
 import dev.dankom.script.engine.hot.HotAgent;
@@ -28,6 +29,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Script {
+
+    public static final String LOADER_VERSION = "1.0";
 
     private File file;
     private String name;
@@ -128,22 +131,28 @@ public class Script {
             bindJavaImports();
             profiler.startSection("bind_variables");
             bindVariables();
+            //Uniforms
             profiler.startSection("bind_uniforms");
             bindUniforms();
+
+            bindUniform("name", getName());
+            bindUniform("package", getPackage());
+            bindUniform("version", LOADER_VERSION);
+            //
             profiler.startSection("bind_methods");
             bindMethods();
             profiler.stopSection("bind_methods");
 
             for (ScriptImport si : imports) {
-                debug.test("Structure", si);
+                debug.debug("Structure", si);
             }
 
             for (ScriptVariable sv : variables) {
-                debug.test("Structure", sv);
+                debug.debug("Structure", sv);
             }
 
             for (ScriptUniform su : uniforms) {
-                debug.test("Structure", su);
+                debug.debug("Structure", su);
             }
         } catch (Exception e) {
             profiler.crash("Failed: " + e.getMessage(), e);
@@ -433,7 +442,7 @@ public class Script {
     public boolean bindUniform(String name, String value) {
         for (ScriptUniform su : uniforms) {
             if (su.getName().equalsIgnoreCase(name)) {
-                debug.test("UniformBinder", "Bound " + name + " to " + value + "!");
+                debug.debug("UniformBinder", "Bound " + name + " to " + value + "!");
                 su.setValue(value);
                 return true;
             }
@@ -545,7 +554,7 @@ public class Script {
     //
 
     public <T> T bindStructureToMemory(List<Lexeme> lexemes, MemoryBoundStructure mbs) {
-        debug.test("MemoryStructureManager", "Starting binder!");
+        debug.debug("MemoryStructureManager", "Starting binder!");
         T t = null;
         try {
             t = (T) mbs.loadToMemory(lexemes);
@@ -553,7 +562,7 @@ public class Script {
             e.printStackTrace();
         }
         if (t != null) {
-            debug.test("MemoryStructureManager", "Binding memory structure " + mbs.getClass().getName() + " to " + mbs.toString() + "!");
+            debug.debug("MemoryStructureManager", "Binding memory structure " + mbs.getClass().getName() + " to " + mbs.toString() + "!");
         } else {
             logger.error("MemoryStructureManager", "Returned null! (Aborting) (Failed to bind " + mbs.getClass().getName() + " to memory!)");
         }

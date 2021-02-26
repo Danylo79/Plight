@@ -35,14 +35,14 @@ public class ScriptVariable implements MemoryBoundStructure<ScriptVariable> {
 
                     if (lexemes.get(i - 1).getToken() == Token.OPEN && l.getToken() == Token.IDENTIFIER && lexemes.get(i + 1).getToken() == Token.COMMA && name == null) {
                         name = l.getLexeme();
-                        script.debug().test("Variable%Binder", "Set name to " + name + "!");
+                        script.debug().debug("Variable%Binder", "Set name to " + name + "!");
                         this.namePointer = new Pointer(i, l);
                         continue;
                     }
 
                     if (lexemes.get(i - 1).getToken() == Token.COMMA && l.getToken() == Token.IDENTIFIER && lexemes.get(i + 1).getToken() == Token.COMMA && type == null) {
                         type = l.getLexeme();
-                        script.debug().test("Variable%Binder", "Set type to " + type + " for variable " + name + "!");
+                        script.debug().debug("Variable%Binder", "Set type to " + type + " for variable " + name + "!");
                         this.typePointer = new Pointer(i, l);
                         continue;
                     }
@@ -53,7 +53,7 @@ public class ScriptVariable implements MemoryBoundStructure<ScriptVariable> {
                         } catch (IndexOutOfBoundsException e) {
                             value = ListUtil.getSub(lexemes, i, lexemes.size());
                         }
-                        script.debug().test("Variable%Binder", "Set value to " + value + " for variable " + name + "!");
+                        script.debug().debug("Variable%Binder", "Set value to " + value + " for variable " + name + "!");
                         this.valuePointer = new Pointer(i, l);
                         continue;
                     }
