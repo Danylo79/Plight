@@ -1,4 +1,6 @@
-package dev.dankom.script.lexer;
+package dev.dankom.lexer;
+
+import dev.dankom.script.lexer.Token;
 
 public class Lexeme {
     private final Token token;

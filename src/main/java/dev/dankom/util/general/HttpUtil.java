@@ -1,5 +1,9 @@
 package dev.dankom.util.general;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -7,6 +11,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Scanner;
 
 public class HttpUtil {
 
@@ -62,5 +67,24 @@ public class HttpUtil {
         if (out != null) {
             out.close();
         }
+    }
+
+    public JSONObject getJSON() throws ParseException {
+        String json = null;
+        try {
+            URL url = new URL(this.url);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoOutput(true);
+            connection.setInstanceFollowRedirects(false);
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("charset", "utf-8");
+            connection.connect();
+            InputStream inStream = connection.getInputStream();
+            json = new Scanner(inStream, "UTF-8").useDelimiter("\\Z").next(); // input stream to string
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return (JSONObject) new JSONParser().parse(json);
     }
 }

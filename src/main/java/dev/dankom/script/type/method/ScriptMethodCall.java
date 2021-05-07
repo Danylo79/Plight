@@ -2,7 +2,7 @@ package dev.dankom.script.type.method;
 
 import dev.dankom.script.exception.ScriptRuntimeException;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
-import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.lexer.Lexeme;
 import dev.dankom.script.lexer.Token;
 import dev.dankom.script.util.ScriptHelper;
 import dev.dankom.util.general.ExceptionUtil;

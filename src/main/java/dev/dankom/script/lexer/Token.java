@@ -52,7 +52,7 @@ public enum Token {
         pattern = Pattern.compile("^" + regex);
     }
 
-    int endOfMatch(String s) {
+    public int endOfMatch(String s) {
         Matcher m = pattern.matcher(s);
 
         if (m.find()) {

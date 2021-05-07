@@ -1,7 +1,7 @@
 package dev.dankom.script.interfaces;
 
 import dev.dankom.script.exception.ScriptRuntimeException;
-import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.lexer.Lexeme;
 
 import java.util.List;
 

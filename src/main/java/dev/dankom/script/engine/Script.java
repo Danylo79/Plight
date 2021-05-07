@@ -1,18 +1,15 @@
 package dev.dankom.script.engine;
 
 import dev.dankom.logger.LogManager;
-import dev.dankom.logger.abztract.DebugLogger;
-import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
 import dev.dankom.logger.profiler.Profiler;
-import dev.dankom.script.engine.hot.tranformer.ITransformer;
 import dev.dankom.script.engine.loader.ScriptLoader;
 import dev.dankom.script.exception.ScriptRuntimeException;
 import dev.dankom.script.exception.exceptions.ScriptNotLoadedException;
 import dev.dankom.script.engine.hot.HotAgent;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
-import dev.dankom.script.lexer.Lexeme;
-import dev.dankom.script.lexer.Lexer;
+import dev.dankom.lexer.Lexeme;
+import dev.dankom.lexer.Lexer;
 import dev.dankom.script.lexer.Token;
 import dev.dankom.script.logger.ScriptDebugLogger;
 import dev.dankom.script.logger.ScriptLogger;

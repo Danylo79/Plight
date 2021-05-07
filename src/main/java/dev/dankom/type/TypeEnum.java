@@ -11,7 +11,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class TypeEnum implements Iterable<TypeEnum.TypeEnumEntry> {
-    // Used to convert between IDs and names
     protected Set<TypeEnumEntry> members = Sets.newHashSet();
 
     /**

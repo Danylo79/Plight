@@ -1,6 +1,6 @@
 package dev.dankom.script.pointer;
 
-import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.lexer.Lexeme;
 import dev.dankom.script.lexer.Token;
 
 public class Pointer {

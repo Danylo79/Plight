@@ -2,7 +2,7 @@ package dev.dankom.script.type.imported;
 
 import dev.dankom.script.engine.Script;
 import dev.dankom.script.interfaces.MemoryBoundStructure;
-import dev.dankom.script.lexer.Lexeme;
+import dev.dankom.lexer.Lexeme;
 import dev.dankom.script.lexer.Token;
 import dev.dankom.script.pointer.Pointer;
 

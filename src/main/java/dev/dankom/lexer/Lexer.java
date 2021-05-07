@@ -1,4 +1,6 @@
-package dev.dankom.script.lexer;
+package dev.dankom.lexer;
+
+import dev.dankom.script.lexer.Token;
 
 import java.io.File;
 import java.io.IOException;
