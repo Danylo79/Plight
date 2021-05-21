@@ -5,35 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/map/SimpleMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/promise/Promise.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/promise/PromiseBiConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/promise/PromiseConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/promise/PromiseReturner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/scanner/ConsoleScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/scanner/SimpleScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/UUIDUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/type/Directory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/type/Directory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/LogManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/LogManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/Script.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/Script.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/hot/HotAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/engine/hot/HotAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/interfaces/MemoryBoundStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/interfaces/MemoryBoundStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/lexer/Lexeme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Lexeme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/lexer/Lexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/lexer/Lexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/lexer/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/lexer/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/pointer/Pointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/pointer/Pointer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptImport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptJavaImport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/imported/ScriptJavaImport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/method/ScriptMethodCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptUniform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptUniform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/type/var/ScriptVariable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/script/util/ScriptHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/ITickable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/ITickable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/TypeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/TypeEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/HttpUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/util/general/HttpUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +84,7 @@
       <recent name="dev.dankom.util.general" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ScriptLoader">
+  <component name="RunManager" selected="Maven.Build">
     <configuration name="AgentLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.agent.AgentLoaderTest" />
       <module name="Plight" />
