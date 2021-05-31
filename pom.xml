@@ -6,7 +6,7 @@
 
     <groupId>dev.dankom.plight</groupId>
     <artifactId>Plight</artifactId>
-    <version>1.8</version>
+    <version>1.9</version>
     <packaging>jar</packaging>
     <name>Plight</name>
     <url>https://github.com/Danylo79/Plight</url>
@@ -120,7 +120,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>17.0</version>
+            <version>20.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
