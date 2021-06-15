@@ -1,5 +1,8 @@
 package dev.dankom.util.general;
 
+import dev.dankom.math.vector.d.Vector2D;
+import dev.dankom.math.vector.f.Vector2F;
+
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -447,5 +450,13 @@ public class MathUtil {
             sum += digits[i] - '0';
         }
         return sum;
+    }
+
+    public static Vector2F getCenterOfTriangle(Vector2F v1, Vector2F v2, Vector2F v3) {
+        return new Vector2F((int) Math.round((v1.getX() + v2.getX() + v3.getX()) / 3.0), (int) Math.round((v1.getY() + v2.getY() + v3.getY()) / 3.0));
+    }
+
+    public static Vector2D getCenterOfTriangle(Vector2D v1, Vector2D v2, Vector2D v3) {
+        return new Vector2D((int) Math.round((v1.getX() + v2.getX() + v3.getX()) / 3.0), (int) Math.round((v1.getY() + v2.getY() + v3.getY()) / 3.0));
     }
 }
