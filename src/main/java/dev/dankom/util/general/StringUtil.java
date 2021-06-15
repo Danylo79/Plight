@@ -5,7 +5,6 @@ public class StringUtil {
      * Removes all ASCII colors from a string
      */
     public final static String unescape_perl_string(String oldstr) {
-
         /*
          * In contrast to fixing Java's broken regex charclasses,
          * this one need be no bigger, as unescaping shrinks the string

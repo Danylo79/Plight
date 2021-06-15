@@ -10,7 +10,6 @@ public class ChatColor {
     }
 
     enum ColorCode {
-
         DARK_RED('4', "\u00A74"),
         RED('c', "\u00A7c"),
         GOLD('6', "\u00A76"),

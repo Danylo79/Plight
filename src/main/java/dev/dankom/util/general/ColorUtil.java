@@ -3,7 +3,6 @@ package dev.dankom.util.general;
 import java.awt.*;
 
 public class ColorUtil {
-
     // ANSI escape code
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -20,9 +19,9 @@ public class ColorUtil {
         return s.replaceAll("\u001B\\[[;\\d]*m", "");
     }
 
-    public static int rainbow(int delay) {
+    public static Color rainbow(int delay) {
         double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
         rainbowState %= 360;
-        return Color.getHSBColor((float) (rainbowState / 360.0f), 0.8f, 0.7f).getRGB();
+        return Color.getHSBColor((float) (rainbowState / 360.0f), 0.8f, 0.7f);
     }
 }

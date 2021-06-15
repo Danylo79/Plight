@@ -3,7 +3,6 @@ package dev.dankom.logger.type;
 import dev.dankom.util.general.ColorUtil;
 
 public enum LogLevel {
-
     INFO("INFO", ""),
     ERROR("ERROR", ColorUtil.ANSI_RED),
     FATAL("FATAL", ColorUtil.ANSI_RED),

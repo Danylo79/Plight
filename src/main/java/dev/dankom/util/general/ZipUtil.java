@@ -8,7 +8,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class ZipUtil {
-
     private static int bufferSize = 2048;
 
     public static void unzip(File fileZip, File destDir) throws IOException {

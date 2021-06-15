@@ -14,8 +14,7 @@ import java.util.List;
 
 @Deprecated
 public class Logger {
-
-    private List<String> log;
+    protected List<String> log;
 
     public Logger() {
         this.log = new ArrayList<>();

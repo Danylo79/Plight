@@ -6,7 +6,6 @@ import java.util.Iterator;
  * Created by Hexeption on 18/12/2016.
  */
 public class ArrayHelper<T> implements Iterable<T> {
-
     private T[] elements;
 
     public ArrayHelper(final T[] array) {
