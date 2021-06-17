@@ -2,7 +2,6 @@ package dev.dankom.jna;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;
-import dev.dankom.jna.interfaces.RazarChromaLib;
 import dev.dankom.logger.LogManager;
 import dev.dankom.logger.abztract.DefaultLogger;
 import dev.dankom.logger.interfaces.ILogger;
@@ -22,6 +21,7 @@ public class LibraryLoader<T extends Library> {
     }
 
     public static final <T extends Library> LibraryLoader<T> create(String name, Class<T> clazz) {
+        logger.important("LibraryLoader", "Creating new library loader for " + name + "!");
         return new LibraryLoader(name, clazz);
     }
 

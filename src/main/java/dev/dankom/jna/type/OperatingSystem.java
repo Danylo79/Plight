@@ -10,8 +10,7 @@ public enum OperatingSystem {
     SOLARIS(3),
     FREEBSD(4),
     OPENBSD(5),
-    WINDOWSCE(6),
-    ;
+    WINDOWSCE(6);
 
     private int id;
 

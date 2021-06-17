@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/LibraryLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/interfaces/RazarChromaLib.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/type/OperatingSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/razer/DeviceInfos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/razer/EnumDeviceType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/razer/KeyboardKeys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/razer/RazerDevices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/GUID.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/registry/Registry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/profiler/Profiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/logger/profiler/Profiler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/core/Core.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/LibraryLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/LibraryLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/interfaces/RazarChromaLib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/interfaces/RazerChromaLib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/type/OperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/type/OperatingSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +28,9 @@
         <option value="AnnotationType" />
         <option value="JUnit3 Test Class" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -93,72 +98,7 @@
       <recent name="dev.dankom.math" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LibraryLoader">
-    <configuration name="AgentLoaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.agent.AgentLoaderTest" />
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.tests.agent.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ClassGeneratorTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.tests.ClassGeneratorTest" />
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LibraryLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.jna.LibraryLoader" />
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.jna.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Script" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.script.engine.Script" />
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.script.type.var.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ScriptLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dev.dankom.script.engine.loader.ScriptLoader" />
-      <module name="Plight" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dev.dankom.script.engine.loader.boostrap.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="MathUtilTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="plight-core" />
       <extension name="coverage">
@@ -215,23 +155,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.AgentLoaderTest" />
-      <item itemvalue="Application.ClassGeneratorTest" />
-      <item itemvalue="Application.ScriptLoader" />
-      <item itemvalue="Application.Script" />
       <item itemvalue="JUnit.MathUtilTest" />
       <item itemvalue="Maven.Build" />
-      <item itemvalue="Application.LibraryLoader" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.LibraryLoader" />
-        <item itemvalue="Application.Script" />
-        <item itemvalue="Application.ScriptLoader" />
-        <item itemvalue="Application.ClassGeneratorTest" />
-        <item itemvalue="Application.AgentLoaderTest" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
