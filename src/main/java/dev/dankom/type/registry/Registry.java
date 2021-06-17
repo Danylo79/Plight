@@ -1,20 +1,21 @@
 package dev.dankom.type.registry;
 
+import dev.dankom.annotation.json.JsonSerializable;
+import dev.dankom.file.json.JsonObjectBuilder;
 import dev.dankom.interfaces.Copyable;
 import dev.dankom.interfaces.Storeable;
 import dev.dankom.interfaces.Temporary;
 import dev.dankom.interfaces.Wrapper;
 import dev.dankom.util.general.DataStructureAdapter;
+import org.json.simple.JSONAware;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class Registry<T> implements Iterable<T>, Copyable<Registry<T>>, Storeable<T>, Wrapper<List<T>>, Temporary {
+public class Registry<T> implements Iterable<T>, Copyable<Registry<T>>, Storeable<T>, Wrapper<List<T>>, Temporary, JSONAware, JsonSerializable {
     private List<T> list;
+    private UUID id;
 
     public Registry() {
         open();
@@ -116,10 +117,12 @@ public class Registry<T> implements Iterable<T>, Copyable<Registry<T>>, Storeabl
 
     public void open() {
         list = new ArrayList<>();
+        id = UUID.randomUUID();
     }
 
     public void close() {
         list.clear();
+        id = null;
     }
 
     public T[] toArray() {
@@ -132,5 +135,9 @@ public class Registry<T> implements Iterable<T>, Copyable<Registry<T>>, Storeabl
 
     public Collection<T> toCollection() {
         return list;
+    }
+
+    public String toJSONString() {
+        return new JsonObjectBuilder().addKeyValuePair("id", id.toString()).addArray("values", list).build().toJSONString();
     }
 }
