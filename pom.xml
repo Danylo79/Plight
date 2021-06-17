@@ -82,6 +82,10 @@
             <id>json-simple</id>
             <url>https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple</url>
         </repository>
+        <repository>
+            <id>jna</id>
+            <url>https://mvnrepository.com/artifact/com.sun.jna/jna</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -116,6 +120,11 @@
             <artifactId>zt-zip</artifactId>
             <version>1.14</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>3.0.9</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

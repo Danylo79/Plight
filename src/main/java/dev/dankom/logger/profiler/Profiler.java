@@ -1,5 +1,6 @@
 package dev.dankom.logger.profiler;
 
+import dev.dankom.jna.type.OperatingSystem;
 import dev.dankom.logger.LogManager;
 import dev.dankom.logger.interfaces.ILogger;
 import dev.dankom.util.general.JavaUtil;
@@ -58,6 +59,7 @@ public class Profiler {
             logger.error("<crash>", "-----------------------------------------");
             logger.error("<crash>", "     ");
             logger.error("<crash>", "----------Specs----------");
+            logger.error("<crash>", "Operating System: " + OperatingSystem.get().name());
             logger.error("<crash>", "Java Version: " + JavaUtil.version());
             logger.error("<crash>", "Available Memory: " + JavaUtil.freeMemory());
             for (String s : extraMachineInfo) {
