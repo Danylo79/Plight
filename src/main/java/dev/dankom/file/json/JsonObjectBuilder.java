@@ -3,6 +3,7 @@ package dev.dankom.file.json;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.Collection;
 import java.util.List;
 
 public class JsonObjectBuilder {
@@ -12,7 +13,7 @@ public class JsonObjectBuilder {
         this.jsonObject = new JSONObject();
     }
 
-    public JsonObjectBuilder addArray(String name, List<?> contents) {
+    public JsonObjectBuilder addArray(String name, Iterable<?> contents) {
         JSONArray array = new JSONArray();
         for (Object o : contents) {
             array.add(o);

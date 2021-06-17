@@ -37,7 +37,7 @@ public class Registry<T> implements Iterable<T>, Copyable<Registry<T>>, Storeabl
     }
 
     public int size() {
-        return list.size();
+        return list.size() - 1;
     }
 
     public boolean isEmpty() {

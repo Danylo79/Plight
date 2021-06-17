@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/Start.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/registry/MapRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/jar/runner/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/jar/runner/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/file/json/JsonObjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/file/json/JsonObjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/interfaces/Copyable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/interfaces/Copyable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/test/RuntimeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/test/RuntimeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/test/TestRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/test/TestRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/test/tests/JsonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/test/tests/JsonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/test/tests/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/test/tests/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/registry/Registry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/registry/Registry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +29,8 @@
         <option value="JUnit3 Test Class" />
         <option value="FxmlFile" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -89,7 +98,20 @@
       <recent name="dev.dankom.math" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Start">
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.dankom.Start" />
+      <module name="Plight" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.dankom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MathUtilTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="plight-core" />
       <extension name="coverage">
@@ -148,7 +170,13 @@
     <list>
       <item itemvalue="JUnit.MathUtilTest" />
       <item itemvalue="Maven.Build" />
+      <item itemvalue="Application.Start" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Start" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
