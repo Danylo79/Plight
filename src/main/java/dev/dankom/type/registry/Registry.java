@@ -1,5 +1,7 @@
 package dev.dankom.type.registry;
 
+import dev.dankom.interfaces.Copyable;
+import dev.dankom.interfaces.Storeable;
 import dev.dankom.util.general.DataStructureAdapter;
 import org.jetbrains.annotations.NotNull;
 
@@ -10,8 +12,24 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class Registry<T> implements Iterable<T> {
+public class Registry<T> implements Iterable<T>, Copyable<Registry<T>>, Storeable<T> {
     private List<T> list = new ArrayList<>();
+
+    public Registry(List<T> registry) {
+        for (T r : registry) {
+            add(r);
+        }
+    }
+
+    public Registry(Collection<T> registry) {
+        for (T r : registry) {
+            add(r);
+        }
+    }
+
+    public Registry(Registry<T> registry) {
+        this(registry.toList());
+    }
 
     public int size() {
         return list.size();
@@ -35,6 +53,10 @@ public class Registry<T> implements Iterable<T> {
 
     public boolean add(T t) {
         return list.add(t);
+    }
+
+    public void insert(T t, int index) {
+        list.add(index, t);
     }
 
     public boolean remove(T o) {
@@ -78,6 +100,10 @@ public class Registry<T> implements Iterable<T> {
             T o = get(i);
             consumer.accept(o, i);
         }
+    }
+
+    public Registry<T> copy() {
+        return new Registry<T>(this);
     }
 
     public T[] toArray() {

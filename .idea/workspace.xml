@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e0b7e-f9a3-409e-a5ea-121e201436dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/razer/DeviceInfos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/razer/EnumDeviceType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/razer/KeyboardKeys.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/razer/RazerDevices.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/GUID.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/registry/Registry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/interfaces/Copyable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/interfaces/Storeable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/core/Core.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/LibraryLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/LibraryLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/interfaces/RazarChromaLib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/interfaces/RazerChromaLib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/type/OperatingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/jna/type/OperatingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/ITickable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/interfaces/ITickable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/dankom/type/registry/Registry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/dankom/type/registry/Registry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +23,8 @@
         <option value="JUnit3 Test Class" />
         <option value="FxmlFile" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
